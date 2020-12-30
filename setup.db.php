@@ -11,17 +11,28 @@ try {
     $sql = "use ".$dbname;
     $db->exec($sql);
     $sql = "CREATE TABLE IF NOT EXISTS  users(
-        id INT(11) PRIMARY KEY AUTO_INCREMENT,
+        usersid INT(11) PRIMARY KEY AUTO_INCREMENT,
         uid VARCHAR(255) NOT NULL,
         uemail VARCHAR(255) NOT NULL,
         upwd varchar(255) NOT NULL
     );";
     $db->exec($sql);
-    $sql = "CREATE TABLE IF NOT EXISTS  imgs(
-      id INT(11) PRIMARY KEY,
-      img LONGBLOB
-      );";
-  $db->exec($sql);
+  //   $sql = "CREATE TABLE IF NOT EXISTS  imgs(
+  //     imgsid INT(11) PRIMARY KEY,
+  //     imgstyle Varchar(255) NOT NULL,
+  //     img LONGBLOB
+  //     FOREIGN KEY (imgsid) REFERENCES users(usersid)
+  //     );";
+  // $db->exec($sql);
+  $sql = "CREATE TABLE IF NOT EXISTS  postes(
+    postusrid INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    postesid INT(11),
+    comnt varchar(255),
+    imgstyle Varchar(255) NOT NULL,
+    img LONGBLOB,
+    FOREIGN KEY (postesid) REFERENCES users(usersid)
+    );";
+    $db->exec($sql);
   // $img = base64_encode("img/sun.png");
   // $sql = "INSERT into imgs(id, img) VALUES(2265, '$img');";
   // $db->exec($sql);

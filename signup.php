@@ -42,7 +42,7 @@
             </br>
             </br>
             </br>
-            <input autocomplete="off" id="button"  type="submit" name="submit" />
+            <input  id="button"  type="submit" name="submit" />
         </from>
         <?php include_once("errors.php") ?>
         </div>

@@ -10,7 +10,7 @@
     </li>
     <?php 
       // session_start();
-      if(empty($_SESSION['uid']))
+      if(empty($_SESSION['usersid']))
       {
         echo '<li id="hditemes">';
         echo '  <a href="login.php" id="item">LOGIN</a>';
@@ -19,7 +19,7 @@
         echo '<a href="signup.php" id="item">SINGUP</a>';
         echo ' </li>';
       }
-      else if(isset($_SESSION['uid']))
+      else if(isset($_SESSION['usersid']))
       {
         echo '<li id="hditemes">';
         echo '  <a href="imglab.php" id="item">IMG-LAB</a>';

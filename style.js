@@ -1,6 +1,6 @@
 var all = document.getElementById("dark").style;
 var pos = document.getElementById("ball").style;
-var vid = document.getElementById("vidplayer");
+var vid = document.getElementById("camstick");
 if (vid) var vstyle = vid.style;
 var img = document.getElementById("dmode");
 var camshot = document.getElementById("camshot");
@@ -10,6 +10,8 @@ var f = document.getElementById("filters");
 if (f) var filters = f.style;
 var stickyimgsfilt = document.getElementById("stickyimgs");
 if (stickyimgsfilt) var stickyimgsfilts = stickyimgsfilt.style;
+var indisimg = document.querySelectorAll(".indisimg");
+console.log(indisimg);
 window.onloadstart = getcookie();
 function setcookie(filter) {
   document.cookie = "value=" + filter;
@@ -22,10 +24,11 @@ function getcookie() {
     pos.setProperty("left", "0");
     pos.setProperty("background-image", "url(./img/sun.png)");
     all.filter = "";
+    if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (vstyle) vstyle.setProperty("filter", "");
     if (istyle) istyle.setProperty("filter", "");
     if (cstyle) cstyle.setProperty("filter", "");
-    filters.filter = "";
+    if (filters) filters.filter = "";
     if (stickyimgsfilts) stickyimgsfilts.filter = "";
     setcookie(all.filter);
   } else if (value[1] === "invert(1) hue-rotate(180deg)") {
@@ -33,6 +36,7 @@ function getcookie() {
     pos.setProperty("background-image", "url(./img/moon.png)");
     all.filter = "invert(1) hue-rotate(180deg)";
     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
+    if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
@@ -48,6 +52,7 @@ function darkmode() {
     all.filter = "invert(1) hue-rotate(180deg)";
     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
+    if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
     if (stickyimgsfilts) stickyimgsfilts.filter = "invert(1) hue-rotate(180deg)";
@@ -57,6 +62,7 @@ function darkmode() {
     pos.setProperty("background-image", "url(./img/sun.png)");
     all.filter = "";
     if (vstyle) vstyle.setProperty("filter", "");
+    if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (istyle) istyle.setProperty("filter", "");
     if (cstyle) cstyle.setProperty("filter", "");
     if (stickyimgsfilts) stickyimgsfilts.filter = "";
@@ -71,26 +77,34 @@ if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-      video.play();
-    });
+      .getUserMedia({ video: true })
+      .then(function (stream) {
+        video.srcObject = stream;
+        video.play();
+      });
   }
 }
 
-
-
 function takepic() {
+  var vidimg = document.querySelector("#pipse");
   canvas = document.querySelector("#canvas");
-  width = 640;
-  height = 360;
+  width = video.offsetWidth;
+  height = video.offsetHeight;
   var img = document.querySelector("#img");
   canvas.width = width;
   canvas.height = height;
   canvas.getContext("2d").drawImage(video, 0, 0, width, height);
+  canvas
+    .getContext("2d")
+    .drawImage(
+      vidimg,
+      width / 3,
+      height / 3,
+      vidimg.offsetWidth,
+      vidimg.offsetHeight
+    );
   var data = canvas.toDataURL("image/png");
-  img.setAttribute("src", data);
+  img.setAttribute("value", data);
   fillcheck(data);
 }
 
@@ -105,74 +119,115 @@ function fillcheck($data) {
 
 function slider() {
   var imgdisplay = document.getElementById("imgdisplay").style;
-  if (imgdisplay.visibility === "hidden" || imgdisplay.visibility === "") {
+  var disbutn = document.getElementById("sbutn");
+  if (imgdisplay.visibility === "hidden") {
     imgdisplay.setProperty("right", "0");
     imgdisplay.visibility = "visible";
+    disbutn.setAttribute("value", "Hide imgs");
     imgdisplay.setProperty("opacity", "1");
     imgdisplay.pointerEvents = "auto";
-  } else if (imgdisplay.visibility === "visible") {
+  } else {
     imgdisplay.setProperty("right", "100");
     imgdisplay.pointerEvents = "none";
     imgdisplay.setProperty("opacity", "0");
-    imgdisplay.visibility = "";
+    imgdisplay.visibility = "hidden";
+    disbutn.setAttribute("value", "Display imgs");
   }
 }
 
-function options() {
+function options($value) {
   var imgdisplay = document.getElementById("inside").style;
+  var but = document.getElementById("sd");
   if (imgdisplay.visibility === "" || imgdisplay.visibility === "") {
     imgdisplay.visibility = "visible";
     imgdisplay.pointerEvents = "all";
-    // imgdisplay.setProperty("opacity", "1");
-    // imgdisplay.setProperty("display", "flex");
     imgdisplay.top = "40";
+    but.setAttribute("value", "Show Less");
     imgdisplay.opacity = "1";
   } else if (imgdisplay.visibility === "visible") {
     imgdisplay.opacity = "0";
     imgdisplay.visibility = "";
+    but.setAttribute("value", "Show More");
     imgdisplay.pointerEvents = "none";
-    // imgdisplay.display = "none";
     imgdisplay.top = "0";
-    // imgdisplay.setProperty("opacity", "0");
-    // imgdisplay.setProperty("display", "none");
-    // imgdisplay.visibility = "";
   }
 }
 
 function applyfilter($effect) {
-  var filter = document.getElementById("img").style;
-  if ($effect === "sepia") filter.filter = "sepia(100%)";
-  else if ($effect === "blur") filter.filter = "blur(2px)";
-  else if ($effect === "grayscale") filter.filter = "grayscale(100%)";
-  else if ($effect === "invert") filter.filter = "invert(100%)";
-  else if ($effect === "hue-rotate") filter.filter = "hue-rotate(90deg)";
-  else if ($effect === "hue-rotate2") filter.filter = "hue-rotate(180deg)";
+  var filter = document.getElementById("canvas").style;
+  var styleimg = document.getElementById("styleimg");
+  if ($effect === "sepia") {
+    filter.filter = "sepia(100%)";
+    styleimg.setAttribute("value", "sepia(100%)");
+  } else if ($effect === "blur") {
+    filter.filter = "blur(2px)";
+    styleimg.setAttribute("value", "blur(2px)");
+  } else if ($effect === "grayscale") {
+    filter.filter = "grayscale(100%)";
+    styleimg.setAttribute("value", "grayscale(100%)");
+  } else if ($effect === "invert") {
+    filter.filter = "invert(100%)";
+    styleimg.setAttribute("value", "invert(100%)");
+  } else if ($effect === "hue-rotate") {
+    filter.filter = "hue-rotate(90deg)";
+    styleimg.setAttribute("value", "hue-rotate(90deg)");
+  } else if ($effect === "hue-rotate2") {
+    filter.filter = "hue-rotate(180deg)";
+    styleimg.setAttribute("value", "hue-rotate(180deg)");
+  }
 }
 
-function showfilter()
-{
+function showfilter() {
   var filt = document.getElementById("filters").style;
   var butt = document.getElementById("showfilt");
   var stickyimgs = document.getElementById("stickyimgs").style;
-  if(filt.height === "0%" || filt.height === "")
-  {
+  if (filt.height === "0%" || filt.height === "") {
     butt.value = "Show Sticky imgs";
     stickyimgs.opacity = "0";
+    stickyimgs.pointerEvents = "none";
     filt.height = "100%";
-  }
-  else if (filt.height === "100%")
-  {
+  } else if (filt.height === "100%") {
     butt.value = "Show filters";
     filt.height = "0%";
+    stickyimgs.pointerEvents = "auto";
     stickyimgs.opacity = "1";
   }
+}
 
+function removefilter() {
+  var img = document.getElementById("canvas").style;
+  var styleimg = document.getElementById("styleimg");
+  img.setProperty("filter", "");
+  styleimg.setAttribute("value", "");
+}
+
+function sticktoimg($srcvalue) {
+  var vidimg = document.querySelector("#pipse");
+  var but = document.querySelector("#takepic");
+  vidimg.setAttribute("src", $srcvalue);
+  but.style.pointerEvents = "auto";
+  but.style.backgroundColor = "#6ccde09c";
 }
 
 
 
-function removefilter()
+
+function deleteimg($id)
 {
-  var img = document.getElementById("img").style;
-  img.setProperty('filter', '');
+  var t = confirm("Do you want to  Delete your Image");
+  if(t == true)
+  {
+      window.location = "http://192.168.99.104/deleteimg.php?id="+$id;
+  }
+  else
+  {
+    // window.location.href = "imglab.php"
+  }
+}
+
+
+function like($src)
+{
+   $s = document.querySelector("#zaban");
+   $s.setAttribute('src', "./img/like.png")
 }

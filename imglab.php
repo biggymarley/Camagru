@@ -1,7 +1,7 @@
 <?php
 session_start();
-// if (!isset($_SESSION['uid']))
-//     header('location: ./login.php');
+if (!isset($_SESSION['usersid']))
+    header('location: ./login.php');
 
 ?>
 
@@ -23,21 +23,30 @@ session_start();
         <div id="imglab">
             <div id="editor">
                 <div id="camndcamshot">
-                    <video id="vidplayer" autoplay>
-                    </video>
-                    <div id="camshot">
-                        <canvas id="canvas" hidden></canvas>
-                        <img id="img" class="camshotimg">
+                    <div id="camstick">
+                        <img  id="pipse" >
+                        <video id="vidplayer" autoplay>
+                            </video>
+                        </div>
+                        <div id="camshot">
+                        <canvas id="canvas" ></canvas>
+                        <!-- <img id="img" > -->
                     </div>
                 </div>
-                <input type="button" class="editbutton" value="Take picture" onclick="takepic()" />
-                <input type="button" class="editbutton" value="Upload to profile" />
-                <input id="sd" type="button" class="editbutton" value="Show more" onclick="options()" />
+                <div id="diveditbuttons">
+                    <input id="takepic" type="button" class="editbutton" value="Take picture" onclick="takepic()" />
+                    <input id="sd" type="button" class="editbutton" value="Show more" onclick="options()" />
+                <form  id="butform" action="upload-img.php" method="post" enctype="multipart/form-data"  >
+                    <input type="hidden" name="imgsrc" value="" id="img" />
+                    <input type="hidden" name="styleimg" value="" id="styleimg" />
+                    <input type="submit"  class="editbutton" value="Upload to profile" />
+                </form>
+            </div>
                 <div id="hidehere">
                     <div id="inside">
                     <input  id="showfilt" type="button" class="editbutton" value="Show filters" onclick="showfilter()" />
                         <input type="button" class="editbutton" value="remove filter" onclick="removefilter()" />
-                        <input id="sbutn" class="editbutton" type="button" value="Display imgs" onclick="slider()" />
+                        <input id="sbutn" class="editbutton" type="button" value="Hide imgs" onclick="slider()" />
                         <input type="file" id="upload" hidden />
                         <label class="editbutton" for="upload">Upload<label>
                     </div>
@@ -64,10 +73,10 @@ session_start();
                     </div>
                 </div>
                 <div id="stickyimgs">
-                    <img   class="stickyimgs" src="img/stickyimgs/crown.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/mask.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/weed.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/pipe.png">
+                    <img  id="king" class="stickyimgs" src="img/stickyimgs/crown.png" onclick="sticktoimg(this.src)">
+                    <img  id="kmama" class="stickyimgs" src="img/stickyimgs/mask.png" onclick="sticktoimg(this.src)">
+                    <img  id="join" class="stickyimgs" src="img/stickyimgs/weed.png" onclick="sticktoimg(this.src)">
+                    <img  id="pipe" class="stickyimgs" src="img/stickyimgs/pipe.png" onclick="sticktoimg(this.src)">
                     <!-- <img   class="stickyimgs" src="img/stickyimgs/crown.png">
                     <img   class="stickyimgs" src="img/stickyimgs/mask.png">
                     <img   class="stickyimgs" src="img/stickyimgs/crown.png">
@@ -82,15 +91,9 @@ session_start();
                 </div>
             </div>
             <div id="imgdisplay">
+                <h2>Click to Delete</h2>
                 <div id="dmode">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
-                    <img class="imgs" src="https://picsum.photos/200">
+                    <?php include_once("imgdispaly.php")?>
                 </div>
             </div>
         </div>

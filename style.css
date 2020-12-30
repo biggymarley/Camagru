@@ -8,10 +8,10 @@
   transition: all 200ms ease-out;
   width: auto;
   box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.432);
+ 
 }
 
-#alllab
-{
+#alllab {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin: 0;
   background-image: url(img/bg6.png);
@@ -23,8 +23,7 @@
   box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.432);
 }
 
-#allog
-{
+#allog {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin: 0;
   background-image: url(img/bg6.png);
@@ -196,12 +195,11 @@
 }
 
 #vidplayer {
-  width: 50%;
+  width: 100%;
   height: 100%;
   /* border-right: solid 2px; */
   background-color: #555c61;
 }
-
 
 #imglab {
   width: 90%;
@@ -215,7 +213,7 @@
 }
 #editor {
   width: 69%;
-  height: 100%;
+  /* height: 100%; */
   display: block;
   background-color: #8fb1b646;
   height: 700px;
@@ -231,43 +229,24 @@
   right: 0;
   visibility: "visible";
   position: absolute;
-  transition-property: "visibility" , "right", "opacity";
+  transition-property: "visibility", "right", "opacity";
   transition-duration: 500ms;
 }
-#imgdisplay::-webkit-scrollbar
-{
+#imgdisplay::-webkit-scrollbar {
   width: 10px;
 }
 #imgdisplay::-webkit-scrollbar-track {
   background: transparent;
 }
 #imgdisplay::-webkit-scrollbar-thumb {
-  background: #536669; 
+  background: #536669;
   border-radius: 20px;
 }
-@media screen and (max-width: 500px) {
-  #button{
-    width: 50%;
-  }
-  .editbutton
-  {
-    width: 50%;
-  }
-  #loginform {
-    width: 70%;
-  }
-  #label {
-    font-size: smaller;
-  }
-  
-  #itemlistd {
-    display: none;
-  }
-}
+
 @media screen and (max-width: 1000px) {
   #imglab {
     display: block;
-     margin-top: 5%;
+    margin-top: 5%;
   }
   #editor {
     height: 65%;
@@ -282,16 +261,14 @@
     position: relative;
   }
 }
-@media screen and (min-width: 2000px) {
-  #imglab {
-    width: 1500px;
-  }
-}
+
 .imgs {
-  pointer-events: none;
-  /* border-radius: 20px; */
+  /* pointer-events: none; */
+  border-radius: 20px;
   border: solid;
   margin: 5px;
+  width: 200px;
+  height: 200px;
 }
 .camshotimg {
   width: 90%;
@@ -300,26 +277,28 @@
   /* border: solid; */
 }
 
-#camshot
+#canvas
 {
+  width: 95%;
+  height: 95%;
+}
+
+#camshot {
   align-items: center;
   justify-content: center;
   display: flex;
   /* border-left: solid 2px; */
   width: 49%;
   background-color: #555c61;
-  
 }
 
-#stickyfilters
-{
+#stickyfilters {
   position: relative;
   height: 40%;
   width: 100%;
 }
 
-#filters
-{
+#filters {
   display: flex;
   justify-content: space-between;
   height: 0%;
@@ -330,26 +309,23 @@
   transition-duration: 500ms;
 }
 
-#filters::-webkit-scrollbar
-{
+#filters::-webkit-scrollbar {
   width: 10px;
 }
 #filters::-webkit-scrollbar-track {
   background: transparent;
 }
 #filters::-webkit-scrollbar-thumb {
-  background: #536669; 
+  background: #536669;
   border-radius: 20px;
 }
 
-#camndcamshot
-{
+#camndcamshot {
   display: flex;
   justify-content: space-between;
   height: 45%;
 }
-.editbutton
-{
+.editbutton {
   height: 30px;
   background-color: #6ccde09c;
   width: 15%;
@@ -359,26 +335,24 @@
   text-align: center;
   cursor: pointer;
 }
-.editbutton:active{
+.editbutton:active {
   border: solid 2px rgba(0, 162, 255, 0.459);
 }
-label{
+label {
   height: 30px;
   padding-top: 6px;
   width: 100px;
 }
 
-#sd{
+/* #sd {
   margin-top: 15px;
-}
-#hidehere
-{
+} */
+#hidehere {
   height: 10%;
   width: 90%;
   position: relative;
 }
-#inside
-{
+#inside {
   display: flex;
   pointer-events: none;
   justify-content: space-between;
@@ -392,47 +366,190 @@ label{
   transition: all 500ms ease-in-out;
 }
 
-
-.filterimg{
+.filterimg {
   width: 200px;
   margin-right: 10px;
   height: 200px;
   border-radius: 20px;
 }
-.stickyimgs
-{
+.stickyimgs {
   width: 200px;
   margin-right: 10px;
   height: 200px;
 }
 
-.filter
-{
+.filter {
   display: inline-block;
   width: 100%;
   height: 40%;
 }
 
-#stickyimgs
-{
+#stickyimgs {
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: auto;
   height: 100%;
-  transition: height, opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 
-#stickyimgs::-webkit-scrollbar
-{
+#stickyimgs::-webkit-scrollbar {
   width: 10px;
 }
 #stickyimgs::-webkit-scrollbar-track {
   background: transparent;
 }
 #stickyimgs::-webkit-scrollbar-thumb {
-  background: #536669; 
+  background: #536669;
   border-radius: 20px;
 }
 
+#pipse {
+  display: none;
+}
+
+#pipse[src] {
+  display: block;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 25%;
+  outline-style: none;
+}
+#camstick {
+  width: 50%;
+  position: relative;
+  height: 100%;
+}
+
+#takepic {
+  pointer-events: none;
+  background-color: rgba(128, 128, 128, 0.712);
+}
+
 /* hide inside editor plaque*/
+
+
+#diveditbuttons
+{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 15px;
+}
+#butform > .editbutton
+{
+  width: 100%;
+}
+#butform
+{
+  /* margin-top: 15px; */
+  margin: 0;
+  width: 15%;
+}
+
+#posts{
+  display: block;
+  padding-top: 5px;
+  height: auto;
+  width: 90%;
+  background-color: #8fb1b646;
+  margin-top: 15px;
+}
+ .indisimg > .imgs
+{
+  width: 100%;
+  height: 50%;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.disinput
+{
+  width: 75%;
+  height: 50px;
+  color: #536669;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+.disbut{
+  width: 10%;
+  outline: none;
+  background: transparent;
+  border: none;
+  opacity: 0.7;
+  font-size: large;
+  color : rgba(94, 94, 94, 0.589);
+  font-family: 'Rubik', sans-serif;
+  transition: all 200ms ease;
+  
+}
+.disbut:active
+{
+  opacity: 0.5;
+}
+.disinput:valid ~ .disbut
+{
+  color : rgb(94, 94, 94);
+}
+.cuser
+{
+  width: 10%;
+  padding-top: 20px;
+  color: #536669;
+  
+}
+.reactdiv
+{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #536669;
+}
+
+.piclog
+{
+  margin-right: 90%;
+}
+
+.likebtn
+{
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  #button {
+    width: 50%;
+  }
+  .editbutton {
+    width: 50%;
+  }
+  #loginform {
+    width: 70%;
+  }
+  #label {
+    font-size: smaller;
+  }
+  #itemlistd {
+    display: none;
+  }
+
+}
+@media screen and (min-width: 2000px) {
+  #imglab {
+    width: 1500px;
+  }
+}
+@media screen and (min-width: 1100px) {
+  #posts{
+    width: 1000px;
+  }
+}

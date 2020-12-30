@@ -18,6 +18,7 @@ try {
                 exit();
             } else {
                 session_start();
+                $_SESSION['usersid'] = $row['usersid'];
                 $_SESSION['uid'] = $row['uid'];
                 header('location: ../index.php');
                 return;
