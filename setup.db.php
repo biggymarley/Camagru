@@ -27,12 +27,17 @@ try {
   $sql = "CREATE TABLE IF NOT EXISTS  postes(
     postusrid INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     postesid INT(11),
-    comnt varchar(255),
     imgstyle Varchar(255) NOT NULL,
     img LONGBLOB,
     FOREIGN KEY (postesid) REFERENCES users(usersid)
     );";
     $db->exec($sql);
+    $sql = "CREATE TABLE IF NOT EXISTS  `like`(
+      likeid INT(11) NOT NULL,
+      pid INT(11),
+      FOREIGN KEY (pid) REFERENCES postes(postusrid)
+      );";
+      $db->exec($sql);
   // $img = base64_encode("img/sun.png");
   // $sql = "INSERT into imgs(id, img) VALUES(2265, '$img');";
   // $db->exec($sql);

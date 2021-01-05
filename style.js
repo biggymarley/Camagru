@@ -11,7 +11,8 @@ if (f) var filters = f.style;
 var stickyimgsfilt = document.getElementById("stickyimgs");
 if (stickyimgsfilt) var stickyimgsfilts = stickyimgsfilt.style;
 var indisimg = document.querySelectorAll(".indisimg");
-console.log(indisimg);
+var coutlikes = document.querySelectorAll(".countlikes");
+var urimg = document.querySelectorAll(".profimgs");
 window.onloadstart = getcookie();
 function setcookie(filter) {
   document.cookie = "value=" + filter;
@@ -25,6 +26,8 @@ function getcookie() {
     pos.setProperty("background-image", "url(./img/sun.png)");
     all.filter = "";
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "");});}
+    if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "");});}
+    if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (vstyle) vstyle.setProperty("filter", "");
     if (istyle) istyle.setProperty("filter", "");
     if (cstyle) cstyle.setProperty("filter", "");
@@ -37,6 +40,8 @@ function getcookie() {
     all.filter = "invert(1) hue-rotate(180deg)";
     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
+    if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
+    if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
@@ -53,6 +58,8 @@ function darkmode() {
     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
+    if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
+    if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
     if (stickyimgsfilts) stickyimgsfilts.filter = "invert(1) hue-rotate(180deg)";
@@ -63,6 +70,8 @@ function darkmode() {
     all.filter = "";
     if (vstyle) vstyle.setProperty("filter", "");
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "");});}
+    if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "");});}
+    if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "");});}
     if (istyle) istyle.setProperty("filter", "");
     if (cstyle) cstyle.setProperty("filter", "");
     if (stickyimgsfilts) stickyimgsfilts.filter = "";
@@ -219,15 +228,39 @@ function deleteimg($id)
   {
       window.location = "http://192.168.99.104/deleteimg.php?id="+$id;
   }
-  else
-  {
-    // window.location.href = "imglab.php"
-  }
 }
 
-
-function like($src)
+function like($id)
 {
-   $s = document.querySelector("#zaban");
-   $s.setAttribute('src', "./img/like.png")
+   $s = document.getElementById($id);
+   if($s)
+   {
+     if($s.src === "./img/like.png")
+     {
+       $s.setAttribute('src', "./img/unlike.png");
+      }
+      else
+      $s.setAttribute('src', "./img/like.png");
+    }
 }
+
+
+function likejs($id)
+{
+  var data = new FormData();
+  data.append("pid", document.getElementById($id).value);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "./like.php");
+  xhr.onload = function(){ $l = this.response;
+    if($l === 'like')
+    {
+      document.getElementById($id).src = './img/like.png';
+    }
+    else if ($l === 'unlike')
+      document.getElementById($id).src = './img/unlike.png';
+  };
+  xhr.send(data);
+  
+  return false;
+}
+

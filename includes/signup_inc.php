@@ -28,7 +28,7 @@ try {
         hardpwd($passwd);
         addtodb($db, $login, $email, $passwd);
     } else
-        header('location: ../signup.php');
+        header('location: ../index.php');
 } catch (PDOException $e) {
     echo "DB ERROR: " . $e->getMessage();
 }

@@ -185,7 +185,7 @@
 }
 
 #push {
-  min-height: 80%;
+  min-height: 85%;
 }
 #footer {
   display: flex;
@@ -373,9 +373,9 @@ label {
   border-radius: 20px;
 }
 .stickyimgs {
-  width: 200px;
+  width: 100px;
   margin-right: 10px;
-  height: 200px;
+  height: 100px;
 }
 
 .filter {
@@ -387,7 +387,7 @@ label {
 #stickyimgs {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   overflow: auto;
   height: 100%;
   transition: opacity 500ms ease-in-out;
@@ -466,7 +466,9 @@ label {
   border: none;
   border-radius: 0;
   margin: 0;
+  padding-top: 10px;
   padding-bottom: 15px;
+  pointer-events: none;
 }
 
 .disinput
@@ -496,7 +498,8 @@ label {
 }
 .disinput:valid ~ .disbut
 {
-  color : rgb(94, 94, 94);
+  color : rgb(38, 104, 143);
+  opacity: 1;
 }
 .cuser
 {
@@ -514,16 +517,165 @@ label {
   border-top: 1px solid #536669;
 }
 
+.likeform
+{
+ width: 5%;
+ margin: 0;
+}
+.cmtform{
+  margin: 0;
+  width: 95%;
+}
+
+
 .piclog
 {
+  text-decoration: none;
+  color: black;
   margin-right: 90%;
 }
 
 .likebtn
 {
   width: 20px;
+  outline: none;
   height: 20px;
 }
+
+#profileimg
+{
+  /* margin-top: 15px; */
+  padding-top: 5%;
+  /* padding-bottom: 15px; */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  background-color: transparent;
+  border-top: solid black 1px;
+}
+
+
+.profimgs
+{
+  padding: 0.333333%;
+  width: 32.333333%;
+  height: auto;
+  flex-basis: 32.333333%;
+}
+
+.urimg
+{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+
+
+.useredit
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 10%;
+}
+
+
+.buteditinfo
+{
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 17px;
+  background-color: rgba(255, 255, 240, 0.151);
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+}
+.countlikes
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+
+}
+.selectimgs
+{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+
+}
+.selectbut
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 17px;
+  background-color: rgba(255, 255, 240, 0.151);
+  width: 90px;
+  height: 40px;
+  opacity: 0.5;
+  color: black;
+  border-bottom: 0!important;
+  border: solid black 1px;
+  outline: none;
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+.selectbut:focus
+{
+  opacity: 1;
+}
+ #pofileform
+ {
+     /* margin-top: 15px; */
+  padding-top: 5%;
+  /* padding-bottom: 15px; */
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  /* border-top: solid black 1px; */
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 500px) {
   #button {
@@ -541,7 +693,13 @@ label {
   #itemlistd {
     display: none;
   }
-
+}
+@media screen and (max-width: 682px) {
+  .profimgs
+  {
+    width: 33.333333%;
+    height: auto;
+  }
 }
 @media screen and (min-width: 2000px) {
   #imglab {
@@ -552,4 +710,21 @@ label {
   #posts{
     width: 1000px;
   }
+#profileimg
+{
+  width: 1000px;
+}
+.useredit
+{
+  width: 1000px;
+}
+.urimg
+{
+  width: 300px;
+  height: 300px;
+}
+.selectimgs
+{
+  width: 500px;
+}
 }

@@ -10,6 +10,9 @@ $imgid = $_GET['id'];
     try{
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "DELETE FROM `like` WHERE `pid` = $imgid";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
         $sql = "DELETE FROM `postes` WHERE `postusrid` = $imgid";
         $stmt = $db->prepare($sql);
         $stmt->execute();
