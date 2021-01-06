@@ -11,7 +11,7 @@
         <div id="loginform">
         <form autocomplete="off" action="includes/signup_inc.php" method="post">
             <div id="inlab">
-                    <input autocomplete="off" name="username" type="text" id="input" required/>
+                    <input autocomplete="off" name="username" type="text" id="input" pattern="^[a-zA-Z1-9]{3,}$" title="MORE THEN 3 [a-zA-Z1-9]" required/>
                     <span id="label">Username :</span>
             </div>
             </br>

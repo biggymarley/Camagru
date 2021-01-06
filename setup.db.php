@@ -17,13 +17,6 @@ try {
         upwd varchar(255) NOT NULL
     );";
     $db->exec($sql);
-  //   $sql = "CREATE TABLE IF NOT EXISTS  imgs(
-  //     imgsid INT(11) PRIMARY KEY,
-  //     imgstyle Varchar(255) NOT NULL,
-  //     img LONGBLOB
-  //     FOREIGN KEY (imgsid) REFERENCES users(usersid)
-  //     );";
-  // $db->exec($sql);
   $sql = "CREATE TABLE IF NOT EXISTS  postes(
     postusrid INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     postesid INT(11),
@@ -38,6 +31,20 @@ try {
       FOREIGN KEY (pid) REFERENCES postes(postusrid)
       );";
       $db->exec($sql);
+    $sql = "CREATE TABLE IF NOT EXISTS  `saved`(
+      savedid INT(11) NOT NULL,
+      pid INT(11),
+      FOREIGN KEY (pid) REFERENCES postes(postusrid)
+      );";
+      $db->exec($sql);
+      $sql = "CREATE TABLE IF NOT EXISTS  `comment`(
+        cid INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        cuid INT(11) NOT NULL,
+        pid INT(11),
+        cmt VARCHAR(255) NOT NULL,
+        FOREIGN KEY (pid) REFERENCES postes(postusrid)
+        );";
+        $db->exec($sql);
   // $img = base64_encode("img/sun.png");
   // $sql = "INSERT into imgs(id, img) VALUES(2265, '$img');";
   // $db->exec($sql);

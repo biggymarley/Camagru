@@ -256,6 +256,7 @@
   #imgdisplay {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     height: 30%;
     width: 90%;
     position: relative;
@@ -629,9 +630,9 @@ label {
   border: solid black 1px;
   outline: none;
   text-decoration: none;
-  transition: all 200ms ease-in-out;
+  /* transition: all 200ms ease-in-out; */
 }
-.selectbut:focus
+.selectbut:focus , .selectbut:active
 {
   opacity: 1;
 }
@@ -647,10 +648,36 @@ label {
   /* border-top: solid black 1px; */
  }
 
+ #addbut
+ {
+   width: 40px;
+   height: 40px;
+ }
+ .addform
+ {
+   margin: 0;
+   padding: 0;
+ }
 
 
 
-
+.ucom
+{
+  font-size: large;
+  color: black;
+  margin-right: 15px;
+}
+.sigcmt
+{
+  width: 99%;
+  display: flex;
+  align-items: center;
+}
+.comment
+{
+  color: #536669;
+  margin-bottom: 10px;
+}
 
 
 

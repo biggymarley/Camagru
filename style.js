@@ -12,12 +12,53 @@ var stickyimgsfilt = document.getElementById("stickyimgs");
 if (stickyimgsfilt) var stickyimgsfilts = stickyimgsfilt.style;
 var indisimg = document.querySelectorAll(".indisimg");
 var coutlikes = document.querySelectorAll(".countlikes");
+var sigcmt = document.querySelectorAll(".sigcmt");
 var urimg = document.querySelectorAll(".profimgs");
 window.onloadstart = getcookie();
 function setcookie(filter) {
   document.cookie = "value=" + filter;
 }
 function getcookie() {
+
+  //profile part 
+    $ul = window.location.href;
+    // console.log($ul);
+    if($ul.search('saved=s') > 0)
+    {
+      document.getElementById('sb').style.opacity = 1;
+    }
+    else if ($ul.search('liked=s') > 0)
+    {
+      document.getElementById('lb').style.opacity = 1;
+    }
+    else
+    {
+      $pb = document.getElementById('pb');
+      if($pb)
+        $pb.style.opacity = 1;
+
+    }
+    // $rul = $ul.search('saved=s');
+    // console.log($rul);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   var v = document.cookie.split(";");
   if (v[1]) var value = v[1].split("=");
   else var value = v[0].split("=");
@@ -27,6 +68,7 @@ function getcookie() {
     all.filter = "";
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "");});}
+    if (sigcmt) {sigcmt.forEach(element => {element.style.setProperty("filter", "");});}
     if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (vstyle) vstyle.setProperty("filter", "");
     if (istyle) istyle.setProperty("filter", "");
@@ -42,6 +84,7 @@ function getcookie() {
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
+    if (sigcmt) {sigcmt.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
@@ -59,6 +102,7 @@ function darkmode() {
     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
+    if (sigcmt) {sigcmt.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
@@ -69,6 +113,7 @@ function darkmode() {
     pos.setProperty("background-image", "url(./img/sun.png)");
     all.filter = "";
     if (vstyle) vstyle.setProperty("filter", "");
+    if (sigcmt) {sigcmt.forEach(element => {element.style.setProperty("filter", "");});}
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (urimg) {urimg.forEach(element => {element.style.setProperty("filter", "");});}
     if (coutlikes) {coutlikes.forEach(element => {element.style.setProperty("filter", "");});}
@@ -260,7 +305,24 @@ function likejs($id)
       document.getElementById($id).src = './img/unlike.png';
   };
   xhr.send(data);
-  
   return false;
 }
 
+function savedjs($id, $i)
+{
+  var data = new FormData();
+  data.append("pid", document.getElementById($id).value);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "./saved.php");
+  xhr.onload = function(){ $l = this.response;
+    console.log($l);
+    if($l === 'saved')
+    {
+      document.getElementById($i).src = './img/saved.png';
+    }
+    else if ($l === 'unsaved')
+      document.getElementById($i).src = './img/unsaved.png';
+  };
+  xhr.send(data);
+  return false;
+}

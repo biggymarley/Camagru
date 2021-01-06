@@ -27,10 +27,11 @@ if (isset($_GET)) {
     $id = $_SESSION['usersid'];
 
     echo "<div class='useredit'>";
-    if(!isset($uid))
+    if(!isset($uid) || $uid === $_SESSION['uid'])
     {
         echo "<h2 id='puname'>{$_SESSION['uid']}</h2>";
         echo "<button class='buteditinfo' >Edit Profile</button>";
+        // echo "<input type='image' id='addbut' src='./img/add.png'>";
     }
     else
         echo "<h2 id='puname'>{$uid}</h2>";
@@ -40,13 +41,19 @@ if (isset($_GET)) {
         $st->execute();
         $c = $st->fetch()[0];
         echo "$c :postes";
+        if(!isset($uid) || $uid === $_SESSION['uid'])
+        {
+            echo "<form class='addform' action='./imglab.php' method='none'>";
+            echo "<input type='image' id='addbut' src='./img/add.png'>";
+            echo "</form>";
+        }
         echo "</div>";
-        if(!isset($uid))
+        if(!isset($uid) || $uid === $_SESSION['uid'])
         {
             echo "<div class='selectimgs'>";
-            echo "<a type='button' class='selectbut' value='Postes' href='/profile.php?postes=s' onclick='postes()'>Postes</a>";
-            echo "<a type='button' class='selectbut' value='Liked' href='/profile.php?liked=s' onclick='plikes()'>Liked</a>";
-            echo "<a type='button'  class='selectbut' value='Saved' href='/profile.php?saved=s' onclick='psaved()'>Saved</a>";
+            echo "<a id='pb' type='button' class='selectbut' value='Postes' href='/profile.php?postes=s'>Postes</a>";
+            echo "<a id='lb' type='button' class='selectbut' value='Liked' href='/profile.php?liked=s'>Liked</a>";
+            echo "<a id='sb'type='button'  class='selectbut' value='Saved' href='/profile.php?saved=s'>Saved</a>";
             echo "</div>";
         }
         if (isset($_GET['liked']))
