@@ -1,6 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION['usersid']))
+if(empty($_SESSION)) 
+    header('location: ./login.php');
+if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     header('location: ./login.php');
 
 ?>

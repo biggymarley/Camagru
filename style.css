@@ -553,7 +553,8 @@ label {
   width: 100%;
   height: auto;
   flex-wrap: wrap;
-  background-color: transparent;
+  /* background-color: transparent; */
+  /* background-color: #8fb1b646; */
   border-top: solid black 1px;
 }
 
@@ -583,7 +584,7 @@ label {
   justify-content: space-evenly;
   width: 90%;
   margin-top: 10px;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 
@@ -640,7 +641,7 @@ label {
  {
      /* margin-top: 15px; */
   padding-top: 5%;
-  /* padding-bottom: 15px; */
+  /* padding-bottom: 50px; */
   align-items: center;
   width: 100%;
   height: auto;
@@ -682,15 +683,61 @@ label {
 
 
 
+.divedit
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  height: 0%;
+  pointer-events: none;
+  opacity: 0;
+  width: 100%;
+  transition: all 300ms ease;
+}
 
+.editinput
+{
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  border-bottom: 2px solid #536669;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  text-align: center;
+  outline: none;
+  width: 70%;
+  transition: all 200ms ease;
+}
 
+.inlab2
+{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
+.edlab
+{
+  margin-top: 50px;
+  width: 20%;
+  
+}
 
+.editinput:focus,
+.editinput:valid {
+  border-bottom: 4px solid rgba(0, 0, 255, 0.26);
+}
 
-
-
-
-
+.divedit > .buteditinfo
+{
+  /* margin-top: 5%; */
+  margin-bottom: 5%;
+  background-color: rgba(240, 230, 140, 0.24);
+}
 
 
 
@@ -727,6 +774,12 @@ label {
     width: 33.333333%;
     height: auto;
   }
+}
+@media screen and (max-width: 1055px) {
+      .edlab{
+        font-size: 20%;
+      }
+
 }
 @media screen and (min-width: 2000px) {
   #imglab {

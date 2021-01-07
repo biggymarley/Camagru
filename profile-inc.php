@@ -30,7 +30,8 @@ if (isset($_GET)) {
     if(!isset($uid) || $uid === $_SESSION['uid'])
     {
         echo "<h2 id='puname'>{$_SESSION['uid']}</h2>";
-        echo "<button class='buteditinfo' >Edit Profile</button>";
+        echo "<button id='showeditdiv' class='buteditinfo' >Edit Profile</button>";
+       
         // echo "<input type='image' id='addbut' src='./img/add.png'>";
     }
     else
@@ -50,6 +51,24 @@ if (isset($_GET)) {
         echo "</div>";
         if(!isset($uid) || $uid === $_SESSION['uid'])
         {
+            echo "<div id='editdiv' class='divedit'>";
+            echo "<div class='inlab2'>";
+            echo "<span class='edlab'>Username :</span>";
+            echo "<input class='editinput' type='text' required>";
+            echo "</div>";
+            echo "<div class='inlab2'>";
+            echo "<span class='edlab'>Email :</span>";
+            echo "<input class='editinput' type='text' required>";
+            echo "</div>";  echo "<div class='inlab2'>";
+            echo "<span class='edlab'>OPassword :</span>";
+            echo "<input class='editinput' type='text' required>";
+            echo "</div>";
+            echo "<div class='inlab2'>";
+            echo "<span class='edlab'>NPassword :</span>";
+            echo "<input class='editinput' type='text' required>";
+            echo "</div>";
+            echo "<button  class='buteditinfo' >Apply new Settings</button>";
+            echo "</div>";
             echo "<div class='selectimgs'>";
             echo "<a id='pb' type='button' class='selectbut' value='Postes' href='/profile.php?postes=s'>Postes</a>";
             echo "<a id='lb' type='button' class='selectbut' value='Liked' href='/profile.php?liked=s'>Liked</a>";

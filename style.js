@@ -1,5 +1,7 @@
 var all = document.getElementById("dark").style;
-var pos = document.getElementById("ball").style;
+var cpos = document.getElementById("ball");
+if(cpos)
+  var pos = cpos.style;
 var vid = document.getElementById("camstick");
 if (vid) var vstyle = vid.style;
 var img = document.getElementById("dmode");
@@ -14,7 +16,12 @@ var indisimg = document.querySelectorAll(".indisimg");
 var coutlikes = document.querySelectorAll(".countlikes");
 var sigcmt = document.querySelectorAll(".sigcmt");
 var urimg = document.querySelectorAll(".profimgs");
-window.onloadstart = getcookie();
+
+
+
+// document.addEventListener("load", getcookie());
+
+window.onload = getcookie();
 function setcookie(filter) {
   document.cookie = "value=" + filter;
 }
@@ -25,17 +32,21 @@ function getcookie() {
     // console.log($ul);
     if($ul.search('saved=s') > 0)
     {
-      document.getElementById('sb').style.opacity = 1;
+      var sb =  document.getElementById('sb');
+      if(sb)
+        sb.style.opacity = 1;
     }
     else if ($ul.search('liked=s') > 0)
     {
-      document.getElementById('lb').style.opacity = 1;
+      var lb = document.getElementById('lb');
+      if(lb)
+        lb.style.opacity = 1;
     }
     else
     {
-      $pb = document.getElementById('pb');
-      if($pb)
-        $pb.style.opacity = 1;
+      var pb = document.getElementById('pb');
+      if(pb)
+        pb.style.opacity = 1;
 
     }
     // $rul = $ul.search('saved=s');
@@ -77,8 +88,12 @@ function getcookie() {
     if (stickyimgsfilts) stickyimgsfilts.filter = "";
     setcookie(all.filter);
   } else if (value[1] === "invert(1) hue-rotate(180deg)") {
-    pos.setProperty("left", "55px");
-    pos.setProperty("background-image", "url(./img/moon.png)");
+    if(pos)
+    {
+      pos.setProperty("left", "55px");
+      pos.setProperty("background-image", "url(./img/moon.png)");
+
+    }
     all.filter = "invert(1) hue-rotate(180deg)";
     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
     if (indisimg) {indisimg.forEach(element => {element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");});}
@@ -326,3 +341,34 @@ function savedjs($id, $i)
   xhr.send(data);
   return false;
 }
+
+
+
+
+function displaydiv()
+{
+  var div = document.getElementById("editdiv");
+  
+  var hight = div.offsetHeight;
+  console.log(hight);
+  if(hight === 0)
+  {
+    div.style.height = "20%";
+    div.style.opacity = "1";
+    div.style.pointerEvents = "auto";
+  }
+  else{
+
+    div.style.height = "0%";
+    div.style.opacity = "0";
+    div.style.pointerEvents = "none";
+  }
+
+}
+
+var showeditdivbut = document.getElementById("showeditdiv");
+if(showeditdivbut)
+showeditdivbut.addEventListener("click", displaydiv);
+
+
+

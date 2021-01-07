@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Kreon&display=swap" rel="stylesheet">
-    
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
   <div id="header">
     <li id="hdlogo">

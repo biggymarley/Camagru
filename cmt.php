@@ -10,7 +10,6 @@ $id = $_SESSION['usersid'];
 $cmt = $_POST['cmt'];
 $pid = $_POST['pid'];
 
-
 try {
     $db = new PDO($dsn, $user, $pw);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

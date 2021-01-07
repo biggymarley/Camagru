@@ -6,7 +6,10 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
 ?>
 <html id="dark">
 <head>
+<script defer async src="style.js">
+    </script>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
@@ -15,7 +18,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     <title>Camagru</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="all" >
+<body id="all">
     <?php
     include_once("header.php");
     ?>
@@ -23,7 +26,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
             <?php include_once("profile-inc.php");?>
     </center>
     <?php include_once("footer.php") ?>
-    <script src="style.js">
+    <script defer async src="style.js">
     </script>
 </body>
 
