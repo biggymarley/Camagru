@@ -60,11 +60,11 @@ if (isset($_GET)) {
             echo "<span class='edlab'>Email :</span>";
             echo "<input class='editinput' type='text' required>";
             echo "</div>";  echo "<div class='inlab2'>";
-            echo "<span class='edlab'>OPassword :</span>";
+            echo "<span class='edlab'>Old Password :</span>";
             echo "<input class='editinput' type='text' required>";
             echo "</div>";
             echo "<div class='inlab2'>";
-            echo "<span class='edlab'>NPassword :</span>";
+            echo "<span class='edlab'>New Password :</span>";
             echo "<input class='editinput' type='text' required>";
             echo "</div>";
             echo "<button  class='buteditinfo' >Apply new Settings</button>";

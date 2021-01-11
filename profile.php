@@ -6,7 +6,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
 ?>
 <html id="dark">
 <head>
-<script defer async src="style.js">
+<script src="style.js">
     </script>
     <meta charset="UTF-8">
 
@@ -26,7 +26,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
             <?php include_once("profile-inc.php");?>
     </center>
     <?php include_once("footer.php") ?>
-    <script defer async src="style.js">
+    <script   src="style.js">
     </script>
 </body>
 

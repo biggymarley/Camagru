@@ -17,13 +17,15 @@ try {
         upwd varchar(255) NOT NULL
     );";
     $db->exec($sql);
+    // $sql = "CREATE SEQUENCE squence START WITH 100;";
+    // $db->exec($sql);
   $sql = "CREATE TABLE IF NOT EXISTS  postes(
     postusrid INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     postesid INT(11),
     imgstyle Varchar(255) NOT NULL,
     img LONGBLOB,
     FOREIGN KEY (postesid) REFERENCES users(usersid)
-    );";
+    )AUTO_INCREMENT = 9999;";
     $db->exec($sql);
     $sql = "CREATE TABLE IF NOT EXISTS  `like`(
       likeid INT(11) NOT NULL,

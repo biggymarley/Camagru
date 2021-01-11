@@ -159,6 +159,8 @@ function takepic() {
   canvas = document.querySelector("#canvas");
   width = video.offsetWidth;
   height = video.offsetHeight;
+  // width = 300;
+  // height = 300;
   var img = document.querySelector("#img");
   canvas.width = width;
   canvas.height = height;
@@ -305,38 +307,46 @@ function like($id)
 }
 
 
-function likejs($id)
+function likejs(id, lid)
 {
   var data = new FormData();
-  data.append("pid", document.getElementById($id).value);
+  data.append("pid", document.getElementById(id).value);
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "./like.php");
   xhr.onload = function(){ $l = this.response;
     if($l === 'like')
     {
-      document.getElementById($id).src = './img/like.png';
+      document.getElementById(lid).src = './img/like.png';
+      document.getElementById(lid).style.opacity = '1';
+      setTimeout(function(){document.getElementById(lid).style.opacity='0';}, 200);
+      document.getElementById(id).src = './img/like.png';
     }
     else if ($l === 'unlike')
-      document.getElementById($id).src = './img/unlike.png';
+    {
+      document.getElementById(lid).src = './img/unlike.png';
+      document.getElementById(lid).style.opacity = '1';
+      setTimeout(function(){document.getElementById(lid).style.opacity='0';}, 200);
+      document.getElementById(id).src = './img/unlike.png';
+    }
   };
   xhr.send(data);
   return false;
 }
 
-function savedjs($id, $i)
+function savedjs(id, i)
 {
   var data = new FormData();
-  data.append("pid", document.getElementById($id).value);
+  data.append("pid", document.getElementById(id).value);
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "./saved.php");
   xhr.onload = function(){ $l = this.response;
     console.log($l);
     if($l === 'saved')
     {
-      document.getElementById($i).src = './img/saved.png';
+      document.getElementById(i).src = './img/saved.png';
     }
     else if ($l === 'unsaved')
-      document.getElementById($i).src = './img/unsaved.png';
+      document.getElementById(i).src = './img/unsaved.png';
   };
   xhr.send(data);
   return false;
@@ -368,7 +378,22 @@ function displaydiv()
 
 var showeditdivbut = document.getElementById("showeditdiv");
 if(showeditdivbut)
-showeditdivbut.addEventListener("click", displaydiv);
+  showeditdivbut.addEventListener("click", displaydiv);
 
 
 
+var imgpost = document.querySelectorAll('.imgsp');
+console.log(imgpost);
+if(imgpost)
+{
+  for(i = 0;i < imgpost.length;i++)
+  {
+      id = imgpost[i].dataset.id;
+      lid = imgpost[i].dataset.likeid;
+    imgpost[i].addEventListener('dblclick', likejs.bind("null", id, lid));
+    // document.getElementById(lid).addEventListener('')
+    // imgpost[i].addEventListener('dblclick', function(){
+    //   setTimeout
+    // });
+  }
+}

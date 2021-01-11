@@ -6,9 +6,9 @@
     <div id="push">
     </div>
     <div id="footer">
-        <span>About</span>
-        <span>Blog</span>
-        <span>Jobs</span>
+        <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">About</a>
+        <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">Portfolio</a>
+        <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">Jobs</a>
         <span>Help</span>
         <span>API</span>
         <span>Privacy</span>

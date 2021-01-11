@@ -271,6 +271,7 @@
   width: 200px;
   height: 200px;
 }
+
 .camshotimg {
   width: 90%;
   height: 90%;
@@ -460,7 +461,7 @@ label {
   background-color: #8fb1b646;
   margin-top: 15px;
 }
- .indisimg > .imgs
+ .imgsp
 {
   width: 100%;
   height: 50%;
@@ -469,7 +470,7 @@ label {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 15px;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .disinput
@@ -570,8 +571,9 @@ label {
 .urimg
 {
   width: 100%;
+  /* height: 100; */
   height: auto;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   pointer-events: none;
 }
 
@@ -693,6 +695,7 @@ label {
   height: 0%;
   pointer-events: none;
   opacity: 0;
+  /* background-color: rebeccapurple; */
   width: 100%;
   transition: all 300ms ease;
 }
@@ -700,21 +703,23 @@ label {
 .editinput
 {
   height: 50px;
-  background-color: rgba(255, 255, 255, 0);
+  padding-top: 25px;
+  background-color: transparent;
   border-radius: 5px;
   border-bottom: 2px solid #536669;
   border-top: none;
   border-right: none;
   border-left: none;
-  text-align: center;
+  /* text-align: center; */
   outline: none;
-  width: 70%;
+  width: 50%;
   transition: all 200ms ease;
 }
 
 .inlab2
 {
-  width: 40%;
+  width: 70%;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -723,7 +728,7 @@ label {
 .edlab
 {
   margin-top: 50px;
-  width: 20%;
+  width: 40%;
   
 }
 
@@ -740,10 +745,23 @@ label {
 }
 
 
+.indisimg
+{
+  position: relative;
+}
 
 
-
-
+.apprlike
+{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  opacity: 0;
+  bottom: 35%;
+  pointer-events: none;
+  transition: all ease 500ms;
+}
 
 
 
@@ -775,12 +793,12 @@ label {
     height: auto;
   }
 }
-@media screen and (max-width: 1055px) {
+/* @media screen and (max-width: 1055px) {
       .edlab{
         font-size: 20%;
-      }
+      } */
 
-}
+/* } */
 @media screen and (min-width: 2000px) {
   #imglab {
     width: 1500px;
