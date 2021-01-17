@@ -6,8 +6,6 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
 ?>
 <html id="dark">
 <head>
-<script src="style.js">
-    </script>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +16,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     <title>Camagru</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="all">
+<body class="light" id="all">
     <?php
     include_once("header.php");
     ?>

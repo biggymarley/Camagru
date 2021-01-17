@@ -6,6 +6,7 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
+$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 $id = $_SESSION['usersid'];
 $cmt = $_POST['cmt'];
 $pid = $_POST['pid'];
@@ -19,7 +20,6 @@ try {
     $stmt->bindValue(':pid', $pid);
     $stmt->bindValue(':cmt', $cmt);
     $stmt->execute();
-    header('location: ./index.php');
 } catch (PDOException $e) {
     echo "DB ERROR: " . $e->getMessage();
 }

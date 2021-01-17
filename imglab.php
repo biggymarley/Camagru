@@ -17,7 +17,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     <title>IMG-LAB</title>
 </head>
 
-<body id="alllab">
+<body class="light" id="all">
     <?php
     include_once("header.php");
     ?>

@@ -10,10 +10,12 @@ if (isset($_GET)) {
     if (!empty($_GET['username'])) {
         $uid = $_GET['username'];
         $db = new PDO($dsn, $user, $pw);
-        $sql = "SELECT `usersid` FROM `users` WHERE `uid` LIKE '$uid'";
+        $sql = "SELECT * FROM `users` WHERE `uid` LIKE '$uid'";
         $stmt1 = $db->prepare($sql);
         $stmt1->execute();
-        $id = $stmt1->fetch()['usersid'];
+        $all = $stmt1->fetchAll();
+        $id = $all[0]['usersid'];
+        $uimg = $all[0]['uimg'];
         if(!$id)
         {
             echo "USER NOT FOUND";
@@ -22,26 +24,42 @@ if (isset($_GET)) {
     }
     else{
         $id = $_SESSION['usersid'];
+        $uimg = $_SESSION['uimg'];
     }
 } else
+{
     $id = $_SESSION['usersid'];
+    $uimg = $_SESSION['uimg'];
+}
 
     echo "<div class='useredit'>";
+    echo "<div class='uimgdiv'>";
+    if(empty($uimg))
+        echo "<img class='prfimg' src='./img/user.png' />";
+    else
+        echo "<img class='prfimg' src='data:image/png;base64, $uimg' />";
+        if(!isset($uid) || $uid === $_SESSION['uid'])
+        {
+            echo "<form autocomplete='off' action='upload_to_pdp.php' method='post' enctype='multipart/form-data'>";
+            echo "</br><input id='chose' class='buteditinfo' type='file' name='img' required hidden></br></br>";
+            echo "<label for='chose' class='editlabel'>Click to Choose New PDP</label></br></br>";
+            echo "<input class='buteditinfo' type='submit' name='submit' value='Edit ur PDP'/></br>";
+            echo "</form>";
+        } 
+    echo "</div>";
     if(!isset($uid) || $uid === $_SESSION['uid'])
     {
-        echo "<h2 id='puname'>{$_SESSION['uid']}</h2>";
+        echo "<span id='puname'>{$_SESSION['uid']}</span>";
         echo "<button id='showeditdiv' class='buteditinfo' >Edit Profile</button>";
-       
-        // echo "<input type='image' id='addbut' src='./img/add.png'>";
     }
     else
-        echo "<h2 id='puname'>{$uid}</h2>";
+        echo "<span id='puname'>{$uid}</span>";
         $db = new PDO($dsn, $user, $pw);
         $sql = "SELECT count(*) FROM `postes` WHERE `postesid` LIKE $id";
         $st = $db->prepare($sql);
         $st->execute();
         $c = $st->fetch()[0];
-        echo "$c :postes";
+        echo "<span>$c :postes</span>";
         if(!isset($uid) || $uid === $_SESSION['uid'])
         {
             echo "<form class='addform' action='./imglab.php' method='none'>";

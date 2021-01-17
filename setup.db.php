@@ -14,11 +14,10 @@ try {
         usersid INT(11) PRIMARY KEY AUTO_INCREMENT,
         uid VARCHAR(255) NOT NULL,
         uemail VARCHAR(255) NOT NULL,
-        upwd varchar(255) NOT NULL
+        upwd varchar(255) NOT NULL,
+        uimg LONGBLOB
     );";
     $db->exec($sql);
-    // $sql = "CREATE SEQUENCE squence START WITH 100;";
-    // $db->exec($sql);
   $sql = "CREATE TABLE IF NOT EXISTS  postes(
     postusrid INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     postesid INT(11),
@@ -47,6 +46,12 @@ try {
         FOREIGN KEY (pid) REFERENCES postes(postusrid)
         );";
         $db->exec($sql);
+        // $sql = "CREATE TABLE IF NOT EXISTS  `mode`(
+        //   `uid` INT(11) ,
+        //   mode boolean,
+        //   FOREIGN KEY (uid) REFERENCES users(usersid)
+        // );";
+        // $db->exec($sql);
   // $img = base64_encode("img/sun.png");
   // $sql = "INSERT into imgs(id, img) VALUES(2265, '$img');";
   // $db->exec($sql);

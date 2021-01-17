@@ -8,6 +8,9 @@ try {
     $db = new PDO($dsn, $user, $pw);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     if (isset($_POST["submit"])) {
+        $img =  $_FILES['img']['tmp_name'];
+        $splited = explode(".", $_FILES['img']['name']);
+        $ext = end($splited);
         require_once('functions.php');
         $login = trim($_POST['username']);
         $passwd = $_POST['passwd'];
@@ -23,10 +26,15 @@ try {
                 exit();
             }
         }
+        $newimgname = $login.".".$ext;
+        $path = "../up/".$newimgname;
+        if(file_exists($path)) unlink($path);
+        move_uploaded_file($img, $path);
+        $baseimg = base64_encode(file_get_contents($path));
         matchpass($passwd, $Rpasswd);
         checkemail($email);
         hardpwd($passwd);
-        addtodb($db, $login, $email, $passwd);
+        addtodb($db, $login, $email, $passwd, $baseimg);
     } else
         header('location: ../index.php');
 } catch (PDOException $e) {

@@ -52,15 +52,23 @@ function checkmatch($conn, $login, $email)
         return false;
 }
 
-function addtodb($conn, $login, $email, $passwd)
+function addtodb($conn, $login, $email, $passwd, $uimg)
 {
-        $sql = "INSERT INTO users (uid, uemail, upwd) VALUES (:uid, :uemail, :upwd);";
+        $sql = "INSERT INTO users (uid, uemail, upwd, uimg) VALUES (:uid, :uemail, :upwd, :uimg);";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':uid', $login);
         $stmt->bindValue(':uemail', $email);
         $hashpwd = password_hash($passwd, PASSWORD_DEFAULT);
         $stmt->bindValue(':upwd', $hashpwd);
+        $stmt->bindValue(':uimg', $uimg);
         $stmt->execute();
+        // $sql = "SELECT `usersid` FROM users WHERE `uid` LIKE :uid";
+        // $stmt = $conn->prepare($sql);
+        // $stmt->bindValue(':uid', $login);
+        // $stmt->execute();
+        // $id = $stmt->fetch()[0];
+        // $sql = "INSERT INTO `mode` VALUES ($id, TRUE);";
+        // $conn->exec($sql);
         header('location: ../login.php');
 }
 

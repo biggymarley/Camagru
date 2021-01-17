@@ -20,6 +20,11 @@ try {
                 session_start();
                 $_SESSION['usersid'] = $row['usersid'];
                 $_SESSION['uid'] = $row['uid'];
+                $_SESSION['uimg'] = $row['uimg'];
+                // $sql = "SELECT `mode` FROM mode WHERE `uid` LIKE {$row['usersid']}";
+                // $stmt = $db->prepare($sql);
+                // $stmt->execute();
+                // $_SESSION['mode'] = $stmt->fetch()[0];
                 header('location: ../index.php');
                 return;
             }
