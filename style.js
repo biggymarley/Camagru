@@ -18,15 +18,23 @@ var urimg = document.querySelectorAll(".profimgs");
 ///////////////////////dARKmode////////////////
 let Darkmode = localStorage.getItem("mode");
 var toggle = document.getElementById("toggle");
+const toggle2 = document.getElementById("toggle2");
 var ball = document.getElementById("ball");
+const  ball2 = document.getElementById("ball2");
 var items = document.querySelectorAll(".item");
 var posts = document.getElementsByClassName("posts");
 var text = document.getElementById("all").getElementsByTagName("A");
 var spans = document.getElementById("all").getElementsByTagName("span");
 var inputs = document.getElementById("all").getElementsByTagName("input");
 var header = document.getElementById("header");
+const menudiv = document.querySelector(".menu");
+const clickmenu = document.querySelector(".clickmenu");
 const add = document.getElementById("addbut");
 const button = document.getElementById("button");
+const line = document.querySelector('.line');
+const loginputs = document.querySelectorAll('.input');
+const editputs = document.querySelectorAll('.editinput');
+
 
 var theme = {
   dark: {
@@ -36,6 +44,7 @@ var theme = {
     color: "#bababa",
     input_color: "#8f8f8f",
     add: "./img/dadd.png",
+    menu: "./img/dmenu.png",
     postbg: "linear-gradient(to right top, rgba(255,0,0,0), #1b8ea047)"
   },
   light: {
@@ -45,6 +54,7 @@ var theme = {
     color: "#000000",
     input_color: "#536669",
     add: "./img/add.png",
+    menu: "./img/lmenu.png",
     postbg: "linear-gradient(to right top, rgba(255,0,0,0),#8fb1b646)"
   },
 };
@@ -68,16 +78,23 @@ const light = () => {
   if (button) {
     button.style.backgroundColor = theme.light.bg_color;
     button.style.color = theme.light.color;
-    document.querySelectorAll('.input').forEach((e) => {e.classList.remove('darkin')});
   }
+  if(loginputs) loginputs.forEach((e) => {e.classList.remove('darkin')});
+  if(editputs) editputs.forEach((e) => {e.classList.remove('darkin')});
   if (add) add.src = theme.light.add;
-
+  line.classList.remove('darkin');
   pos.setProperty("left", "0");
   pos.setProperty("background-image", "url(./img/sun.png)");
+  ball2.style.setProperty("left", "0");
+  ball2.style.setProperty("background-image", "url(./img/sun.png)");
+  clickmenu.setAttribute("src", theme.light.menu);
   body.classList.remove("dark");
   ball.style.backgroundColor = theme.light.ballc;
+  ball2.style.backgroundColor = theme.light.ballc;
   toggle.style.backgroundColor = theme.light.bg_color;
+  toggle2.style.backgroundColor = theme.light.bg_color;
   header.style.backgroundColor = theme.light.bg_color;
+  menudiv.style.backgroundColor = theme.light.bg_color;
   applyall(text, theme.light.color, "color");
   applyall(spans, theme.light.color, "color");
   applyall(posts, theme.light.postbg, "background-image");
@@ -93,13 +110,21 @@ const dark = () => {
   if (button) {
     button.style.backgroundColor = theme.dark.bg_color;
     button.style.color = theme.dark.color;
-    document.querySelectorAll('.input').forEach((e) => {e.classList.add('darkin')});
   }
+  if(loginputs) loginputs.forEach((e) => {e.classList.add('darkin')});
+  if(editputs) editputs.forEach((e) => {e.classList.add('darkin')});
+  line.classList.add('darkin');
+  clickmenu.setAttribute("src", theme.dark.menu);
   pos.setProperty("left", "55px");
   pos.setProperty("background-image", "url(./img/moon.png)");
+  ball2.style.setProperty("left", "55px");
+  ball2.style.setProperty("background-image", "url(./img/moon.png)");
   ball.style.backgroundColor = theme.dark.ballc;
+  ball2.style.backgroundColor = theme.dark.ballc;
   toggle.style.backgroundColor = theme.dark.bg_color;
+  toggle2.style.backgroundColor = theme.dark.bg_color;
   header.style.backgroundColor = theme.dark.bg_color;
+  menudiv.style.backgroundColor = theme.dark.bg_color;
   applyall(inputs, theme.dark.input_color, "color");
   applyall(text, theme.dark.color, "color");
   applyall(posts, theme.dark.postbg, "background-image");
@@ -111,6 +136,7 @@ const dark = () => {
   localStorage.setItem("mode", null);
 };
 toggle.addEventListener("click", change);
+toggle2.addEventListener("click", change);
 
 if (Darkmode !== "1") dark();
 ///////////////////////////////////////////////////////////////
@@ -132,6 +158,27 @@ if ($ul.search("saved=s") > 0) {
   var pb = document.getElementById("pb");
   if (pb) pb.style.opacity = 1;
 }
+
+//////*//////////Menu-Slider////////////////////
+
+
+
+function menuslider()
+{
+  
+  console.log(menudiv.offsetHeight);
+  if(menudiv.offsetHeight === 0)
+  {
+    menudiv.style.height = "12%";
+  }
+  else
+  menudiv.style.height = "0%";
+}
+
+const menuicon = document.querySelector(".clickmenu");
+menuicon.addEventListener('click', menuslider);
+
+
 
 // function getcookie() {
 //   //profile part
@@ -323,14 +370,18 @@ function fillcheck($data) {
 
 function slider() {
   var imgdisplay = document.getElementById("imgdisplay").style;
+  const divediteur = document.querySelector("#editor");
   var disbutn = document.getElementById("sbutn");
   if (imgdisplay.visibility === "hidden") {
+    
+    divediteur.style.width = "69%";
     imgdisplay.setProperty("right", "0");
     imgdisplay.visibility = "visible";
     disbutn.setAttribute("value", "Hide imgs");
     imgdisplay.setProperty("opacity", "1");
     imgdisplay.pointerEvents = "auto";
   } else {
+    divediteur.style.width = "100%";
     imgdisplay.setProperty("right", "100");
     imgdisplay.pointerEvents = "none";
     imgdisplay.setProperty("opacity", "0");
@@ -416,7 +467,7 @@ function sticktoimg($srcvalue) {
 function deleteimg($id) {
   var t = confirm("Do you want to  Delete your Image");
   if (t == true) {
-    window.location = "http://192.168.99.104/deleteimg.php?id=" + $id;
+    window.location = "./deleteimg.php?id=" + $id;
   }
 }
 

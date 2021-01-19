@@ -50,7 +50,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
                         <input type="button" class="editbutton" value="remove filter" onclick="removefilter()" />
                         <input id="sbutn" class="editbutton" type="button" value="Hide imgs" onclick="slider()" />
                         <input type="file" id="upload" hidden />
-                        <label class="editbutton" for="upload">Upload<label>
+                        <label class="editbutton" for="upload">Upload</label>
                     </div>
                 </div>
                 <div id="stickyfilters">

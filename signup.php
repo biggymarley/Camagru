@@ -1,9 +1,9 @@
 <html id="dark">
 
 <head>
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> -->
     <title>SIGN UP</title>
 </head>
 
@@ -45,7 +45,8 @@
                 </br>
                 </br>
                 <div id='inlab'>
-                    <input type="file" name='img' required>
+                    <input id='chose' type="file" name='img' required hidden>
+                    <label for='chose' class='editlabel'>Click to Choose Your Profile Picture</label></br></br>
                 </div>
                 </br>
                 <input id="button" type="submit" name="submit" />

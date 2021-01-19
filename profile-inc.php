@@ -40,20 +40,24 @@ if (isset($_GET)) {
         echo "<img class='prfimg' src='data:image/png;base64, $uimg' />";
         if(!isset($uid) || $uid === $_SESSION['uid'])
         {
+            echo "</br></br><span id='puname' >{$_SESSION['uid']}</span>";
             echo "<form autocomplete='off' action='upload_to_pdp.php' method='post' enctype='multipart/form-data'>";
             echo "</br><input id='chose' class='buteditinfo' type='file' name='img' required hidden></br></br>";
             echo "<label for='chose' class='editlabel'>Click to Choose New PDP</label></br></br>";
             echo "<input class='buteditinfo' type='submit' name='submit' value='Edit ur PDP'/></br>";
             echo "</form>";
-        } 
+        }
+        else
+            echo "</br></br><span id='puname'>{$uid}</span>";
     echo "</div>";
+    echo "<div class='respoinfo'>";
     if(!isset($uid) || $uid === $_SESSION['uid'])
     {
-        echo "<span id='puname'>{$_SESSION['uid']}</span>";
+        // echo "<span id='puname' >{$_SESSION['uid']}</span>";
         echo "<button id='showeditdiv' class='buteditinfo' >Edit Profile</button>";
     }
-    else
-        echo "<span id='puname'>{$uid}</span>";
+    // else
+    //     echo "<span id='puname'>{$uid}</span>";
         $db = new PDO($dsn, $user, $pw);
         $sql = "SELECT count(*) FROM `postes` WHERE `postesid` LIKE $id";
         $st = $db->prepare($sql);
@@ -66,6 +70,7 @@ if (isset($_GET)) {
             echo "<input type='image' id='addbut' src='./img/add.png'>";
             echo "</form>";
         }
+        echo "</div>";
         echo "</div>";
         if(!isset($uid) || $uid === $_SESSION['uid'])
         {

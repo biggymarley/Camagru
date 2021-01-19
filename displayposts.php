@@ -32,6 +32,7 @@ if(isset($_SESSION))
                 $uimg = $fetch[0]['uimg'];
                 echo "<div class='posts'>";
                 echo "<div class='divpiclog'>";
+                
                 echo "<a href='./profile.php?username=$username'>";
                 if(empty($uimg))
                 echo "<img class='postpimg' src='./img/user.png' />";
@@ -41,8 +42,10 @@ if(isset($_SESSION))
                 echo "<a class='piclog'  href='./profile.php?username=$username'>$username</a>";
                 echo "</div>";
                 echo "<div   class='indisimg'>";
+                echo "<div   class='imgndlike'>";
                 echo "<img src='{$imgs['img']}' data-id='{$imgs['postusrid']}' data-likeid='$pid' class='imgsp' style='filter: {$style}'>";
                 echo "<img id='{$pid}'  src='./img/like.png' class='apprlike'>";
+                echo "</div>";
                 $slikes = "SELECT count(*) FROM `like` WHERE `pid` = {$imgs['postusrid']}";
                 $stl = $db->prepare($slikes);
                 $stl->execute();

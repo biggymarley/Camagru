@@ -22,7 +22,7 @@ $imgid = $_GET['id'];
         $sql = "DELETE FROM `postes` WHERE `postusrid` = $imgid";
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        header('location: imglab.php');
+        header('location: ./imglab.php');
     }
     catch(PDOException $e)
     {
