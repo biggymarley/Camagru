@@ -53,11 +53,8 @@ if (isset($_GET)) {
     echo "<div class='respoinfo'>";
     if(!isset($uid) || $uid === $_SESSION['uid'])
     {
-        // echo "<span id='puname' >{$_SESSION['uid']}</span>";
         echo "<button id='showeditdiv' class='buteditinfo' >Edit Profile</button>";
     }
-    // else
-    //     echo "<span id='puname'>{$uid}</span>";
         $db = new PDO($dsn, $user, $pw);
         $sql = "SELECT count(*) FROM `postes` WHERE `postesid` LIKE $id";
         $st = $db->prepare($sql);

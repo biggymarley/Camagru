@@ -184,16 +184,20 @@
 }
 
 #toggle2 {
-  width: 80px;
-  height: 30px;
-  background-color: #8fb1b646;
+  width: 40px;
+  height: 40px;
+  background-color: #8fb1b6;
+  background-image: url(./img/sun.png);
+  background-size: 30px 30px;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 20px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   outline-style: none;
   -webkit-appearance: none;
-  transition: all 400ms ease;
+  transition: all 100ms ease;
 }
-
+/* 
 #ball2 {
   background-color: #8fb1b6;
   background-size: 30px 30px;
@@ -212,7 +216,7 @@
   box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   transition: all 200ms ease-in-out;
-}
+} */
 
 #push {
   min-height: 85%;
@@ -256,8 +260,9 @@
   right: 0;
   visibility: "visible";
   position: absolute;
-  transition-property: "visibility", "right", "opacity";
-  transition-duration: 500ms;
+  /* transition-property: "visibility", "right", "opacity";
+  transition-duration: 500ms; */
+  transition: all 500ms ease;
 }
 #imgdisplay::-webkit-scrollbar {
   width: 10px;
@@ -270,25 +275,7 @@
   border-radius: 20px;
 }
 
-@media screen and (max-width: 1000px) {
-  #imglab {
-    display: block;
-    margin-top: 5%;
-  }
-  #editor {
-    height: 65%;
-    width: 90% !important;
-    margin-bottom: 5%;
-  }
-  #imgdisplay {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    height: 30%;
-    width: 90%;
-    position: relative;
-  }
-}
+
 
 .imgs {
   cursor: pointer;
@@ -329,6 +316,7 @@
 
 #filters {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   height: 0%;
   width: 100%;
@@ -356,22 +344,25 @@
 }
 .editbutton {
   height: 30px;
-  background-color: #6ccde09c;
+  background-color: #6ccde054;
+  font-size: small;
   color: #000000 !important;
-  width: 15%;
+  width: 95px;
   outline: none;
   border-radius: 20px;
   border: none;
   text-align: center;
   cursor: pointer;
+  transition: all 100ms ease-in-out;
 }
-.editbutton:active {
+.editbutton:hover {
   border: solid 2px rgba(0, 162, 255, 0.459);
+  background-color: #6ccde0a9;
 }
-label {
+label.editbutton  {
   height: 30px;
-  padding-top: 6px;
-  width: 100px;
+  /* padding-top: 6px; */
+  width: 95px;
 }
 
 /* #sd {
@@ -478,7 +469,6 @@ label {
 }
 #butform
 {
-  /* margin-top: 15px; */
   margin: 0;
   width: 15%;
 }
@@ -500,7 +490,6 @@ label {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 15px;
-  /* pointer-events: none; */
 }
 
 .disinput
@@ -513,7 +502,7 @@ label {
   border: none;
 }
 .disbut{
-  width: 10%;
+  width: auto;
   outline: none;
   background: transparent;
   border: none;
@@ -567,7 +556,6 @@ label {
  display: flex;
  align-items: center;
  justify-content: flex-start;
-/* padding-left: 10px; */
  border-bottom: 1px solid #536669;
  padding-bottom: 15px;
  padding-top: 5px;
@@ -579,7 +567,6 @@ label {
   font-size: large;
   margin-left: 10px;
   color: black;
-  /* margin-right: 90%; */
 }
 
 .likebtn
@@ -591,16 +578,12 @@ label {
 
 #profileimg
 {
-  /* margin-top: 15px; */
   padding-top: 5%;
-  /* padding-bottom: 15px; */
   display: flex;
   align-items: center;
   width: 100%;
   height: auto;
   flex-wrap: wrap;
-  /* background-color: transparent; */
-  /* background-color: #8fb1b646; */
   border-top: solid black 1px;
 }
 
@@ -608,15 +591,16 @@ label {
 .profimgs
 {
   padding: 0.333333%;
-  width: 32.333333%;
+  /* width: 32.333333%; */
+  width: 300px;
   height: auto;
   flex-basis: 32.333333%;
 }
 
 .urimg
 {
-  width: 100%;
-  height: auto;
+  width: 90%;
+  height: 90%;
   pointer-events: none;
 }
 
@@ -646,7 +630,7 @@ label {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 5%;
   margin-bottom: 5%;
 }
 
@@ -655,7 +639,7 @@ label {
 {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 17px;
-  color: #000000 !important;
+  color: #000000;
   background-color: rgba(255, 255, 240, 0.151);
   width: 90px;
   height: 40px;
@@ -834,7 +818,7 @@ label {
 
 .darkin.editinput:focus,
 .darkin.editinput:valid {
-  border-bottom: 4px solid rgba(0, 217, 255, 0.788);
+  border-bottom: 1px solid rgba(0, 217, 255, 0.788);
 }
 
 .divedit > .buteditinfo
@@ -878,11 +862,11 @@ label {
 .menu
 {
   /* display: none; */
-  height: 0%;
+  height: 0;
   list-style: none;
   display: block;
   overflow: hidden;
-  transition: height 400ms ease-in-out;
+  transition: height 200ms ease;
   background-color: #8fb1b646;
   width: 100%;
 }
@@ -899,6 +883,13 @@ label {
 }
 }
 
+@media screen and (max-width: 800px) {
+  .posts
+  {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .clickmenu
   {
@@ -908,7 +899,7 @@ label {
     width: 50%;
   }
   .editbutton {
-    width: 50%;
+    width: auto;
   }
   #loginform {
     width: 70%;
@@ -952,6 +943,7 @@ label {
     width: 1500px;
   }
 }
+
 @media screen and (min-width: 1100px) {
   .posts{
     width: 1000px;
@@ -960,7 +952,6 @@ label {
   {
     width: 1000px;
   }
-  
 .useredit
 {
   width: 1000px;
@@ -974,4 +965,30 @@ label {
 {
   width: 500px;
 }
+}
+
+
+
+@media screen and (max-width: 1000px) {
+  #imglab {
+    display: block;
+    margin-top: 5%;
+  }
+  #editor {
+    height: 65%;
+    width: 90% !important;
+    margin-bottom: 5%;
+  }
+  #imgdisplay {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 30%;
+    width: 90% !important;
+    position: relative;
+  }
+  #filters
+  {
+    align-items: flex-start;
+  }
 }

@@ -41,7 +41,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
                 <form  id="butform" action="upload-img.php" method="post" enctype="multipart/form-data"  >
                     <input type="hidden" name="imgsrc" value="" id="img" />
                     <input type="hidden" name="styleimg" value="" id="styleimg" />
-                    <input type="submit"  class="editbutton" value="Upload to profile" />
+                    <input type="submit"  class="editbutton" value="Post" />
                 </form>
             </div>
                 <div id="hidehere">
@@ -50,7 +50,7 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
                         <input type="button" class="editbutton" value="remove filter" onclick="removefilter()" />
                         <input id="sbutn" class="editbutton" type="button" value="Hide imgs" onclick="slider()" />
                         <input type="file" id="upload" hidden />
-                        <label class="editbutton" for="upload">Upload</label>
+                        <label class="editbutton" for="upload" style="margin: 0;padding:0;display:flex;justify-content: center;align-items:center;">Upload</label>
                     </div>
                 </div>
                 <div id="stickyfilters">
@@ -79,16 +79,6 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
                     <img  id="kmama" class="stickyimgs" src="img/stickyimgs/mask.png" onclick="sticktoimg(this.src)">
                     <img  id="join" class="stickyimgs" src="img/stickyimgs/weed.png" onclick="sticktoimg(this.src)">
                     <img  id="pipe" class="stickyimgs" src="img/stickyimgs/pipe.png" onclick="sticktoimg(this.src)">
-                    <!-- <img   class="stickyimgs" src="img/stickyimgs/crown.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/mask.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/crown.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/mask.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/crown.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/mask.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/crown.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/mask.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/crown.png">
-                    <img   class="stickyimgs" src="img/stickyimgs/mask.png"> -->
                 </div>
                 </div>
             </div>

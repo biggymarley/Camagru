@@ -11,9 +11,11 @@ try {
     $sql = "SELECT * FROM `saved` WHERE `savedid` LIKE $id";
     $stmt = $db->prepare($sql);
     $stmt->execute();
-    while($data = $stmt->fetch())
+    $data =  array_reverse($stmt->fetchAll());
+    $i = 0;
+    while(isset($data[$i]))
     {
-        $sql = "SELECT * FROM `postes` WHERE `postusrid` LIKE {$data['pid']}";
+        $sql = "SELECT * FROM `postes` WHERE `postusrid` LIKE {$data[$i]['pid']}";
         $stmt2 = $db->prepare($sql);
         $stmt2->execute();
         $imgs = $stmt2->fetch();
@@ -21,6 +23,7 @@ try {
         echo "<div class='profimgs'>";
         echo "<img src='{$imgs['img']}' class='urimg' style='filter: {$style}'>";
         echo "</div>";
+        $i++;
     }
 } catch (PDOException $e) {
     echo "DB ERROR: " . $e->getMessage();

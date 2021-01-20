@@ -34,6 +34,7 @@ const button = document.getElementById("button");
 const line = document.querySelector('.line');
 const loginputs = document.querySelectorAll('.input');
 const editputs = document.querySelectorAll('.editinput');
+const butitinfo = document.querySelectorAll('.buteditinfo');
 
 
 var theme = {
@@ -85,20 +86,19 @@ const light = () => {
   line.classList.remove('darkin');
   pos.setProperty("left", "0");
   pos.setProperty("background-image", "url(./img/sun.png)");
-  ball2.style.setProperty("left", "0");
-  ball2.style.setProperty("background-image", "url(./img/sun.png)");
+  toggle2.style.setProperty("background-image", "url(./img/sun.png)");
   clickmenu.setAttribute("src", theme.light.menu);
   body.classList.remove("dark");
   ball.style.backgroundColor = theme.light.ballc;
-  ball2.style.backgroundColor = theme.light.ballc;
+  toggle2.style.backgroundColor = theme.light.ballc;
   toggle.style.backgroundColor = theme.light.bg_color;
-  toggle2.style.backgroundColor = theme.light.bg_color;
   header.style.backgroundColor = theme.light.bg_color;
   menudiv.style.backgroundColor = theme.light.bg_color;
   applyall(text, theme.light.color, "color");
   applyall(spans, theme.light.color, "color");
   applyall(posts, theme.light.postbg, "background-image");
   applyall(inputs, theme.light.input_color, "color");
+  applyall(butitinfo,theme.light.color, "color" );
   items.forEach((element) => {
     element.style.color = theme.light.color;
   });
@@ -117,18 +117,17 @@ const dark = () => {
   clickmenu.setAttribute("src", theme.dark.menu);
   pos.setProperty("left", "55px");
   pos.setProperty("background-image", "url(./img/moon.png)");
-  ball2.style.setProperty("left", "55px");
-  ball2.style.setProperty("background-image", "url(./img/moon.png)");
+  toggle2.style.setProperty("background-image", "url(./img/moon.png)");
   ball.style.backgroundColor = theme.dark.ballc;
-  ball2.style.backgroundColor = theme.dark.ballc;
+  toggle2.style.backgroundColor = theme.dark.ballc;
   toggle.style.backgroundColor = theme.dark.bg_color;
-  toggle2.style.backgroundColor = theme.dark.bg_color;
   header.style.backgroundColor = theme.dark.bg_color;
   menudiv.style.backgroundColor = theme.dark.bg_color;
   applyall(inputs, theme.dark.input_color, "color");
   applyall(text, theme.dark.color, "color");
   applyall(posts, theme.dark.postbg, "background-image");
   applyall(spans, theme.dark.color, "color");
+  applyall(butitinfo,theme.dark.color, "color" );
   items.forEach((element) => {
     element.style.color = theme.dark.color;
   });
@@ -165,14 +164,12 @@ if ($ul.search("saved=s") > 0) {
 
 function menuslider()
 {
-  
-  console.log(menudiv.offsetHeight);
   if(menudiv.offsetHeight === 0)
   {
-    menudiv.style.height = "12%";
+    menudiv.style.height = "150px";
   }
   else
-  menudiv.style.height = "0%";
+  menudiv.style.height = "0";
 }
 
 const menuicon = document.querySelector(".clickmenu");
@@ -321,24 +318,32 @@ menuicon.addEventListener('click', menuslider);
 // }
 
 // capture pic ***
-var video = document.getElementById("vidplayer");
+let video = document.getElementById("vidplayer");
+var width = 320;
+var height = 0;
 if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    height = video.offsetHeight / (video.offsetWidth / width);
+    
+    video.setAttribute('width', width);
+    video.setAttribute('height', height);
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(function (stream) {
-        video.srcObject = stream;
-        video.play();
-      });
+    .getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+      video.play();
+    });
   }
 }
 
 function takepic() {
+  console.log(width);
+  console.log(height);
   var vidimg = document.querySelector("#pipse");
-  canvas = document.querySelector("#canvas");
-  width = video.offsetWidth;
-  height = video.offsetHeight;
+  let canvas = document.querySelector("#canvas");
+  // width = video.offsetWidth;
+  // height = video.offsetHeight;
   // width = 300;
   // height = 300;
   var img = document.querySelector("#img");
@@ -369,23 +374,25 @@ function fillcheck($data) {
 }
 
 function slider() {
-  var imgdisplay = document.getElementById("imgdisplay").style;
+  const  imgdisplay = document.getElementById("imgdisplay");
   const divediteur = document.querySelector("#editor");
   var disbutn = document.getElementById("sbutn");
-  if (imgdisplay.visibility === "hidden") {
+  if (imgdisplay.style.visibility === "hidden") {
     
     divediteur.style.width = "69%";
-    imgdisplay.setProperty("right", "0");
-    imgdisplay.visibility = "visible";
+    imgdisplay.style.width = "30%";
+    // imgdisplay.style.setProperty("right", "0");
+    imgdisplay.style.visibility = "visible";
     disbutn.setAttribute("value", "Hide imgs");
-    imgdisplay.setProperty("opacity", "1");
-    imgdisplay.pointerEvents = "auto";
+    imgdisplay.style.setProperty("opacity", "1");
+    imgdisplay.style.pointerEvents = "auto";
   } else {
     divediteur.style.width = "100%";
-    imgdisplay.setProperty("right", "100");
-    imgdisplay.pointerEvents = "none";
-    imgdisplay.setProperty("opacity", "0");
-    imgdisplay.visibility = "hidden";
+    imgdisplay.style.width = "0%";
+    // imgdisplay.style.setProperty("right", "100");
+    imgdisplay.style.pointerEvents = "none";
+    imgdisplay.style.setProperty("opacity", "0");
+    imgdisplay.style.visibility = "hidden";
     disbutn.setAttribute("value", "Display imgs");
   }
 }
@@ -599,4 +606,36 @@ if (imgpost) {
   }
 }
 
-///////////////////////Dark mode by objects///////////////////
+
+
+
+
+
+
+const pimgs = document.querySelector("#profileimg");
+const uimgs = document.querySelector(".profimgs");
+
+
+function resizeit() {
+  if(pimgs)
+  {
+    if (pimgs.offsetWidth === 1000) 
+    {
+      urimg.forEach((e) => {
+        e.style.width = "300px";
+        e.style.height = "300px";
+      })
+    }
+    else 
+    {
+      const nw = urimg[0].offsetWidth - 50 + 15;
+      urimg.forEach((e) => {
+        e.style.width = nw;
+        e.style.height = nw;
+      })
+    }
+  }
+}
+
+window.addEventListener('resize', resizeit);
+window.addEventListener('load', resizeit);

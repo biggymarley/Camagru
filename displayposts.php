@@ -20,10 +20,12 @@ if(isset($_SESSION))
             $stmt = $db->prepare($sql);
             $stmt->execute();
             $i = 1000;
-            while ($imgs = $stmt->fetch()) {
-                $style = $imgs['imgstyle'];
-                $pid = $imgs['postusrid'] + 500;
-                $lid = $imgs['postesid'];
+            $index = 0;
+            $imgs = array_reverse($stmt->fetchAll());
+            while (isset($imgs[$index])) {
+                $style = $imgs[$index]['imgstyle'];
+                $pid = $imgs[$index]['postusrid'] + 500;
+                $lid = $imgs[$index]['postesid'];
                 $sql = "SELECT * FROM `users` WHERE `usersid` LIKE $lid";
                 $stmt2 = $db->prepare($sql);
                 $uid = $stmt2->execute();
@@ -43,39 +45,39 @@ if(isset($_SESSION))
                 echo "</div>";
                 echo "<div   class='indisimg'>";
                 echo "<div   class='imgndlike'>";
-                echo "<img src='{$imgs['img']}' data-id='{$imgs['postusrid']}' data-likeid='$pid' class='imgsp' style='filter: {$style}'>";
+                echo "<img src='{$imgs[$index]['img']}' data-id='{$imgs[$index]['postusrid']}' data-likeid='$pid' class='imgsp' style='filter: {$style}'>";
                 echo "<img id='{$pid}'  src='./img/like.png' class='apprlike'>";
                 echo "</div>";
-                $slikes = "SELECT count(*) FROM `like` WHERE `pid` = {$imgs['postusrid']}";
+                $slikes = "SELECT count(*) FROM `like` WHERE `pid` = {$imgs[$index]['postusrid']}";
                 $stl = $db->prepare($slikes);
                 $stl->execute();
                 $likes = $stl->fetch()[0];
                 echo "<div class='countlikes'>";
                 echo "<span name='$pid' >$likes likes </span>";
-                echo "<form class='likeform' method='POST' onsubmit='return savedjs({$imgs['postusrid']}, $i)'>";
-                $sql2 = "SELECT 1 FROM `saved` WHERE `pid` = {$imgs['postusrid']} AND `savedid` = $id";
+                echo "<form class='likeform' method='POST' onsubmit='return savedjs({$imgs[$index]['postusrid']}, $i)'>";
+                $sql2 = "SELECT 1 FROM `saved` WHERE `pid` = {$imgs[$index]['postusrid']} AND `savedid` = $id";
                 $stmt3 = $db->prepare($sql2);
                 $stmt3->execute();
                 if (!empty($stmt3->fetch())) {
-                    echo "<input id='$i' type='image' alt='Submit' class='likebtn' src='./img/saved.png' value='{$imgs['postusrid']}'>";
+                    echo "<input id='$i' type='image' alt='Submit' class='likebtn' src='./img/saved.png' value='{$imgs[$index]['postusrid']}'>";
                 } else {
-                    echo "<input id='$i' type='image' alt='Submit' class='likebtn' src='./img/unsaved.png' value='{$imgs['postusrid']}' >";
+                    echo "<input id='$i' type='image' alt='Submit' class='likebtn' src='./img/unsaved.png' value='{$imgs[$index]['postusrid']}' >";
                 }
                 echo "</form>";
                 echo "</div>";
                 include "displaycmt.php";
                 echo "<div class='reactdiv'>";
-                echo "<form class='likeform' method='POST' onsubmit='return likejs({$imgs['postusrid']}, $pid)'>";
-                $sql2 = "SELECT 1 FROM `like` WHERE `pid` = {$imgs['postusrid']} AND `likeid` = $id";
+                echo "<form class='likeform' method='POST' onsubmit='return likejs({$imgs[$index]['postusrid']}, $pid)'>";
+                $sql2 = "SELECT 1 FROM `like` WHERE `pid` = {$imgs[$index]['postusrid']} AND `likeid` = $id";
                 $stmt3 = $db->prepare($sql2);
                 $stmt3->execute();
                 if (!empty($stmt3->fetch())) {
-                    echo "<input id='{$imgs['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/like.png' value='{$imgs['postusrid']}'>";
+                    echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/like.png' value='{$imgs[$index]['postusrid']}'>";
                 } else {
-                    echo "<input id='{$imgs['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/unlike.png' value='{$imgs['postusrid']}' >";
+                    echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/unlike.png' value='{$imgs[$index]['postusrid']}' >";
                 }
                 echo "</form>";
-                echo "<form autocomplete='off'  class='cmtform' method='POST' onsubmit='return cmtjs({$imgs['postusrid']}, $i)'>";
+                echo "<form autocomplete='off'  class='cmtform' method='POST' onsubmit='return cmtjs({$imgs[$index]['postusrid']}, $i)'>";
                 // echo "<input id='' type='hidden' name='pid' value='{$imgs['postusrid']}'  >";
                 echo "<input autocomplete='off' name='$i' type='text'  placeholder='Add comment ...'  class='disinput' required >";
                 echo "<input type='submit' class='disbut' value='POST' >";
@@ -84,6 +86,7 @@ if(isset($_SESSION))
                 echo "</div>";
                 echo "</div>";
                 $i++;
+                $index++;
             }
         } catch (PDOException $e) {
             echo "DB ERROR: " . $e->getMessage();

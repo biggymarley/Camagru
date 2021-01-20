@@ -1,8 +1,8 @@
 <?php
-$sql = "SELECT * FROM `comment` WHERE `pid` LIKE '{$imgs['postusrid']}'";
+$sql = "SELECT * FROM `comment` WHERE `pid` LIKE '{$imgs[$index]['postusrid']}'";
 $statm = $db->prepare($sql);
 $statm->execute();
-$cuid = $imgs['postusrid'] + 90000;
+$cuid = $imgs[$index]['postusrid'] + 90000;
 echo "<div id='$cuid' class='comment'>";
 while($cm = $statm->fetch())
 {

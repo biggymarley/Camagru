@@ -12,11 +12,14 @@ try {
     $sql = "SELECT * FROM `postes` WHERE `postesid` LIKE $id";
     $stmt = $db->prepare($sql);
     $stmt->execute();
-    while ($imgs = $stmt->fetch()) {
-        $style = $imgs['imgstyle'];
+    $imgs = array_reverse($stmt->fetchAll());
+    $i = 0;
+    while (isset($imgs[$i])){
+        $style = $imgs[$i]['imgstyle'];
         echo "<div class='profimgs'>";
-        echo "<img src='{$imgs['img']}' class='urimg' style='filter: {$style}'>";
+        echo "<img src='{$imgs[$i]['img']}' class='urimg' style='filter: {$style}'>";
         echo "</div>";
+        $i++;
     }
 } catch (PDOException $e) {
     echo "DB ERROR: " . $e->getMessage();
