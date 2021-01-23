@@ -4,94 +4,35 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
-if(isset($_SESSION))
-{
-    if(!isset($_SESSION['usersid']) || !isset($_SESSION['uid']))
-    {
-        header('location: ./login.php');
-        return;
-    }
-        $id = $_SESSION['usersid'];
-        $uname = $_SESSION['uid'];
-        try {
-            $db = new PDO($dsn, $user, $pw);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM `postes`";
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $i = 1000;
-            $index = 0;
-            $imgs = array_reverse($stmt->fetchAll());
-            while (isset($imgs[$index])) {
-                $style = $imgs[$index]['imgstyle'];
-                $pid = $imgs[$index]['postusrid'] + 500;
-                $lid = $imgs[$index]['postesid'];
-                $sql = "SELECT * FROM `users` WHERE `usersid` LIKE $lid";
-                $stmt2 = $db->prepare($sql);
-                $uid = $stmt2->execute();
-                $fetch = $stmt2->fetchAll();
-                $username = $fetch[0]['uid'];
-                $uimg = $fetch[0]['uimg'];
-                echo "<div class='posts'>";
-                echo "<div class='divpiclog'>";
-                
-                echo "<a href='./profile.php?username=$username'>";
-                if(empty($uimg))
-                echo "<img class='postpimg' src='./img/user.png' />";
-            else
-                echo "<img class='postpimg' src='data:image/png;base64, $uimg' />";
-                echo "</a>";
-                echo "<a class='piclog'  href='./profile.php?username=$username'>$username</a>";
-                echo "</div>";
-                echo "<div   class='indisimg'>";
-                echo "<div   class='imgndlike'>";
-                echo "<img src='{$imgs[$index]['img']}' data-id='{$imgs[$index]['postusrid']}' data-likeid='$pid' class='imgsp' style='filter: {$style}'>";
-                echo "<img id='{$pid}'  src='./img/like.png' class='apprlike'>";
-                echo "</div>";
-                $slikes = "SELECT count(*) FROM `like` WHERE `pid` = {$imgs[$index]['postusrid']}";
-                $stl = $db->prepare($slikes);
-                $stl->execute();
-                $likes = $stl->fetch()[0];
-                echo "<div class='countlikes'>";
-                echo "<span name='$pid' >$likes likes </span>";
-                echo "<form class='likeform' method='POST' onsubmit='return savedjs({$imgs[$index]['postusrid']}, $i)'>";
-                $sql2 = "SELECT 1 FROM `saved` WHERE `pid` = {$imgs[$index]['postusrid']} AND `savedid` = $id";
-                $stmt3 = $db->prepare($sql2);
-                $stmt3->execute();
-                if (!empty($stmt3->fetch())) {
-                    echo "<input id='$i' type='image' alt='Submit' class='likebtn' src='./img/saved.png' value='{$imgs[$index]['postusrid']}'>";
-                } else {
-                    echo "<input id='$i' type='image' alt='Submit' class='likebtn' src='./img/unsaved.png' value='{$imgs[$index]['postusrid']}' >";
-                }
-                echo "</form>";
-                echo "</div>";
-                include "displaycmt.php";
-                echo "<div class='reactdiv'>";
-                echo "<form class='likeform' method='POST' onsubmit='return likejs({$imgs[$index]['postusrid']}, $pid)'>";
-                $sql2 = "SELECT 1 FROM `like` WHERE `pid` = {$imgs[$index]['postusrid']} AND `likeid` = $id";
-                $stmt3 = $db->prepare($sql2);
-                $stmt3->execute();
-                if (!empty($stmt3->fetch())) {
-                    echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/like.png' value='{$imgs[$index]['postusrid']}'>";
-                } else {
-                    echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/unlike.png' value='{$imgs[$index]['postusrid']}' >";
-                }
-                echo "</form>";
-                echo "<form autocomplete='off'  class='cmtform' method='POST' onsubmit='return cmtjs({$imgs[$index]['postusrid']}, $i)'>";
-                // echo "<input id='' type='hidden' name='pid' value='{$imgs['postusrid']}'  >";
-                echo "<input autocomplete='off' name='$i' type='text'  placeholder='Add comment ...'  class='disinput' required >";
-                echo "<input type='submit' class='disbut' value='POST' >";
-                echo "</form>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-                $i++;
-                $index++;
-            }
-        } catch (PDOException $e) {
-            echo "DB ERROR: " . $e->getMessage();
-        }
+if (!isset($_SESSION)) {
+    session_start();
 }
-else
+if (!isset($_SESSION['usersid']) || !isset($_SESSION['uid'])) {
     header('location: ./login.php');
-
+    return;
+}
+$id = $_SESSION['usersid'];
+$uname = $_SESSION['uid'];
+try {
+    $db = new PDO($dsn, $user, $pw);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if ((isset($_POST['from']) && isset($_POST['to'])) && isset($_POST['save'])) {
+        $from = $_POST['from'];
+        $to = $_POST['to'];
+        $i = $_POST['save'];
+        // echo "$from , $to";
+        // sleep(9999999);
+    } else {
+        $from = 0;
+        $to = 4;
+        $i = 1000;
+    }
+    $sql = "SELECT * FROM `postes` order by postusrid DESC LIMIT $from, $to ";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $index = 0;
+    $imgs = $stmt->fetchAll();
+    include("display5posts.php");
+} catch (PDOException $e) {
+    echo "DB ERROR: " . $e->getMessage();
+}

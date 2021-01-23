@@ -20,7 +20,7 @@ let Darkmode = localStorage.getItem("mode");
 var toggle = document.getElementById("toggle");
 const toggle2 = document.getElementById("toggle2");
 var ball = document.getElementById("ball");
-const  ball2 = document.getElementById("ball2");
+const ball2 = document.getElementById("ball2");
 var items = document.querySelectorAll(".item");
 var posts = document.getElementsByClassName("posts");
 var text = document.getElementById("all").getElementsByTagName("A");
@@ -31,11 +31,10 @@ const menudiv = document.querySelector(".menu");
 const clickmenu = document.querySelector(".clickmenu");
 const add = document.getElementById("addbut");
 const button = document.getElementById("button");
-const line = document.querySelector('.line');
-const loginputs = document.querySelectorAll('.input');
-const editputs = document.querySelectorAll('.editinput');
-const butitinfo = document.querySelectorAll('.buteditinfo');
-
+const line = document.querySelector(".line");
+const loginputs = document.querySelectorAll(".input");
+const editputs = document.querySelectorAll(".editinput");
+const butitinfo = document.querySelectorAll(".buteditinfo");
 
 var theme = {
   dark: {
@@ -46,7 +45,7 @@ var theme = {
     input_color: "#8f8f8f",
     add: "./img/dadd.png",
     menu: "./img/dmenu.png",
-    postbg: "linear-gradient(to right top, rgba(255,0,0,0), #1b8ea047)"
+    postbg: "linear-gradient(to right top, rgba(255,0,0,0), #1b8ea047)",
   },
   light: {
     ballc: "#8fb1b6",
@@ -56,7 +55,7 @@ var theme = {
     input_color: "#536669",
     add: "./img/add.png",
     menu: "./img/lmenu.png",
-    postbg: "linear-gradient(to right top, rgba(255,0,0,0),#8fb1b646)"
+    postbg: "linear-gradient(to right top, rgba(255,0,0,0),#8fb1b646)",
   },
 };
 
@@ -80,10 +79,16 @@ const light = () => {
     button.style.backgroundColor = theme.light.bg_color;
     button.style.color = theme.light.color;
   }
-  if(loginputs) loginputs.forEach((e) => {e.classList.remove('darkin')});
-  if(editputs) editputs.forEach((e) => {e.classList.remove('darkin')});
+  if (loginputs)
+    loginputs.forEach((e) => {
+      e.classList.remove("darkin");
+    });
+  if (editputs)
+    editputs.forEach((e) => {
+      e.classList.remove("darkin");
+    });
   if (add) add.src = theme.light.add;
-  line.classList.remove('darkin');
+  line.classList.remove("darkin");
   pos.setProperty("left", "0");
   pos.setProperty("background-image", "url(./img/sun.png)");
   toggle2.style.setProperty("background-image", "url(./img/sun.png)");
@@ -98,7 +103,7 @@ const light = () => {
   applyall(spans, theme.light.color, "color");
   applyall(posts, theme.light.postbg, "background-image");
   applyall(inputs, theme.light.input_color, "color");
-  applyall(butitinfo,theme.light.color, "color" );
+  applyall(butitinfo, theme.light.color, "color");
   items.forEach((element) => {
     element.style.color = theme.light.color;
   });
@@ -111,9 +116,15 @@ const dark = () => {
     button.style.backgroundColor = theme.dark.bg_color;
     button.style.color = theme.dark.color;
   }
-  if(loginputs) loginputs.forEach((e) => {e.classList.add('darkin')});
-  if(editputs) editputs.forEach((e) => {e.classList.add('darkin')});
-  line.classList.add('darkin');
+  if (loginputs)
+    loginputs.forEach((e) => {
+      e.classList.add("darkin");
+    });
+  if (editputs)
+    editputs.forEach((e) => {
+      e.classList.add("darkin");
+    });
+  line.classList.add("darkin");
   clickmenu.setAttribute("src", theme.dark.menu);
   pos.setProperty("left", "55px");
   pos.setProperty("background-image", "url(./img/moon.png)");
@@ -127,7 +138,7 @@ const dark = () => {
   applyall(text, theme.dark.color, "color");
   applyall(posts, theme.dark.postbg, "background-image");
   applyall(spans, theme.dark.color, "color");
-  applyall(butitinfo,theme.dark.color, "color" );
+  applyall(butitinfo, theme.dark.color, "color");
   items.forEach((element) => {
     element.style.color = theme.dark.color;
   });
@@ -139,12 +150,6 @@ toggle2.addEventListener("click", change);
 
 if (Darkmode !== "1") dark();
 ///////////////////////////////////////////////////////////////
-// document.addEventListener("load", getcookie());
-
-// window.onload = getcookie();
-function setcookie(filter) {
-  document.cookie = "value=" + filter;
-}
 
 $ul = window.location.href;
 if ($ul.search("saved=s") > 0) {
@@ -160,162 +165,14 @@ if ($ul.search("saved=s") > 0) {
 
 //////*//////////Menu-Slider////////////////////
 
-
-
-function menuslider()
-{
-  if(menudiv.offsetHeight === 0)
-  {
-    menudiv.style.height = "150px";
-  }
-  else
-  menudiv.style.height = "0";
+function menuslider() {
+  if (menudiv.offsetHeight === 0) {
+    menudiv.style.height = "180px";
+  } else menudiv.style.height = "0";
 }
 
 const menuicon = document.querySelector(".clickmenu");
-menuicon.addEventListener('click', menuslider);
-
-
-
-// function getcookie() {
-//   //profile part
-
-//   // $rul = $ul.search('saved=s');
-//   // console.log($rul);
-
-//   var v = document.cookie.split(";");
-//   if (v[1]) var value = v[1].split("=");
-//   else var value = v[0].split("=");
-//   if (value[1] === "") {
-//     pos.setProperty("left", "0");
-//     pos.setProperty("background-image", "url(./img/sun.png)");
-//     all.filter = "";
-//     if (indisimg) {
-//       indisimg.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (coutlikes) {
-//       coutlikes.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (sigcmt) {
-//       sigcmt.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (urimg) {
-//       urimg.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (vstyle) vstyle.setProperty("filter", "");
-//     if (istyle) istyle.setProperty("filter", "");
-//     if (cstyle) cstyle.setProperty("filter", "");
-//     if (filters) filters.filter = "";
-//     if (stickyimgsfilts) stickyimgsfilts.filter = "";
-//     setcookie(all.filter);
-//   } else if (value[1] === "invert(1) hue-rotate(180deg)") {
-//     if (pos) {
-//       pos.setProperty("left", "55px");
-//       pos.setProperty("background-image", "url(./img/moon.png)");
-//     }
-//     all.filter = "invert(1) hue-rotate(180deg)";
-//     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//     if (indisimg) {
-//       indisimg.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (urimg) {
-//       urimg.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (coutlikes) {
-//       coutlikes.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (sigcmt) {
-//       sigcmt.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
-//     if (stickyimgsfilts)
-//       stickyimgsfilts.filter = "invert(1) hue-rotate(180deg)";
-//     setcookie(all.filter);
-//   }
-// }
-
-// function darkmode() {
-//   if (all.filter === "") {
-//     pos.setProperty("left", "55px");
-//     pos.setProperty("background-image", "url(./img/moon.png)");
-//     all.filter = "invert(1) hue-rotate(180deg)";
-//     if (vstyle) vstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//     if (istyle) istyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//     if (indisimg) {
-//       indisimg.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (urimg) {
-//       urimg.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (sigcmt) {
-//       sigcmt.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (coutlikes) {
-//       coutlikes.forEach((element) => {
-//         element.style.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//       });
-//     }
-//     if (cstyle) cstyle.setProperty("filter", "invert(1) hue-rotate(180deg)");
-//     if (filters) filters.filter = "invert(1) hue-rotate(180deg)";
-//     if (stickyimgsfilts)
-//       stickyimgsfilts.filter = "invert(1) hue-rotate(180deg)";
-//     setcookie(all.filter);
-//   } else if (all.filter === "invert(1) hue-rotate(180deg)") {
-//     pos.setProperty("left", "0");
-//     pos.setProperty("background-image", "url(./img/sun.png)");
-//     all.filter = "";
-//     if (vstyle) vstyle.setProperty("filter", "");
-//     if (sigcmt) {
-//       sigcmt.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (indisimg) {
-//       indisimg.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (urimg) {
-//       urimg.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (coutlikes) {
-//       coutlikes.forEach((element) => {
-//         element.style.setProperty("filter", "");
-//       });
-//     }
-//     if (istyle) istyle.setProperty("filter", "");
-//     if (cstyle) cstyle.setProperty("filter", "");
-//     if (stickyimgsfilts) stickyimgsfilts.filter = "";
-//     if (filters) filters.filter = "";
-//     setcookie(all.filter);
-//   }
-// }
+menuicon.addEventListener("click", menuslider);
 
 // capture pic ***
 let video = document.getElementById("vidplayer");
@@ -324,16 +181,16 @@ var height = 0;
 if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     height = video.offsetHeight / (video.offsetWidth / width);
-    
-    video.setAttribute('width', width);
-    video.setAttribute('height', height);
+
+    video.setAttribute("width", width);
+    video.setAttribute("height", height);
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-      video.play();
-    });
+      .getUserMedia({ video: true })
+      .then(function (stream) {
+        video.srcObject = stream;
+        video.play();
+      });
   }
 }
 
@@ -374,11 +231,10 @@ function fillcheck($data) {
 }
 
 function slider() {
-  const  imgdisplay = document.getElementById("imgdisplay");
+  const imgdisplay = document.getElementById("imgdisplay");
   const divediteur = document.querySelector("#editor");
   var disbutn = document.getElementById("sbutn");
   if (imgdisplay.style.visibility === "hidden") {
-    
     divediteur.style.width = "69%";
     imgdisplay.style.width = "30%";
     // imgdisplay.style.setProperty("right", "0");
@@ -478,6 +334,13 @@ function deleteimg($id) {
   }
 }
 
+function logout($id) {
+  var t = confirm("Are you Sure you want to log-out");
+  if (t == true) {
+    window.location = "./logout.php";
+  }
+}
+
 function like($id) {
   $s = document.getElementById($id);
   if ($s) {
@@ -487,6 +350,52 @@ function like($id) {
   }
 }
 
+window.addEventListener("scroll", function () {
+  const lpost = document.querySelectorAll(".indexofpost");
+  const savebtn = document.getElementsByName("savebtn");
+  if (
+    lpost[0] &&
+    window.innerHeight + window.pageYOffset >= document.body.offsetHeight
+  ) {
+    let l = lpost[lpost.length - 1].value;
+    let save = savebtn[savebtn.length - 1].id;
+    if (l === "0") l = "4";
+    else l = parseInt(l) + 2;
+    save = parseInt(save) + 1;
+    let data = new FormData();
+    let to = "2";
+    data.append("from", l);
+    data.append("to", to);
+    data.append("save", save);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "./displayposts.php");
+    const postsdiv = document.getElementById("allposts");
+    xhr.onloadend = function () {
+      const p = new DOMParser();
+      const fiveposts = p.parseFromString(xhr.response, "text/html");
+      let arg = [];
+      for (let i = 0; fiveposts.body.childNodes[i]; i++) {
+        arg.push(fiveposts.body.childNodes[i]);
+      }
+        arg.forEach((e) => {
+          postsdiv.appendChild(e);
+        });
+        d = localStorage.getItem("mode");
+        if (d !== "1") dark();
+        resizeposts();
+    };
+    xhr.send(data);
+    return false;
+  }
+});
+
+function loading() {
+  const l = document.querySelector("#loading");
+  if (l.style.display === "none") {
+    l.style.display = "block";
+  } else l.style.display = "none";
+}
+
 function likejs(id, lid) {
   var data = new FormData();
   data.append("pid", document.getElementById(id).value);
@@ -494,8 +403,8 @@ function likejs(id, lid) {
   xhr.open("POST", "./like.php");
   const nblike = document.getElementsByName(lid)[0].textContent.match(/\d/);
   xhr.onload = function () {
-    $l = this.response;
-    if ($l === "like") {
+    const l = this.response;
+    if (l === "like") {
       document.getElementById(lid).src = "./img/like.png";
       document.getElementById(lid).style.opacity = "1";
       setTimeout(function () {
@@ -504,7 +413,7 @@ function likejs(id, lid) {
       document.getElementById(id).src = "./img/like.png";
       document.getElementsByName(lid)[0].textContent =
         parseInt(nblike) + 1 + " likes";
-    } else if ($l === "unlike") {
+    } else if (l === "unlike") {
       document.getElementsByName(lid)[0].textContent =
         parseInt(nblike) - 1 + " likes";
       document.getElementById(lid).src = "./img/unlike.png";
@@ -521,39 +430,41 @@ function likejs(id, lid) {
 
 function cmtjs(id, cmt) {
   let cmtinput = document.getElementsByName(cmt)[0];
-  var data = new FormData();
-  data.append("pid", id);
-  data.append("cmt", cmtinput.value);
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", "./cmt.php");
-  xhr.send(data);
-  var d2 = new FormData();
-  const xhr2 = new XMLHttpRequest();
-  xhr2.open("POST", "./autoinsertcmt.php");
-  let div = document.createElement("div");
-  let sp = document.createElement("span");
-  sp.className = "ucom";
-  xhr2.onreadystatechange = function () {
-    if (xhr2.readyState == xhr2.DONE)
-      sp.appendChild(document.createTextNode(this.responseText + " :"));
-  };
-  xhr2.send(d2);
-  let divid = parseInt(id) + 90000;
-  div.className = "sigcmt";
-  let spc = document.createElement("span");
-  let thecmt = document.createTextNode(cmtinput.value);
-  spc.appendChild(thecmt);
-  spc.className = "spancomm";
-  Darkmode = localStorage.getItem("mode");
-  if (Darkmode === "null") {
-    sp.style.color = theme.dark.color;
-    spc.style.color = theme.dark.color;
+  if (cmtinput.value.trim()) {
+    var data = new FormData();
+    data.append("pid", id);
+    data.append("cmt", cmtinput.value);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "./cmt.php");
+    xhr.send(data);
+    var d2 = new FormData();
+    const xhr2 = new XMLHttpRequest();
+    xhr2.open("POST", "./autoinsertcmt.php");
+    let div = document.createElement("div");
+    let sp = document.createElement("span");
+    sp.className = "ucom";
+    xhr2.onreadystatechange = function () {
+      if (xhr2.readyState == xhr2.DONE)
+        sp.appendChild(document.createTextNode(this.responseText + " :"));
+    };
+    xhr2.send(d2);
+    let divid = parseInt(id) + 90000;
+    div.className = "sigcmt";
+    let spc = document.createElement("span");
+    let thecmt = document.createTextNode(cmtinput.value);
+    spc.appendChild(thecmt);
+    spc.className = "spancomm";
+    Darkmode = localStorage.getItem("mode");
+    if (Darkmode === "null") {
+      sp.style.color = theme.dark.color;
+      spc.style.color = theme.dark.color;
+    }
+    spc.style.opacity = "70%";
+    div.appendChild(sp);
+    div.appendChild(spc);
+    document.getElementById(divid).appendChild(div);
+    cmtinput.value = "";
   }
-  spc.style.opacity = "70%";
-  div.appendChild(sp);
-  div.appendChild(spc);
-  document.getElementById(divid).appendChild(div);
-  cmtinput.value = "";
   return false;
 }
 
@@ -563,10 +474,10 @@ function savedjs(id, i) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "./saved.php");
   xhr.onload = function () {
-    $l = this.response;
-    if ($l === "saved") {
+    const l = this.response;
+    if (l === "saved") {
       document.getElementById(i).src = "./img/saved.png";
-    } else if ($l === "unsaved")
+    } else if (l === "unsaved")
       document.getElementById(i).src = "./img/unsaved.png";
   };
   xhr.send(data);
@@ -577,7 +488,6 @@ function displaydiv() {
   var div = document.getElementById("editdiv");
 
   var hight = div.offsetHeight;
-  // console.log(hight);
   if (hight === 0) {
     div.style.height = "500px";
     div.style.opacity = "1";
@@ -591,51 +501,66 @@ function displaydiv() {
 
 var showeditdivbut = document.getElementById("showeditdiv");
 if (showeditdivbut) showeditdivbut.addEventListener("click", displaydiv);
-
-var imgpost = document.querySelectorAll(".imgsp");
-// console.log(imgpost);
-if (imgpost) {
-  for (i = 0; i < imgpost.length; i++) {
-    id = imgpost[i].dataset.id;
-    lid = imgpost[i].dataset.likeid;
-    imgpost[i].addEventListener("dblclick", likejs.bind("null", id, lid));
-    // document.getElementById(lid).addEventListener('')
-    // imgpost[i].addEventListener('dblclick', function(){
-    //   setTimeout
-    // });
-  }
-}
-
-
-
-
-
-
-
-const pimgs = document.querySelector("#profileimg");
-const uimgs = document.querySelector(".profimgs");
+// window.onchange = bindlike();
+// function bindlike(){
+//   const imgpost = document.querySelectorAll(".imgsp");
+//   if(imgpost)
+//   {
+//     for (i = 0; i < imgpost.length; i++) {
+//       id = imgpost[i].dataset.id;
+//       lid = imgpost[i].dataset.likeid;
+//       imgpost[i].addEventListener("dblclick", likejs.bind("null", id, lid));
+//     }
+//   }
+//   }
+//   setInterval(bindlike(), 100);
+// if (imgpost) {
+//   bindlike();
+//   }
 
 
 function resizeit() {
-  if(pimgs)
-  {
-    if (pimgs.offsetWidth === 1000) 
-    {
-      urimg.forEach((e) => {
+  const pimgs = document.querySelector("#profileimg");
+  const uimgs = document.querySelectorAll(".profimgs");
+  if (pimgs) {
+    // console.log (uimgs[0].offsetWidth);
+    if (pimgs.offsetWidth === 1000) {
+      uimgs.forEach((e) => {
         e.style.width = "300px";
         e.style.height = "300px";
-      })
-    }
-    else 
-    {
-      const nw = urimg[0].offsetWidth - 50 + 15;
-      urimg.forEach((e) => {
+      });
+    } else {
+      const nw = uimgs[0].offsetWidth - 50 + 15;
+      uimgs.forEach((e) => {
         e.style.width = nw;
         e.style.height = nw;
-      })
+      });
     }
   }
 }
 
-window.addEventListener('resize', resizeit);
-window.addEventListener('load', resizeit);
+window.addEventListener("resize", resizeit);
+window.addEventListener("load", resizeit);
+
+function resizeposts() {
+  const imgndlike = document.querySelector(".indisimg");
+  const imgsp = document.querySelectorAll(".imgndlike");
+  if (imgndlike) {
+    if (imgndlike.offsetWidth >= 800) {
+      imgsp.forEach((e) => {
+        e.style.width = "700px";
+        e.style.height = "700px";
+      });
+    } else {
+      console.log(imgsp[0].offsetWidth);
+      const nw = imgndlike.offsetWidth - 50 + 10;
+      imgsp.forEach((e) => {
+        e.style.width = nw;
+        e.style.height = nw;
+      });
+    }
+  }
+}
+
+window.addEventListener("resize", resizeposts);
+window.addEventListener("load", resizeposts);

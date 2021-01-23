@@ -9,10 +9,16 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     <?php
     include_once("header.php");
     ?>
-    <center>
+    <center id='allposts'>
             <?php
              include_once("displayposts.php");
             ?>
+    </center>
+    <center id="loading">
+    </br>
+    </br>
+    </br>
+            <img src="./img/loading.png" style="width: 50px;height: 50px;"/>
     </center>
     <?php include_once("footer.php") ?>
     <script defer async src="style.js">

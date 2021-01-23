@@ -74,7 +74,9 @@ function addtodb($conn, $login, $email, $passwd, $uimg)
 
 function checkemail($email)
 {
-    $pat = '/.+[@].+[.].+/';
+    // $pat = '/.+[@].+[.].+/';
+    $pat = '/[A-Za-z_\-.0-9]+@[A-Za-z_\-0-9]+\.[A-Za-z0-9]{1,3}/';
+    // /[A-Za-z_-.0-9]+@[A-Za-z_-0-9]+\.[A-Za-z0-9]{1,3}/
     if (!preg_match($pat, $email)) {
         header('location: ../signup.php?error=fixemail');
         exit();

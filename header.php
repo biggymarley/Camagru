@@ -29,13 +29,16 @@
       else if(isset($_SESSION['usersid']))
       {
         echo '<li class="hditemes">';
+        echo '  <a href="index.php" class="item">HOME</a>';
+        echo '</li>';
+        echo '<li class="hditemes">';
         echo '<a href="profile.php" class="item">PROFILE</a>';
         echo ' </li>';
         echo '<li class="hditemes">';
         echo '  <a href="imglab.php" class="item">IMG-LAB</a>';
         echo '</li>';
         echo '<li class="hditemes">';
-        echo '<a href="logout.php" class="item">LOGOUT</a>';
+        echo '<a  style="cursor: pointer;" class="item" onclick="logout()">LOGOUT</a>';
         echo ' </li>';
       }
       ?>
@@ -67,13 +70,16 @@
       else if(isset($_SESSION['usersid']))
       {
         echo '<li class="hditemes">';
+        echo '  <a href="index.php" class="item">HOME</a>';
+        echo '</li>';
+        echo '<li class="hditemes">';
         echo '<a href="profile.php" class="item">PROFILE</a>';
         echo ' </li>';
         echo '<li class="hditemes">';
         echo '  <a href="imglab.php" class="item">IMG-LAB</a>';
         echo '</li>';
         echo '<li class="hditemes">';
-        echo '<a href="logout.php" class="item">LOGOUT</a>';
+        echo '<a  style="cursor: pointer;" onclick="logout()" class="item">LOGOUT</a>';
         echo ' </li>';
       }
       ?>
