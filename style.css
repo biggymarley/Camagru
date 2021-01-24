@@ -373,7 +373,7 @@ label.editbutton  {
   display: flex;
   justify-content: center;
   height: 10%;
-  width: 90%;
+  /* width: 90%; */
   position: relative;
 }
 #inside {

@@ -31,6 +31,7 @@ while (isset($imgs[$index])) {
     $likes = $stl->fetch()[0];
     echo "<div class='countlikes'>";
     echo "<span name='$pid' >$likes likes </span>";
+    if ( isset($_SESSION) && isset($_SESSION['usersid']) &&  isset($_SESSION['uid'])) {
     echo "<form class='likeform' method='POST' onsubmit='return savedjs({$imgs[$index]['postusrid']}, $i)'>";
     $sql2 = "SELECT 1 FROM `saved` WHERE `pid` = {$imgs[$index]['postusrid']} AND `savedid` = $id";
     $stmt3 = $db->prepare($sql2);
@@ -41,9 +42,11 @@ while (isset($imgs[$index])) {
         echo "<input id='$i'  name='savebtn' type='image' alt='Submit' class='likebtn' src='./img/unsaved.png' value='{$imgs[$index]['postusrid']}' >";
     }
     echo "</form>";
+}
     echo "</div>";
     include "displaycmt.php";
     echo "<div class='reactdiv'>";
+    if (isset($_SESSION) && isset($_SESSION['usersid']) &&  isset($_SESSION['uid'])) {
     echo "<form class='likeform' method='POST' onsubmit='return likejs({$imgs[$index]['postusrid']}, $pid)'>";
     $sql2 = "SELECT 1 FROM `like` WHERE `pid` = {$imgs[$index]['postusrid']} AND `likeid` = $id";
     $stmt3 = $db->prepare($sql2);
@@ -59,10 +62,13 @@ while (isset($imgs[$index])) {
     echo "<input autocomplete='off' name='$i' type='text'  placeholder='Add comment ...'  class='disinput' required >";
     echo "<input type='submit' class='disbut' value='POST' >";
     echo "</form>";
+}
     echo "</div>";
     echo "</div>";
     echo "<input type='hidden' class='indexofpost' value='$from'>";
     echo "</div>";
+    if (isset($_SESSION) && isset($_SESSION['usersid']) &&  isset($_SESSION['uid'])) {
     $i++;
+    }
     $index++;
 }

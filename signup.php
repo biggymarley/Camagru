@@ -1,12 +1,21 @@
-<html id="dark">
+<?php
 
+
+if(!isset($_SESSION))
+{
+    session_start();
+}
+if(empty($_SESSION['token']))
+{
+   $randomtoken = bin2hex(random_bytes(32));
+   $_SESSION['token'] = $randomtoken;
+}
+?>
+
+<html id="dark">
 <head>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> -->
     <title>SIGN UP</title>
 </head>
-
 <body class="light" id="all">
     <?php include_once("header.php") ?>
     <center>
@@ -49,6 +58,7 @@
                     <label for='chose' class='editlabel'>Click to Choose Your Profile Picture</label></br></br>
                 </div>
                 </br>
+                <input type="hidden" name='csrf' value="<?php echo $_SESSION['token']?>" />
                 <input id="button" type="submit" name="submit" />
                 </from>
                 <?php include_once("errors.php") ?>

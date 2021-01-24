@@ -27,7 +27,7 @@ if(empty($_SESSION['token']))
     <?php include_once("header.php") ?>
     <center>
         <div id="loginform">
-        <form action="includes/login_inc.php" method="post">
+        <form action="http://192.168.99.104/includes/login_inc.php" method="post">
             <div id="inlab">
                 <input type="text" class="input" name="username" required>
                 <span id="label">Username / Email :</span>

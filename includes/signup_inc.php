@@ -4,6 +4,9 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
+session_start();
+if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
+{
 try {
     $db = new PDO($dsn, $user, $pw);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -39,4 +42,9 @@ try {
         header('location: ../index.php');
 } catch (PDOException $e) {
     echo "DB ERROR: " . $e->getMessage();
+}
+} else
+{
+    header('location: ../signup.php');
+    return;
 }

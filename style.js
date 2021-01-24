@@ -184,7 +184,6 @@ if (video) {
 
     video.setAttribute("width", width);
     video.setAttribute("height", height);
-    // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then(function (stream) {
@@ -195,14 +194,8 @@ if (video) {
 }
 
 function takepic() {
-  console.log(width);
-  console.log(height);
   var vidimg = document.querySelector("#pipse");
   let canvas = document.querySelector("#canvas");
-  // width = video.offsetWidth;
-  // height = video.offsetHeight;
-  // width = 300;
-  // height = 300;
   var img = document.querySelector("#img");
   canvas.width = width;
   canvas.height = height;
@@ -357,36 +350,39 @@ window.addEventListener("scroll", function () {
     lpost[0] &&
     window.innerHeight + window.pageYOffset >= document.body.offsetHeight
   ) {
-    let l = lpost[lpost.length - 1].value;
-    let save = savebtn[savebtn.length - 1].id;
-    if (l === "0") l = "4";
-    else l = parseInt(l) + 2;
-    save = parseInt(save) + 1;
-    let data = new FormData();
-    let to = "2";
-    data.append("from", l);
-    data.append("to", to);
-    data.append("save", save);
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "./displayposts.php");
-    const postsdiv = document.getElementById("allposts");
-    xhr.onloadend = function () {
-      const p = new DOMParser();
-      const fiveposts = p.parseFromString(xhr.response, "text/html");
-      let arg = [];
-      for (let i = 0; fiveposts.body.childNodes[i]; i++) {
-        arg.push(fiveposts.body.childNodes[i]);
+      let l = lpost[lpost.length - 1].value;
+      let data = new FormData();
+      if(savebtn[0])
+      {
+        let save = savebtn[savebtn.length - 1].id;
+        save = parseInt(save) + 1;
+        data.append("save", save);
       }
+      if (l === "0") l = "4";
+      else l = parseInt(l) + 2;
+      let to = "2";
+      data.append("from", l);
+      data.append("to", to);
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "./displayposts.php");
+      const postsdiv = document.getElementById("allposts");
+      xhr.onloadend = function () {
+        const p = new DOMParser();
+        const fiveposts = p.parseFromString(xhr.response, "text/html");
+        let arg = [];
+        for (let i = 0; fiveposts.body.childNodes[i]; i++) {
+          arg.push(fiveposts.body.childNodes[i]);
+        }
         arg.forEach((e) => {
           postsdiv.appendChild(e);
         });
         d = localStorage.getItem("mode");
         if (d !== "1") dark();
         resizeposts();
-    };
-    xhr.send(data);
-    return false;
-  }
+      };
+      xhr.send(data);
+      return false;
+    }
 });
 
 function loading() {
@@ -523,7 +519,7 @@ function resizeit() {
   const pimgs = document.querySelector("#profileimg");
   const uimgs = document.querySelectorAll(".profimgs");
   if (pimgs) {
-    // console.log (uimgs[0].offsetWidth);
+    //  (uimgs[0].offsetWidth);
     if (pimgs.offsetWidth === 1000) {
       uimgs.forEach((e) => {
         e.style.width = "300px";
@@ -552,7 +548,6 @@ function resizeposts() {
         e.style.height = "700px";
       });
     } else {
-      console.log(imgsp[0].offsetWidth);
       const nw = imgndlike.offsetWidth - 50 + 10;
       imgsp.forEach((e) => {
         e.style.width = nw;
