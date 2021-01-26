@@ -5,8 +5,10 @@ $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
 session_start();
-$id = $_SESSION['usersid'];
-$imgid = $_GET['id'];
+if(!empty($_SESSION['usersid']) || (!empty($_GET['tok']) && hash_equals($_SESSION['token'], $_GET['tok'])))
+{
+    $id = $_SESSION['usersid'];
+    $imgid = $_GET['id'];
     try{
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -28,3 +30,4 @@ $imgid = $_GET['id'];
     {
         echo "DB ERROR: " . $e->getMessage();
     }
+}

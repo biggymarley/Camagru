@@ -24,7 +24,9 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     include_once("header.php");
     ?>
     <center>
-            <?php include_once("profile-inc.php");?>
+            <?php 
+            include_once("errors.php");
+            include_once("profile-inc.php");?>
     </center>
     <?php include_once("footer.php") ?>
     <script   src="style.js">

@@ -21,14 +21,11 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
                     header('location: ../login.php?error=notexist');
                     exit();
                 } else {
-                    // session_start();
                     $_SESSION['usersid'] = $row['usersid'];
                     $_SESSION['uid'] = $row['uid'];
                     $_SESSION['uimg'] = $row['uimg'];
-                    // $sql = "SELECT `mode` FROM mode WHERE `uid` LIKE {$row['usersid']}";
-                    // $stmt = $db->prepare($sql);
-                    // $stmt->execute();
-                    // $_SESSION['mode'] = $stmt->fetch()[0];
+                    $_SESSION['uemail'] = $row['uemail'];
+                    $_SESSION['infoemail'] = $row['infoemail'];
                     header('location: ../index.php');
                     return;
                 }

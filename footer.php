@@ -11,8 +11,6 @@
         <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">Jobs</a>
         <span>Help</span>
         <span>API</span>
-        <span>Privacy</span>
-        <span>Terms</span>
     </div>
 </br>
 </br>

@@ -15,7 +15,8 @@ try {
         uid VARCHAR(255) NOT NULL,
         uemail VARCHAR(255) NOT NULL,
         upwd varchar(255) NOT NULL,
-        uimg LONGBLOB
+        uimg LONGBLOB,
+        infoemail boolean 
     );";
     $db->exec($sql);
   $sql = "CREATE TABLE IF NOT EXISTS  postes(

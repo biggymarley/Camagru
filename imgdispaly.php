@@ -14,7 +14,7 @@ $id = $_SESSION['usersid'];
         while($imgs = $stmt->fetch())
         {
             $style = $imgs['imgstyle'];
-            echo "<img src='{$imgs['img']}' class='imgs' style='filter: {$style}' onclick='deleteimg({$imgs['postusrid']})'>";
+            echo "<img src='{$imgs['img']}' class='imgs' style='filter: {$style}' onclick='deleteimg({$imgs['postusrid']}, `{$_SESSION['token']}`)'>";
         }
     }
     catch(PDOException $e)

@@ -24,22 +24,22 @@
         echo '</li>';
         echo '<li class="hditemes">';
         echo '<a href="signup.php" class="item">SINGUP</a>';
-        echo ' </li>';
+        echo '</li>';
       }
       else if(isset($_SESSION['usersid']))
       {
         echo '<li class="hditemes">';
-        echo '  <a href="index.php" class="item">HOME</a>';
+        echo '<a href="index.php" class="item">HOME</a>';
         echo '</li>';
         echo '<li class="hditemes">';
         echo '<a href="profile.php" class="item">PROFILE</a>';
-        echo ' </li>';
-        echo '<li class="hditemes">';
-        echo '  <a href="imglab.php" class="item">IMG-LAB</a>';
         echo '</li>';
         echo '<li class="hditemes">';
-        echo '<a  style="cursor: pointer;" class="item" onclick="logout()">LOGOUT</a>';
-        echo ' </li>';
+        echo '<a href="imglab.php" class="item">IMG-LAB</a>';
+        echo '</li>';
+        echo '<li class="hditemes">';
+        echo "<span style='cursor: pointer;' class='item' onclick=\"logout(`{$_SESSION['token']}`)\">LOGOUT</span>";
+        echo '</li>';
       }
       ?>
     <li id="itemlistd">

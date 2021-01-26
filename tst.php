@@ -1,54 +1,43 @@
-<?php
+<!-- <?php -->
+<!-- // $headers = array(
+//     'From' => 'Camagru@Support.com'
+// );
+//  $return = mail("tediv47699@aiclbd.com", "wsuuup duud", "nshdk n7wik" , $headers);
+//  echo $return; -->
+<!-- ?> -->
 
-if(!isset($_SESSION))
-{
-    session_start();
-}
-if(empty($_SESSION['token']))
-{
-   $randomtoken = bin2hex(random_bytes(32));
-   $_SESSION['token'] = $randomtoken;
-}
-
-
-
-
-?>
-<html lang="en" id="dark">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <title>Login</title>
+    <title>LETTER</title>
+    <style>
+.buteditinfo
+{
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 17px;
+  text-decoration: none;
+  border: 2px dotted gray;
+  color: #000000;
+  background-color: rgba(0, 162, 255, 0.678);
+  border-radius: 5px;
+  outline: none;
+}
+    </style>
 </head>
-<body class='light' id="all">
-    <?php include_once("header.php") ?>
-    <center>
-        <div id="loginform">
-        <form action="http://192.168.99.104/includes/login_inc.php" method="post">
-            <div id="inlab">
-                <input type="text" class="input" name="username" required>
-                <span id="label">Username / Email :</span>
-            </div>
-            </br>
-            </br>
-            </br></br>
-            <div id="inlab">
-                <input type="password"  name="passwd" class="input" required>
-                <span id="label">Password :</span>
-            </div>
-            </br></br>
-            </br></br>
-            <input type="hidden" name='csrf' value="<?php echo $_SESSION['token']?>" />
-            <input id="button" type="submit" name="submit" value="LOGIN" />
-        </from>
-        <?php include_once("errors.php") ?>
-        </div>
+<body>
+    <center >
+        <div style="width: 70%;height: auto;border: 5px solid;">
+        </br></br></br></br>
+        <img style="width: 90px;height: 90px;" src="https://www.flaticon.com/svg/vstatic/svg/893/893292.svg?token=exp=1611684383~hmac=2e7f51ac033df662e93f4d9650850da8" />
+    </br></br></br></br>
+    <span>
+        Dear User We are Happy to inform you That You have A New Comment
+    </span>
+</br></br></br></br>
+    <a class="buteditinfo" href="http://192.168.99.104/">Go To Web Site</a>
+</br></br></br></br>
+</div>
     </center>
-     <?php include_once("footer.php") ?>
-    <script src="style.js">
-    </script>
 </body>
 </html>

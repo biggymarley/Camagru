@@ -448,10 +448,10 @@ label.editbutton  {
   height: 100%;
 }
 
-#takepic {
+/* #takepic {
   pointer-events: none;
   background-color: rgba(128, 128, 128, 0.712);
-}
+} */
 
 /* hide inside editor plaque*/
 

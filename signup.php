@@ -59,6 +59,12 @@ if(empty($_SESSION['token']))
                 </div>
                 </br>
                 <input type="hidden" name='csrf' value="<?php echo $_SESSION['token']?>" />
+                <input type="checkbox" name="infoemail" value="TRUE" />
+                <span>I agree To recive Mail Notifications</span>
+                </br>
+                </br>
+                </br>
+                </br>
                 <input id="button" type="submit" name="submit" />
                 </from>
                 <?php include_once("errors.php") ?>

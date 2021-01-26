@@ -177,13 +177,12 @@ menuicon.addEventListener("click", menuslider);
 // capture pic ***
 let video = document.getElementById("vidplayer");
 var width = 320;
-var height = 0;
+var height = 320;
 if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    height = video.offsetHeight / (video.offsetWidth / width);
-
-    video.setAttribute("width", width);
-    video.setAttribute("height", height);
+    // height = video.offsetHeight / (video.offsetWidth / width);
+    // video.setAttribute("width", width);
+    // video.setAttribute("height", height);
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then(function (stream) {
@@ -320,17 +319,17 @@ function sticktoimg($srcvalue) {
   but.style.backgroundColor = "#6ccde09c";
 }
 
-function deleteimg($id) {
-  var t = confirm("Do you want to  Delete your Image");
+function deleteimg(id, tok) {
+  const  t = confirm("Do you want to  Delete your Image");
   if (t == true) {
-    window.location = "./deleteimg.php?id=" + $id;
+    window.location = "./deleteimg.php?id=" + id + "&tok=" + tok;
   }
 }
 
-function logout($id) {
-  var t = confirm("Are you Sure you want to log-out");
+function logout(tok) {
+  const  t = confirm("Are you Sure you want to log-out");
   if (t == true) {
-    window.location = "./logout.php";
+    window.location = "./logout.php?tok=" + tok;
   }
 }
 
