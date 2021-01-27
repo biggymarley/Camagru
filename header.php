@@ -79,7 +79,7 @@
         echo '  <a href="imglab.php" class="item">IMG-LAB</a>';
         echo '</li>';
         echo '<li class="hditemes">';
-        echo '<a  style="cursor: pointer;" onclick="logout()" class="item">LOGOUT</a>';
+        echo "<span style='cursor: pointer;' class='item' onclick=\"logout(`{$_SESSION['token']}`)\">LOGOUT</span>";
         echo ' </li>';
       }
       ?>

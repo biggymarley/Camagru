@@ -546,7 +546,7 @@ label.editbutton  {
 
 .likeform
 {
- width: 5%;
+ width: auto;
  margin: 0;
 }
 .cmtform{

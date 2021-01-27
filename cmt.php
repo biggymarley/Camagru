@@ -16,6 +16,7 @@ if (!empty($cmt)) {
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         ///////////*/////// MAIL
+        // include("mail.php");
         $headers = array(
             'MIME-Version' => '1.0',
             'Content-type' => 'text/html; charset=iso-8859-1',

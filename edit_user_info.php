@@ -66,6 +66,7 @@ if (!isset($_SESSION)) {
                 $_SESSION['uid'] = $login;
                 $_SESSION['uemail'] = $email;
                 $_SESSION['infoemail'] = $infoemail;
+                include('./mail.php');
                 header('location: ./profile.php?sucs=true');
                 return;
             }
