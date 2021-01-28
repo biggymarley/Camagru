@@ -1,9 +1,18 @@
 <div>
 <?php
     if(!empty($_GET['error'])){
+        
         if($_GET['error'] === 'loginm')
         {
             echo "<h4 style='color:#dc322f!important;'>Username Already taken &times</h4>";
+        }
+        if($_GET['error'] === 'notveri')
+        {
+            echo "<h4 style='color:#dc322f!important;'>Your Email Not Verified</h4>";
+        }
+        if($_GET['error'] === 'verify')
+        {
+            echo "<h4 style='color:#dc322f!important;'>Check Your Email</h4>";
         }
         if($_GET['error'] === 'emailm')
         {

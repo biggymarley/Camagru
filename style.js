@@ -1,4 +1,4 @@
-var all = document.getElementById("dark").style;
+// var all = document.getElementById("dark").style;
 var cpos = document.getElementById("ball");
 if (cpos) var pos = cpos.style;
 var vid = document.getElementById("camstick");
@@ -496,40 +496,27 @@ function displaydiv() {
 
 var showeditdivbut = document.getElementById("showeditdiv");
 if (showeditdivbut) showeditdivbut.addEventListener("click", displaydiv);
-// window.onchange = bindlike();
-// function bindlike(){
-//   const imgpost = document.querySelectorAll(".imgsp");
-//   if(imgpost)
-//   {
-//     for (i = 0; i < imgpost.length; i++) {
-//       id = imgpost[i].dataset.id;
-//       lid = imgpost[i].dataset.likeid;
-//       imgpost[i].addEventListener("dblclick", likejs.bind("null", id, lid));
-//     }
-//   }
-//   }
-//   setInterval(bindlike(), 100);
-// if (imgpost) {
-//   bindlike();
-//   }
 
 
 function resizeit() {
   const pimgs = document.querySelector("#profileimg");
   const uimgs = document.querySelectorAll(".profimgs");
   if (pimgs) {
-    //  (uimgs[0].offsetWidth);
-    if (pimgs.offsetWidth === 1000) {
-      uimgs.forEach((e) => {
-        e.style.width = "300px";
-        e.style.height = "300px";
-      });
-    } else {
-      const nw = uimgs[0].offsetWidth - 50 + 15;
-      uimgs.forEach((e) => {
-        e.style.width = nw;
-        e.style.height = nw;
-      });
+    if(uimgs[0])
+    {
+
+      if (pimgs.offsetWidth === 1000) {
+        uimgs.forEach((e) => {
+          e.style.width = "300px";
+          e.style.height = "300px";
+        });
+      } else {
+        const nw = uimgs[0].offsetWidth - 50 + 15;
+        uimgs.forEach((e) => {
+          e.style.width = nw;
+          e.style.height = nw;
+        });
+      }
     }
   }
 }

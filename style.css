@@ -220,11 +220,12 @@
 } */
 
 #push {
-  min-height: 15%;
+  min-height: 100%;
 }
 #footer {
   display: flex;
   justify-content: space-around;
+  width: auto;
   align-items: center;
   color: #536669;
 }

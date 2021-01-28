@@ -21,13 +21,21 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
                     header('location: ../login.php?error=notexist');
                     exit();
                 } else {
-                    $_SESSION['usersid'] = $row['usersid'];
-                    $_SESSION['uid'] = $row['uid'];
-                    $_SESSION['uimg'] = $row['uimg'];
-                    $_SESSION['uemail'] = $row['uemail'];
-                    $_SESSION['infoemail'] = $row['infoemail'];
-                    header('location: ../index.php');
-                    return;
+                    if($row['accountstatus'] === '1')
+                    {
+                        $_SESSION['usersid'] = $row['usersid'];
+                        $_SESSION['uid'] = $row['uid'];
+                        $_SESSION['uimg'] = $row['uimg'];
+                        $_SESSION['uemail'] = $row['uemail'];
+                        $_SESSION['infoemail'] = $row['infoemail'];
+                        header('location: ../index.php');
+                        return;
+                    }
+                    else
+                    {
+                        header('location: ../login.php?error=notveri');
+                        return;
+                    }
                 }
             } else {
                 header('location: ../login.php?error=notexist');

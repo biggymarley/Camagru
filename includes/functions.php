@@ -52,9 +52,9 @@ function checkmatch($conn, $login, $email)
         return false;
 }
 
-function addtodb($conn, $login, $email, $passwd, $uimg, $infoemail)
+function addtodb($conn, $login, $email, $passwd, $uimg, $infoemail, $activation)
 {
-        $sql = "INSERT INTO users (uid, uemail, upwd, uimg, infoemail) VALUES (:uid, :uemail, :upwd, :uimg, :infoemail);";
+        $sql = "INSERT INTO users (uid, uemail, upwd, uimg, infoemail, uvcode) VALUES (:uid, :uemail, :upwd, :uimg, :infoemail, :uvcode);";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':uid', $login);
         $stmt->bindValue(':uemail', $email);
@@ -62,6 +62,7 @@ function addtodb($conn, $login, $email, $passwd, $uimg, $infoemail)
         $stmt->bindValue(':upwd', $hashpwd);
         $stmt->bindValue(':uimg', $uimg);
         $stmt->bindValue(':infoemail', $infoemail);
+        $stmt->bindValue(':uvcode', $activation);
         $stmt->execute();
         // $sql = "SELECT `usersid` FROM users WHERE `uid` LIKE :uid";
         // $stmt = $conn->prepare($sql);
