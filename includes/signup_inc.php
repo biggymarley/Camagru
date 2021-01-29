@@ -35,9 +35,9 @@ try {
         if(file_exists($path)) unlink($path);
         move_uploaded_file($img, $path);
         $baseimg = base64_encode(file_get_contents($path));
-        matchpass($passwd, $Rpasswd);
+        matchpass($passwd, $Rpasswd, "../signup.php");
         checkemail($email);
-        hardpwd($passwd);
+        hardpwd($passwd, "../signup.php");
         $activation = sha1(mt_rand(10000,99999).time().$email);
         if(isset($_POST['infoemail']))
             addtodb($db, $login, $email, $passwd, $baseimg, "1", $activation);

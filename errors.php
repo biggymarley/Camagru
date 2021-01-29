@@ -1,4 +1,4 @@
-<div>
+<center>
 <?php
     if(!empty($_GET['error'])){
         

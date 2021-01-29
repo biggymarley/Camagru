@@ -28,10 +28,13 @@ function emtySingupinput($login, $passwd, $email, $Rpasswd)
     exit();
 }
 
-function matchpass($passwd, $Rpasswd)
+function matchpass($passwd, $Rpasswd, $local)
 {
     if ($passwd !== $Rpasswd) {
-        header('location: ../signup.php?error=pwdnomatch');
+        if(strpos($local, "&") === false)
+        header('location: '.$local.'?error=pwdnomatch');
+        else
+        header('location: '.$local.'&error=pwdnomatch');
         exit();
     }
     return;
@@ -86,19 +89,23 @@ function checkemail($email)
         return;
 }
 
-function hardpwd($passwd)
+function hardpwd($passwd, $local)
 {
     $pat1 = '/(?=.*[a-z])/';
     $pat3 = '/(?=.*[A-Z])/';
     $pat4 = '/(?=.{8,})/';
+    if(strpos($local, "&") === false)
+        $l = $local.'?error=fixpwd';
+    else
+        $l = $local.'&error=fixpwd';
     if (!preg_match($pat4, $passwd)) {
-        header('location: ../signup.php?error=fixpwd');
+        header('location: '.$l);
         exit();
     } else if (!preg_match($pat3, $passwd)) {
-        header('location: ../signup.php?error=fixpwd');
+        header('location: '.$l);
         exit();
     } else if (!preg_match($pat1, $passwd)) {
-        header('location: ../signup.php?error=fixpwd');
+        header('location: '.$l);
         exit();
     } else
         return;

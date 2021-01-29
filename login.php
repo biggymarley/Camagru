@@ -42,6 +42,8 @@ if(empty($_SESSION['token']))
             </br></br>
             </br></br>
             <input type="hidden" name='csrf' value="<?php echo $_SESSION['token']?>" />
+            <a href="./forget_pw.php" style="text-decoration: none;color:black">Forget your Password ?</a>
+            </br></br>
             <input id="button" type="submit" name="submit" value="LOGIN" />
         </from>
         <?php include_once("errors.php") ?>

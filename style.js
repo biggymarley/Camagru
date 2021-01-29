@@ -35,6 +35,7 @@ const line = document.querySelector(".line");
 const loginputs = document.querySelectorAll(".input");
 const editputs = document.querySelectorAll(".editinput");
 const butitinfo = document.querySelectorAll(".buteditinfo");
+const flaticon = document.getElementById("flaticon");
 
 var theme = {
   dark: {
@@ -75,6 +76,11 @@ function applyall(array, theme, op) {
 
 var body = document.getElementById("all");
 const light = () => {
+  if(flaticon)
+  {
+    flaticon.setAttribute("src", "https://media.flaticon.com/dist/min/img/logo/flaticon_positive.svg");
+  }
+
   if (button) {
     button.style.backgroundColor = theme.light.bg_color;
     button.style.color = theme.light.color;
@@ -111,6 +117,10 @@ const light = () => {
 };
 
 const dark = () => {
+  if(flaticon)
+  {
+    flaticon.setAttribute("src", "https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg");
+  }
   if (add) add.src = theme.dark.add;
   if (button) {
     button.style.backgroundColor = theme.dark.bg_color;
@@ -345,10 +355,7 @@ function like($id) {
 window.addEventListener("scroll", function () {
   const lpost = document.querySelectorAll(".indexofpost");
   const savebtn = document.getElementsByName("savebtn");
-  if (
-    lpost[0] &&
-    window.innerHeight + window.pageYOffset >= document.body.offsetHeight
-  ) {
+  if (lpost[0] && window.innerHeight + window.scrollY + 1 >= document.body.offsetHeight) {
       let l = lpost[lpost.length - 1].value;
       let data = new FormData();
       if(savebtn[0])
@@ -384,12 +391,6 @@ window.addEventListener("scroll", function () {
     }
 });
 
-function loading() {
-  const l = document.querySelector("#loading");
-  if (l.style.display === "none") {
-    l.style.display = "block";
-  } else l.style.display = "none";
-}
 
 function likejs(id, lid) {
   var data = new FormData();

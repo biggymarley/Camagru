@@ -6,7 +6,7 @@
     <div id="push">
     </div>
     <div id="footer">
-        <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">About</a>
+        <a href="./about.php" style="text-decoration: none; color:black;">About</a>
         <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">Portfolio</a>
         <a href="https://biggymarley.github.io/portfolio/" style="text-decoration: none; color:black;">Jobs</a>
         <span>Help</span>
