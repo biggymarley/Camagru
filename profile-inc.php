@@ -71,7 +71,7 @@ if (!isset($_SESSION)) {
         echo "<form  action='./edit_user_info.php'  id='editdiv' class='divedit' method='POST'>";
         echo "<div class='inlab2'>";
         echo "<span class='edlab'>Username :</span>";
-        echo "<input class='editinput' type='text' name='uid' value='{$_SESSION['uid']}'required>";
+        echo "<input class='editinput' type='text' name='uid' pattern='^[a-zA-Z1-9]{3,}$' value='{$_SESSION['uid']}'required>";
         echo "</div>";
         echo "<div class='inlab2'>";
         echo "<span class='edlab'>Email :</span>";

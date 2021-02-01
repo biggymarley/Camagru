@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION)) {
+if (!isset($_SESSION['uid'])) {
     header('location: ./login.php');
     return;
 } else {
@@ -10,12 +10,16 @@ if (!isset($_SESSION)) {
     $dbname = "Camagru_users";
     $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
     try {
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         require_once('./includes/functions.php');
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $login = trim($_POST['uid']);
         $passwd = $_POST['opw'];
         $email = trim($_POST['uemail']);
+        $pat = '/\%/';
+        $login = preg_replace($pat, '', $login);
+        $email = preg_replace($pat, '', $email);
         $npw = $_POST['npw'];
         $vnpw = $_POST['vnpw'];
         if(isset($_POST['infoemail']))
@@ -87,7 +91,7 @@ outline: none;
 </head>
 <body>
 <center>
-<div style="width: 70%;height: 900px;border: 5px solid;">
+<div style="width: 70%;height: 500px;border: 5px solid;">
 </br></br></br></br>
 <img style="width: 90px;height: 90px;" src="https://www.flaticon.com/svg/vstatic/svg/893/893292.svg?token=exp=1611684383~hmac=2e7f51ac033df662e93f4d9650850da8" />
 </br></br></br></br>

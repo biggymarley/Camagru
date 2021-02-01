@@ -128,7 +128,7 @@
   color: #000000;
   background-color: #8fb1b646;
 }
-#button:active {
+#button:active ,#button:hover {
   opacity: 1;
   border: solid 2px rgba(0, 153, 255, 0.582);
 }
@@ -353,6 +353,7 @@ label.editbutton  {
   justify-content: center;
   height: 10%;
   /* width: 90%; */
+  overflow: auto;
   position: relative;
 }
 #inside {
@@ -366,6 +367,7 @@ label.editbutton  {
   opacity: 0;
   position: absolute;
   top: 0;
+
   transition: all 500ms ease-in-out;
 }
 
@@ -421,16 +423,28 @@ label.editbutton  {
   height: 25%;
   outline-style: none;
 }
+/* #canvas[src]
+{
+  position: absolute !important;
+  display: inline !important;
+}
+
+
+#upimg[src] + #canvas
+{
+  display: none;
+} */
+
 #camstick {
   width: 50%;
   position: relative;
   height: 100%;
 }
 
-/* #takepic {
+#takepic {
   pointer-events: none;
   background-color: rgba(128, 128, 128, 0.712);
-} */
+}
 
 /* hide inside editor plaque*/
 
@@ -442,6 +456,7 @@ label.editbutton  {
   align-items: center;
   justify-content: space-around;
   padding-top: 15px;
+  overflow: auto;
 }
 #butform > .editbutton
 {
@@ -696,9 +711,16 @@ label.editbutton  {
 
 .ucom
 {
+  text-decoration : none;
   font-size: large;
   color: black;
   margin-right: 15px;
+}
+
+.ucom:hover
+{
+  font-size: larger;
+  text-decoration: underline;
 }
 .sigcmt
 {

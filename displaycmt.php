@@ -1,4 +1,6 @@
 <?php
+if(isset($imgs))
+{
 $sql = "SELECT * FROM `comment` WHERE `pid` LIKE '{$imgs[$index]['postusrid']}'";
 $statm = $db->prepare($sql);
 $statm->execute();
@@ -9,9 +11,16 @@ while($cm = $statm->fetch())
     $sql = "SELECT `uid` FROM `users` WHERE `usersid` LIKE '{$cm['cuid']}'";
     $sus = $db->prepare($sql);
     $sus->execute();
+    $log = $sus->fetch()['uid'];
     echo "<div class='sigcmt'>";
-    echo  "<span class='ucom'>{$sus->fetch()['uid']} :</span>";
+    echo "<a href='./profile.php?username=$log' class='ucom'>$log :</a>";
     echo "<span class='spancomm' >{$cm['cmt']} </span>";
     echo "</div>";
 }
 echo "</div>";
+}
+else
+{
+    header('location: ./index.php');
+    return;
+}

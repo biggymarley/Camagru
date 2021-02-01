@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-
+if(isset($_SESSION['uid']))
+{
 $svname = "localhost";
 $user = "root";
 $pw = "root";
@@ -52,7 +53,7 @@ if (!empty($cmt)) {
     </head>
     <body>
     <center>
-    <div style="width: 70%;height: auto;border: 5px solid;">
+    <div style="width: 70%;height: 500px;border: 5px solid;">
     </br></br></br></br>
     <img style="width: 90px;height: 90px;" src="https://www.flaticon.com/svg/vstatic/svg/893/893292.svg?token=exp=1611684383~hmac=2e7f51ac033df662e93f4d9650850da8" />
     </br></br></br></br>
@@ -78,9 +79,15 @@ if (!empty($cmt)) {
         $stmt->bindValue(':cuid', $id);
         $stmt->bindValue(':pid', $pid);
         $stmt->bindValue(':cmt', $cmt);
-
         $stmt->execute();
+        echo $cmt;
     } catch (PDOException $e) {
         echo "DB ERROR: " . $e->getMessage();
     }
+}
+}
+else
+{
+    header('location: ./index.php');
+    return;
 }

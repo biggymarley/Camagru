@@ -4,6 +4,8 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
+if(isset($_SESSION['uid']))
+{
 echo "<div id='profileimg'>";
 try {
     $db = new PDO($dsn, $user, $pw);
@@ -29,3 +31,9 @@ try {
     echo "DB ERROR: " . $e->getMessage();
 }
 echo "</div>";
+}
+else
+{
+    header('location: ./index.php');
+    return;
+}

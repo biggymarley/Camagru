@@ -76,9 +76,11 @@ function applyall(array, theme, op) {
 
 var body = document.getElementById("all");
 const light = () => {
-  if(flaticon)
-  {
-    flaticon.setAttribute("src", "https://media.flaticon.com/dist/min/img/logo/flaticon_positive.svg");
+  if (flaticon) {
+    flaticon.setAttribute(
+      "src",
+      "https://media.flaticon.com/dist/min/img/logo/flaticon_positive.svg"
+    );
   }
 
   if (button) {
@@ -117,9 +119,11 @@ const light = () => {
 };
 
 const dark = () => {
-  if(flaticon)
-  {
-    flaticon.setAttribute("src", "https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg");
+  if (flaticon) {
+    flaticon.setAttribute(
+      "src",
+      "https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg"
+    );
   }
   if (add) add.src = theme.dark.add;
   if (button) {
@@ -203,24 +207,50 @@ if (video) {
 }
 
 function takepic() {
+  const upimg = document.querySelector("#upimg");
+
   var vidimg = document.querySelector("#pipse");
   let canvas = document.querySelector("#canvas");
   var img = document.querySelector("#img");
   canvas.width = width;
   canvas.height = height;
-  canvas.getContext("2d").drawImage(video, 0, 0, width, height);
-  canvas
-    .getContext("2d")
-    .drawImage(
-      vidimg,
-      width / 3,
-      height / 3,
-      vidimg.offsetWidth,
-      vidimg.offsetHeight
-    );
-  var data = canvas.toDataURL("image/png");
-  img.setAttribute("value", data);
-  fillcheck(data);
+  // console.log(upimg.value);
+  if (upimg && upimg.value) {
+    const idraw = new Image();
+    idraw.src = upimg.value;
+    idraw.onload = function () {
+      canvas.getContext("2d").drawImage(idraw, 0, 0, width, height);
+      canvas
+        .getContext("2d")
+        .drawImage(
+          vidimg,
+          width / 3,
+          height / 3,
+          vidimg.offsetWidth,
+          vidimg.offsetHeight
+        );
+      var data = canvas.toDataURL("image/png");
+      img.setAttribute("value", data);
+      fillcheck(data);
+    };
+  } else {
+    canvas.getContext("2d").drawImage(video, 0, 0, width, height);
+    canvas
+      .getContext("2d")
+      .drawImage(
+        vidimg,
+        width / 3,
+        height / 3,
+        vidimg.offsetWidth,
+        vidimg.offsetHeight
+      );
+    var data = canvas.toDataURL("image/png");
+    img.setAttribute("value", data);
+    fillcheck(data);
+  }
+  //     var data = canvas.toDataURL("image/png");
+  // img.setAttribute("value", data);
+  // fillcheck(data);
 }
 
 function fillcheck($data) {
@@ -330,14 +360,14 @@ function sticktoimg($srcvalue) {
 }
 
 function deleteimg(id, tok) {
-  const  t = confirm("Do you want to  Delete your Image");
+  const t = confirm("Do you want to  Delete your Image");
   if (t == true) {
     window.location = "./deleteimg.php?id=" + id + "&tok=" + tok;
   }
 }
 
 function logout(tok) {
-  const  t = confirm("Are you Sure you want to log-out");
+  const t = confirm("Are you Sure you want to log-out");
   if (t == true) {
     window.location = "./logout.php?tok=" + tok;
   }
@@ -355,42 +385,43 @@ function like($id) {
 window.addEventListener("scroll", function () {
   const lpost = document.querySelectorAll(".indexofpost");
   const savebtn = document.getElementsByName("savebtn");
-  if (lpost[0] && window.innerHeight + window.scrollY + 1 >= document.body.offsetHeight) {
-      let l = lpost[lpost.length - 1].value;
-      let data = new FormData();
-      if(savebtn[0])
-      {
-        let save = savebtn[savebtn.length - 1].id;
-        save = parseInt(save) + 1;
-        data.append("save", save);
-      }
-      if (l === "0") l = "4";
-      else l = parseInt(l) + 2;
-      let to = "2";
-      data.append("from", l);
-      data.append("to", to);
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", "./displayposts.php");
-      const postsdiv = document.getElementById("allposts");
-      xhr.onloadend = function () {
-        const p = new DOMParser();
-        const fiveposts = p.parseFromString(xhr.response, "text/html");
-        let arg = [];
-        for (let i = 0; fiveposts.body.childNodes[i]; i++) {
-          arg.push(fiveposts.body.childNodes[i]);
-        }
-        arg.forEach((e) => {
-          postsdiv.appendChild(e);
-        });
-        d = localStorage.getItem("mode");
-        if (d !== "1") dark();
-        resizeposts();
-      };
-      xhr.send(data);
-      return false;
+  if (
+    lpost[0] &&
+    window.innerHeight + window.scrollY + 1 >= document.body.offsetHeight
+  ) {
+    let l = lpost[lpost.length - 1].value;
+    let data = new FormData();
+    if (savebtn[0]) {
+      let save = savebtn[savebtn.length - 1].id;
+      save = parseInt(save) + 1;
+      data.append("save", save);
     }
+    if (l === "0") l = "4";
+    else l = parseInt(l) + 2;
+    let to = "2";
+    data.append("from", l);
+    data.append("to", to);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "./displayposts.php");
+    const postsdiv = document.getElementById("allposts");
+    xhr.onloadend = function () {
+      const p = new DOMParser();
+      const fiveposts = p.parseFromString(xhr.response, "text/html");
+      let arg = [];
+      for (let i = 0; fiveposts.body.childNodes[i]; i++) {
+        arg.push(fiveposts.body.childNodes[i]);
+      }
+      arg.forEach((e) => {
+        postsdiv.appendChild(e);
+      });
+      d = localStorage.getItem("mode");
+      if (d !== "1") dark();
+      resizeposts();
+    };
+    xhr.send(data);
+    return false;
+  }
 });
-
 
 function likejs(id, lid) {
   var data = new FormData();
@@ -432,23 +463,28 @@ function cmtjs(id, cmt) {
     data.append("cmt", cmtinput.value);
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "./cmt.php");
+    let spc = document.createElement("span");
+    xhr.onloadend = function () {
+      if (xhr.responseText !== "") {
+        let thecmt = document.createTextNode(xhr.responseText.replace(/&#34;/g, "\"").replace(/&#39;/g, "'"));
+        spc.appendChild(thecmt);
+      }
+    };
     xhr.send(data);
     var d2 = new FormData();
     const xhr2 = new XMLHttpRequest();
+    d2.append("cmt", cmtinput.value);
     xhr2.open("POST", "./autoinsertcmt.php");
     let div = document.createElement("div");
     let sp = document.createElement("span");
     sp.className = "ucom";
     xhr2.onreadystatechange = function () {
-      if (xhr2.readyState == xhr2.DONE)
+      if (xhr2.readyState == xhr2.DONE && this.responseText !== "")
         sp.appendChild(document.createTextNode(this.responseText + " :"));
     };
     xhr2.send(d2);
     let divid = parseInt(id) + 90000;
     div.className = "sigcmt";
-    let spc = document.createElement("span");
-    let thecmt = document.createTextNode(cmtinput.value);
-    spc.appendChild(thecmt);
     spc.className = "spancomm";
     Darkmode = localStorage.getItem("mode");
     if (Darkmode === "null") {
@@ -498,14 +534,11 @@ function displaydiv() {
 var showeditdivbut = document.getElementById("showeditdiv");
 if (showeditdivbut) showeditdivbut.addEventListener("click", displaydiv);
 
-
 function resizeit() {
   const pimgs = document.querySelector("#profileimg");
   const uimgs = document.querySelectorAll(".profimgs");
   if (pimgs) {
-    if(uimgs[0])
-    {
-
+    if (uimgs[0]) {
       if (pimgs.offsetWidth === 1000) {
         uimgs.forEach((e) => {
           e.style.width = "300px";

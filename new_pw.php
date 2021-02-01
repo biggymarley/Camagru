@@ -11,7 +11,7 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf'])) {
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if (isset($_POST["submit"])) {
-
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $npw = $_POST['npw'];
             $cnpw = $_POST['cnpw'];
             $email = $_POST['email'];

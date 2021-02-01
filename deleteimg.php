@@ -31,3 +31,8 @@ if(!empty($_SESSION['usersid']) || (!empty($_GET['tok']) && hash_equals($_SESSIO
         echo "DB ERROR: " . $e->getMessage();
     }
 }
+else
+{
+    header('location: ./index.php');
+    return;
+}

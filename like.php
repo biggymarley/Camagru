@@ -5,6 +5,8 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
+if(isset($_SESSION['uid']))
+{
 $id = $_SESSION['usersid'];
 $likeid = $_POST['pid'];
 
@@ -34,3 +36,9 @@ $likeid = $_POST['pid'];
     {
         echo "DB ERROR: " . $e->getMessage();
     }
+}
+else
+{
+    header('location: ./index.php');
+    return;
+}

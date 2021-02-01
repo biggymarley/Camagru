@@ -5,6 +5,8 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
+if(isset($_SESSION['uid']))
+{
 $id = $_SESSION['usersid'];
 $img = $_POST['imgsrc'];
 $style = $_POST['styleimg'];
@@ -19,15 +21,23 @@ if (!empty($img))
         $stmt->bindValue(':ist', $style);
         $stmt->bindValue(':img', $img);
         $stmt->execute();
+        unset($_SESSION['editimg']);
         header('location: ../imglab.php');
+        return;
     }
     catch(PDOException $e)
     {
         echo "DB ERROR: " . $e->getMessage();
     }
 }
-header('location: ./imglab.php');
-
+    header('location: ./imglab.php');
+    return;
+}
+else
+{
+    header('location: ./index.php');
+    return;
+}
 
 
 

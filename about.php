@@ -8,7 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <title>ABOUT</title>
+    <title>ABOUT"</title>
 </head>
 <body class='light' id="all">
     <?php include_once("header.php") ?>

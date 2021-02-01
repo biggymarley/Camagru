@@ -5,6 +5,11 @@ if(!isset($_SESSION))
 {
     session_start();
 }
+if(isset($_SESSION['uid']))
+{
+    header('location: ./index.php');
+    return;
+}
 if(empty($_SESSION['token']))
 {
    $randomtoken = bin2hex(random_bytes(32));

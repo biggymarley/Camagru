@@ -4,7 +4,12 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
-$id = $_SESSION['usersid'];
+if(!isset($_SESSION))
+    session_start();
+if(isset($_SESSION['uid']))
+{
+
+    $id = $_SESSION['usersid'];
     try{
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -21,3 +26,11 @@ $id = $_SESSION['usersid'];
     {
         echo "DB ERROR: " . $e->getMessage();
     }
+}
+else
+{
+    header('location: ./index.php');
+    return;
+}
+
+    

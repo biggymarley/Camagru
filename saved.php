@@ -5,9 +5,10 @@ $user = "root";
 $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
-$id = $_SESSION['usersid'];
-$likeid = $_POST['pid'];
-
+if(isset($_SESSION['uid']))
+{
+    $likeid = $_POST['pid'];
+    $id = $_SESSION['usersid'];
     try{
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -34,3 +35,9 @@ $likeid = $_POST['pid'];
     {
         echo "DB ERROR: " . $e->getMessage();
     }
+}
+else
+{
+    header('location: ./index.php');
+    return;
+}

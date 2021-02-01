@@ -4,6 +4,11 @@ if(!isset($_SESSION))
 {
     session_start();
 }
+if(isset($_SESSION['uid']))
+{
+    header('location: ./index.php');
+    return;
+}
 if(empty($_SESSION['token']))
 {
    $randomtoken = bin2hex(random_bytes(32));
@@ -29,7 +34,7 @@ if(empty($_SESSION['token']))
         <div id="loginform">
         <form action="includes/login_inc.php" method="post">
             <div id="inlab">
-                <input type="text" class="input" name="username" required>
+                <input type="text" class="input" name="username"  required>
                 <span id="label">Username / Email :</span>
             </div>
             </br>

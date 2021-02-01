@@ -7,17 +7,11 @@ $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
 if (!isset($_SESSION)) {
     session_start();
 }
-//     header('location: ./login.php');
-//     return;
-// }
 
 if (isset($_SESSION) && isset($_SESSION['usersid']) &&  isset($_SESSION['uid'])) {
 $id = $_SESSION['usersid'];
 $uname = $_SESSION['uid'];
-// $sql = "SELECT * FROM `postes` order by postusrid DESC LIMIT $from, $to ";
 }
-// else
-// $sql = "SELECT * FROM `postes`";
 try {
     $db = new PDO($dsn, $user, $pw);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

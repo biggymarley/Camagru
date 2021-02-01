@@ -12,8 +12,11 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if (isset($_POST["submit"])) {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             require_once('functions.php');
             $login = $_POST['username'];
+            $pat = '/\%/';
+            $login = preg_replace($pat, '', $login);
             $passwd = $_POST['passwd'];
             emtyinput($login, $passwd);
             if ($row = checkmatch($db, $login, $login)) {

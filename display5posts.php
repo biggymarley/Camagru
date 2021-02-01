@@ -1,6 +1,8 @@
 <?php
 
-while (isset($imgs[$index])) {
+if(isset($imgs))
+{
+    while (isset($imgs[$index])) {
     $style = $imgs[$index]['imgstyle'];
     $pid = $imgs[$index]['postusrid'] + 500;
     $lid = $imgs[$index]['postesid'];
@@ -72,3 +74,9 @@ while (isset($imgs[$index])) {
     }
     $index++;
 }
+}else
+{
+    header('location: ./index.php');
+    return;
+}
+
