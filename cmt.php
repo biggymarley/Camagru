@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
+{
 if(isset($_SESSION['uid']))
 {
 $svname = "localhost";
@@ -89,5 +91,11 @@ if (!empty($cmt)) {
 else
 {
     header('location: ./index.php');
+    return;
+}
+}
+else
+{
+    header('location: ../signup.php');
     return;
 }

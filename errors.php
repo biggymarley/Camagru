@@ -6,6 +6,10 @@
         {
             echo "<h4 style='color:#dc322f!important;'>Username Already taken &times</h4>";
         }
+        if($_GET['error'] === 'opng')
+        {
+            echo "<h4 style='color:#dc322f!important;'>Only PNG Or Jpg/eg allowd</h4>";
+        }
         if($_GET['error'] === 'notveri')
         {
             echo "<h4 style='color:#dc322f!important;'>Your Email Not Verified</h4>";

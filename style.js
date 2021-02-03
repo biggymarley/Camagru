@@ -487,11 +487,14 @@ function likejs(id, lid) {
 }
 
 function cmtjs(id, cmt) {
+  console.log('in');
   let cmtinput = document.getElementsByName(cmt)[0];
   if (cmtinput.value.trim()) {
     var data = new FormData();
     data.append("pid", id);
     data.append("cmt", cmtinput.value);
+    tokk = document.getElementById('cmtcsrf').value;
+    data.append("csrf" , tokk);
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "./cmt.php");
     let spc = document.createElement("span");

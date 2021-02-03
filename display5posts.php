@@ -1,9 +1,16 @@
 <?php
+if(empty($_SESSION['token']))
+{
+   $randomtoken = bin2hex(random_bytes(32));
+   $_SESSION['token'] = $randomtoken;
+}
+
 
 if(isset($imgs))
 {
     while (isset($imgs[$index])) {
     $style = $imgs[$index]['imgstyle'];
+    $toktok = $_SESSION['token'];
     $pid = $imgs[$index]['postusrid'] + 500;
     $lid = $imgs[$index]['postesid'];
     $sql = "SELECT * FROM `users` WHERE `usersid` LIKE $lid";
@@ -59,8 +66,9 @@ if(isset($imgs))
         echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/unlike.png' value='{$imgs[$index]['postusrid']}' >";
     }
     echo "</form>";
-    echo "<form autocomplete='off'  class='cmtform' method='POST' onsubmit='return cmtjs({$imgs[$index]['postusrid']}, $i)'>";
-    // echo "<input id='' type='hidden' name='pid' value='{$imgs['postusrid']}'  >";
+    
+    echo "<form autocomplete='off'  class='cmtform' method='POST' onsubmit='return cmtjs( {$imgs[$index]['postusrid']}, $i)'>";
+    echo "<input type='hidden' id='cmtcsrf' name='csrf' value='{$_SESSION['token']}' />";
     echo "<input autocomplete='off' name='$i' type='text'  placeholder='Add comment ...'  class='disinput' required >";
     echo "<input type='submit' class='disbut' value='POST' >";
     echo "</form>";

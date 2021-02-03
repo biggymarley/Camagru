@@ -353,6 +353,7 @@ label.editbutton  {
   display: flex;
   justify-content: center;
   height: 10%;
+  align-items: center;
   /* width: 90%; */
   overflow: auto;
   position: relative;

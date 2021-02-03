@@ -20,6 +20,10 @@ try {
     $db = new PDO($dsn, $user, $pw);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     if (isset($_POST["submit"])) {
+        if($_FILES['img']['type'] !==  "image/png" && $_FILES['img']['type'] !==  "image/jpeg" ) {
+            header('location: ../profile.php?error=opng');
+            return;
+        }        
         $img =  $_FILES['img']['tmp_name'];
         $splited = explode(".", $_FILES['img']['name']);
         $ext = end($splited);

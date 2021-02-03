@@ -19,18 +19,21 @@ postesid INT(11),
 imgstyle Varchar(255) NOT NULL,
 img LONGBLOB,
 FOREIGN KEY (postesid) REFERENCES users(usersid)
+ON DELETE CASCADE ON UPDATE CASCADE
 )AUTO_INCREMENT = 9999;";
 $db->exec($sql);
 $sql = "CREATE TABLE IF NOT EXISTS  `like`(
   likeid INT(11) NOT NULL,
   pid INT(11),
   FOREIGN KEY (pid) REFERENCES postes(postusrid)
+  ON DELETE CASCADE ON UPDATE CASCADE
   );";
   $db->exec($sql);
 $sql = "CREATE TABLE IF NOT EXISTS  `saved`(
   savedid INT(11) NOT NULL,
   pid INT(11),
   FOREIGN KEY (pid) REFERENCES postes(postusrid)
+  ON DELETE CASCADE ON UPDATE CASCADE
   );";
   $db->exec($sql);
   $sql = "CREATE TABLE IF NOT EXISTS  `comment`(
@@ -39,5 +42,6 @@ $sql = "CREATE TABLE IF NOT EXISTS  `saved`(
     pid INT(11),
     cmt VARCHAR(255) NOT NULL,
     FOREIGN KEY (pid) REFERENCES postes(postusrid)
+    ON DELETE CASCADE ON UPDATE CASCADE
     );";
     $db->exec($sql);
