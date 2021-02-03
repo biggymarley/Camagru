@@ -283,6 +283,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  position: relative;
   /* border-left: solid 2px; */
   width: 49%;
   background-color: #555c61;
@@ -409,11 +410,11 @@ label.editbutton  {
   border-radius: 20px;
 }
 
-#pipse {
+#stickcan , #pipse {
   display: none;
 }
 
-#pipse[src] {
+#stickcan[src], #pipse[src] {
   display: block;
   position: absolute;
   transform: translate(-50%, -50%);

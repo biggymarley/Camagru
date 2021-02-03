@@ -26,37 +26,35 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid'])) {
             <div id="editor">
                 <div id="camndcamshot">
                     <div id="camstick">
-                        <img id="pipse">
                         <video id="vidplayer" autoplay>
-                        </video>
+                            </video>
+                            <img id="pipse">
                     </div>
                     <div id="camshot">
-                        <canvas  id='canvas'  width='320' height='320'></canvas>
-                        <?php 
-                        if(isset($_SESSION['editimg']))
-                            echo "<input  type='hidden' value='data:image/png;base64,{$_SESSION['editimg']}' id='upimg'/>";
-                        ?>
+                        <canvas  id='canvas'  width='640' height='320'></canvas>
+                        <img id="stickcan">
                     </div>
                 </div>
                 <div id="diveditbuttons">
-                    <input id="takepic" type="button" class="editbutton" value="Take picture" onclick="takepic()" />
+                    <input id="takepic" type="button" class="editbutton" value="Take picture" onclick="takepic()"  />
                     <input id="sd" type="button" class="editbutton" value="Show more" onclick="options()" />
                     <form id="butform" action="upload-img.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="imgsrc" value="" id="img" />
                         <input type="hidden" name="styleimg" value="" id="styleimg" />
+                        <input type="hidden" name="sticky" value="" id="sticky" />
                         <input type="submit" class="editbutton" value="Post" />
                     </form>
                 </div>
                 <div id="hidehere">
                     <div id="inside">
-                        <form autocomplete='off' action='img_lab_upload.php' method='post' enctype='multipart/form-data' style="width:100%; margin: 0;padding:0;display:flex;justify-content: space-between;align-items:center;">
+                        <!-- <form autocomplete='off' action='img_lab_upload.php' method='post' enctype='multipart/form-data' style="width:100%; margin: 0;padding:0;display:flex;justify-content: space-between;align-items:center;"> -->
                         <input id="showfilt" type="button" class="editbutton" value="Show filters" onclick="showfilter()" />
                         <input type="button" class="editbutton" value="remove filter" onclick="removefilter()" />
                         <input id="sbutn" class="editbutton" type="button" value="Hide imgs" onclick="slider()" />
-                            <input id='chose' style='opacity: 0;pointer-events:none;' type='file' name='img' hidden required>
+                            <input id='chose' style='opacity: 0;pointer-events:none;' type='file' name='img' hidden required onchange="previewFile()">
                             <label class="editbutton" for="chose" style="margin: 0;padding:0;display:flex;justify-content: center;align-items:center;">Upload</label>
-                            <input class='editbutton' type='submit' name='submit' value='UP' />
-                        </form>
+                       
+                        <!-- </form> -->
                     </div>
                 </div>
                 <div id="stickyfilters">

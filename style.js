@@ -190,67 +190,94 @@ menuicon.addEventListener("click", menuslider);
 
 // capture pic ***
 let video = document.getElementById("vidplayer");
-var width = 320;
+var width = 640;
 var height = 320;
 if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // height = video.offsetHeight / (video.offsetWidth / width);
-    // video.setAttribute("width", width);
-    // video.setAttribute("height", height);
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then(function (stream) {
         video.srcObject = stream;
         video.play();
       });
+  } else if (navigator.getUserMedia) {
+    // Standard
+    navigator.getUserMedia(
+      { video: true },
+      function (stream) {
+        video.src = stream;
+        video.play();
+      },
+      errBack
+    );
+  } else if (navigator.webkitGetUserMedia) {
+    // WebKit-prefixed
+    navigator.webkitGetUserMedia(
+      { video: true }.then(function (stream) {
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+      }),
+      errBack
+    );
+  } else if (navigator.mozGetUserMedia) {
+    // Mozilla-prefixed
+    navigator.mozGetUserMedia(
+      { video: true },
+      function (stream) {
+        video.srcObject = stream;
+        video.play();
+      },
+      errBack
+    );
+  }
+}
+
+function previewFile() {
+  const file = document.querySelector("#chose").files[0];
+  const img = document.querySelector("#img");
+  const pr = document.querySelector("#canvas");
+  if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+    var reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      function () {
+        const idraw = new Image();
+        idraw.src = reader.result;
+        idraw.onload = function () {
+          pr.getContext("2d").drawImage(idraw, 0, 0, width, height);
+          var data = pr.toDataURL("image/png");
+          img.setAttribute("value", data);
+          fillcheck(data);
+        };
+      },
+      false
+    );
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   }
 }
 
 function takepic() {
-  const upimg = document.querySelector("#upimg");
-
-  var vidimg = document.querySelector("#pipse");
+  // const upimg = document.querySelector("#upimg");
+  // var vidimg = document.querySelector("#pipse");
   let canvas = document.querySelector("#canvas");
   var img = document.querySelector("#img");
   canvas.width = width;
   canvas.height = height;
-  // console.log(upimg.value);
-  if (upimg && upimg.value) {
-    const idraw = new Image();
-    idraw.src = upimg.value;
-    idraw.onload = function () {
-      canvas.getContext("2d").drawImage(idraw, 0, 0, width, height);
-      canvas
-        .getContext("2d")
-        .drawImage(
-          vidimg,
-          width / 3,
-          height / 3,
-          vidimg.offsetWidth,
-          vidimg.offsetHeight
-        );
-      var data = canvas.toDataURL("image/png");
-      img.setAttribute("value", data);
-      fillcheck(data);
-    };
-  } else {
-    canvas.getContext("2d").drawImage(video, 0, 0, width, height);
-    canvas
-      .getContext("2d")
-      .drawImage(
-        vidimg,
-        width / 3,
-        height / 3,
-        vidimg.offsetWidth,
-        vidimg.offsetHeight
-      );
-    var data = canvas.toDataURL("image/png");
-    img.setAttribute("value", data);
-    fillcheck(data);
-  }
-  //     var data = canvas.toDataURL("image/png");
-  // img.setAttribute("value", data);
-  // fillcheck(data);
+  canvas.getContext("2d").drawImage(video, 0, 0, width, height);
+  // canvas
+  //   .getContext("2d")
+  //   .drawImage(
+  //     vidimg,
+  //     width / 3,
+  //     height / 3,
+  //     vidimg.offsetWidth,
+  //     vidimg.offsetHeight
+  //   );
+  var data = canvas.toDataURL("image/png");
+  img.setAttribute("value", data);
+  fillcheck(data);
 }
 
 function fillcheck($data) {
@@ -351,10 +378,14 @@ function removefilter() {
   styleimg.setAttribute("value", "");
 }
 
-function sticktoimg($srcvalue) {
+function sticktoimg(srcvalue) {
   var vidimg = document.querySelector("#pipse");
+  const sticky = document.querySelector('#sticky');
+  var canstick = document.querySelector("#stickcan");
   var but = document.querySelector("#takepic");
-  vidimg.setAttribute("src", $srcvalue);
+  vidimg.setAttribute("src", srcvalue);
+  canstick.setAttribute("src", srcvalue);
+  sticky.setAttribute('value', srcvalue);
   but.style.pointerEvents = "auto";
   but.style.backgroundColor = "#6ccde09c";
 }
@@ -466,7 +497,9 @@ function cmtjs(id, cmt) {
     let spc = document.createElement("span");
     xhr.onloadend = function () {
       if (xhr.responseText !== "") {
-        let thecmt = document.createTextNode(xhr.responseText.replace(/&#34;/g, "\"").replace(/&#39;/g, "'"));
+        let thecmt = document.createTextNode(
+          xhr.responseText.replace(/&#34;/g, '"').replace(/&#39;/g, "'")
+        );
         spc.appendChild(thecmt);
       }
     };
