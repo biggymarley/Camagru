@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['uid'])) {
-    header('location: ././main/login.php');
+    header('location: ../main/login.php');
     return;
 } else {
     $svname = "localhost";
@@ -11,7 +11,7 @@ if (!isset($_SESSION['uid'])) {
     $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
     try {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        require_once('./includes/functions.php');
+        require_once('../includes/functions.php');
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $login = trim($_POST['uid']);
@@ -27,7 +27,7 @@ if (!isset($_SESSION['uid'])) {
         else
             $infoemail = '0';
         if (empty($login) || empty($email) || empty($passwd)) {
-            header('location: ././main/profile.php');
+            header('location: ../main/profile.php');
             return;
         }
         if ($_SESSION['uemail'] === $email && $_SESSION['uid'] === $login) {
@@ -45,7 +45,7 @@ if (!isset($_SESSION['uid'])) {
             $stmt = $db->prepare($sql);
             $stmt->execute();
             if (!password_verify($passwd, $stmt->fetch()['upwd'])) {
-                header('location: ././main/profile.php?error=oldpwinco');
+                header('location: ../main/profile.php?error=oldpwinco');
                 return;
             } else {
                 $sql = "UPDATE users SET `uid`=:uid , uemail=:uemail ,infoemail=:infoemail WHERE `usersid` LIKE {$_SESSION['usersid']}";
@@ -58,7 +58,7 @@ if (!isset($_SESSION['uid'])) {
                 {
                     if($npw !== $vnpw)
                     {
-                        header('location: ././main/profile.php?error=pwdnomatch');
+                        header('location: ../main/profile.php?error=pwdnomatch');
                         return;
                     }
                     $sql = "UPDATE users SET upwd=:upwd WHERE `usersid` LIKE {$_SESSION['usersid']}";
@@ -103,19 +103,19 @@ Dear '.$_SESSION["uid"].'
 We are Happy to inform you That You changed your profile infos
 </span>
 </br></br></br></br>
-<a class="buteditinfo" href="http://192.168.99.106/">Go To Web Site</a>
+<a class="buteditinfo" href="http://192.168.99.104/">Go To Web Site</a>
 </br></br></br></br>
 </div>
 </center>
 </body>
 </html>';
 $subject = "Camagru : Profile Info has Been Updated";
-                include('./tools/mail.php');
-                header('location: ././main/profile.php?sucs=true');
+                include('../tools/mail.php');
+                header('location: ../main/profile.php?sucs=true');
                 return;
             }
         } else{
-            header('location: ././main/profile.php?error=loginm');
+            header('location: ../main/profile.php?error=loginm');
             return;
         }
     } catch (PDOException $e) {

@@ -5,8 +5,8 @@
         unset($_SESSION['mode']);
         unset($_SESSION['token']);
         session_destroy();    
-        header('location: ././main/login.php');
+        header('location: ../main/login.php');
     }
     else    
-        header('location: ./index.php');
+        header('location: ../index.php');
 ?>

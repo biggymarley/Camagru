@@ -21,11 +21,11 @@ if (!empty($_GET)) {
             {
                 $sql = "UPDATE users SET accountstatus = 1 WHERE uemail = '$check'";
                 $db->exec($sql);
-                include("./tools/valid.html");
+                include("valid.html");
             }
             else
             {
-                header('location: .././main/login.php');
+                header('location: ../main/login.php');
                 return;
             }
 
@@ -36,7 +36,7 @@ if (!empty($_GET)) {
         }
     
 } else {
-    header('location: .././main/login.php');
+    header('location: ../main/login.php');
     return;
 }
 

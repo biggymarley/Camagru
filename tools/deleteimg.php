@@ -15,7 +15,7 @@ if(!empty($_SESSION['usersid']) || (!empty($_GET['tok']) && hash_equals($_SESSIO
         $sql = "DELETE FROM `postes` WHERE `postusrid` = $imgid";
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        header('location: ././main/imglab.php');
+        header('location: ../main/imglab.php');
     }
     catch(PDOException $e)
     {
@@ -24,6 +24,6 @@ if(!empty($_SESSION['usersid']) || (!empty($_GET['tok']) && hash_equals($_SESSIO
 }
 else
 {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }

@@ -10,7 +10,7 @@ if (isset($_SESSION['uid'])) {
     if (isset($_POST['imgsrc']))
         $img = $_POST['imgsrc'];
     else {
-        header('location: ././main/imglab.php');
+        header('location: ../main/imglab.php');
         return;
     }
     if (isset($_POST['styleimg']))
@@ -45,9 +45,9 @@ if (isset($_SESSION['uid'])) {
             echo "DB ERROR: " . $e->getMessage();
         }
     }
-    header('location: ././main/imglab.php');
+    header('location: ../main/imglab.php');
     return;
 } else {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }

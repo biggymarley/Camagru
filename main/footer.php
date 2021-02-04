@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Kreon&display=swap" rel="stylesheet">
 </head>
 <center>

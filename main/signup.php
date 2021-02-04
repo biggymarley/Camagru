@@ -7,7 +7,7 @@ if(!isset($_SESSION))
 }
 if(isset($_SESSION['uid']))
 {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }
 if(empty($_SESSION['token']))
@@ -22,10 +22,10 @@ if(empty($_SESSION['token']))
     <title>SIGN UP</title>
 </head>
 <body class="light" id="all">
-    <?php include_once("./main/header.php") ?>
+    <?php include_once("header.php") ?>
     <center>
         <div id="loginform">
-            <form autocomplete="off" action="includes/signup_inc.php" method="post" enctype="multipart/form-data">
+            <form autocomplete="off" action="../includes/signup_inc.php" method="post" enctype="multipart/form-data">
                 <div id="inlab">
                     <input autocomplete="off" name="username" type="text" class="input" pattern="^[a-zA-Z1-9]{3,}$" title="MORE THEN 3 [a-zA-Z1-9]" required />
                     <span id="label">Username :</span>
@@ -72,11 +72,11 @@ if(empty($_SESSION['token']))
                 </br>
                 <input id="button" type="submit" name="submit" />
                 </from>
-                <?php include_once("./tools/errors.php") ?>
+                <?php include_once("../tools/errors.php") ?>
         </div>
     </center>
-    <?php include_once("./main/footer.php") ?>
-    <script defer async src="./style/style.js">
+    <?php include_once("footer.php") ?>
+    <script defer async src="../style/style.js">
     </script>
 </body>
 

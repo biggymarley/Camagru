@@ -43,8 +43,8 @@ var theme = {
     bg: "url(img/d2.png)",
     color: "#bababa",
     input_color: "#8f8f8f",
-    add: "./img/dadd.png",
-    menu: "./img/dmenu.png",
+    add: "../img/dadd.png",
+    menu: "../img/dmenu.png",
     postbg: "linear-gradient(to right top, rgba(255,0,0,0), #1b8ea047)",
   },
   light: {
@@ -53,8 +53,8 @@ var theme = {
     bg: "url(img/l2.png)",
     color: "#000000",
     input_color: "#536669",
-    add: "./img/add.png",
-    menu: "./img/lmenu.png",
+    add: "../img/add.png",
+    menu: "../img/lmenu.png",
     postbg: "linear-gradient(to right top, rgba(255,0,0,0),#8fb1b646)",
   },
 };
@@ -97,8 +97,8 @@ const light = () => {
   if (add) add.src = theme.light.add;
   line.classList.remove("darkin");
   pos.setProperty("left", "0");
-  pos.setProperty("background-image", "url(./img/sun.png)");
-  toggle2.style.setProperty("background-image", "url(./img/sun.png)");
+  pos.setProperty("background-image", "url(../img/sun.png)");
+  toggle2.style.setProperty("background-image", "url(../img/sun.png)");
   clickmenu.setAttribute("src", theme.light.menu);
   body.classList.remove("dark");
   ball.style.backgroundColor = theme.light.ballc;
@@ -140,8 +140,8 @@ const dark = () => {
   line.classList.add("darkin");
   clickmenu.setAttribute("src", theme.dark.menu);
   pos.setProperty("left", "55px");
-  pos.setProperty("background-image", "url(./img/moon.png)");
-  toggle2.style.setProperty("background-image", "url(./img/moon.png)");
+  pos.setProperty("background-image", "url(../img/moon.png)");
+  toggle2.style.setProperty("background-image", "url(../img/moon.png)");
   ball.style.backgroundColor = theme.dark.ballc;
   toggle2.style.backgroundColor = theme.dark.ballc;
   toggle.style.backgroundColor = theme.dark.bg_color;
@@ -384,23 +384,23 @@ function sticktoimg(srcvalue) {
 function deleteimg(id, tok) {
   const t = confirm("Do you want to  Delete your Image");
   if (t == true) {
-    window.location = "./tools/deleteimg.php?id=" + id + "&tok=" + tok;
+    window.location = "../tools/deleteimg.php?id=" + id + "&tok=" + tok;
   }
 }
 
 function logout(tok) {
   const t = confirm("Are you Sure you want to log-out");
   if (t == true) {
-    window.location = "././main/logout.php?tok=" + tok;
+    window.location = "../main/logout.php?tok=" + tok;
   }
 }
 
 function like($id) {
   $s = document.getElementById($id);
   if ($s) {
-    if ($s.src === "./img/like.png") {
-      $s.setAttribute("src", "./img/unlike.png");
-    } else $s.setAttribute("src", "./img/like.png");
+    if ($s.src === "../img/like.png") {
+      $s.setAttribute("src", "../img/unlike.png");
+    } else $s.setAttribute("src", "../img/like.png");
   }
 }
 
@@ -424,7 +424,7 @@ window.addEventListener("scroll", function () {
     data.append("from", l);
     data.append("to", to);
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "./tools/displaycmt.php");
+    xhr.open("POST", "../tools/displayposts.php");
     const postsdiv = document.getElementById("allposts");
     xhr.onloadend = function () {
       const p = new DOMParser();
@@ -449,28 +449,28 @@ function likejs(id, lid) {
   var data = new FormData();
   data.append("pid", document.getElementById(id).value);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "./tools/like.php");
+  xhr.open("POST", "../tools/like.php");
   const nblike = document.getElementsByName(lid)[0].textContent.match(/\d/);
   xhr.onload = function () {
     const l = this.response;
     if (l === "like") {
-      document.getElementById(lid).src = "./img/like.png";
+      document.getElementById(lid).src = "../img/like.png";
       document.getElementById(lid).style.opacity = "1";
       setTimeout(function () {
         document.getElementById(lid).style.opacity = "0";
       }, 200);
-      document.getElementById(id).src = "./img/like.png";
+      document.getElementById(id).src = "../img/like.png";
       document.getElementsByName(lid)[0].textContent =
         parseInt(nblike) + 1 + " likes";
     } else if (l === "unlike") {
       document.getElementsByName(lid)[0].textContent =
         parseInt(nblike) - 1 + " likes";
-      document.getElementById(lid).src = "./img/unlike.png";
+      document.getElementById(lid).src = "../img/unlike.png";
       document.getElementById(lid).style.opacity = "1";
       setTimeout(function () {
         document.getElementById(lid).style.opacity = "0";
       }, 200);
-      document.getElementById(id).src = "./img/unlike.png";
+      document.getElementById(id).src = "../img/unlike.png";
     }
   };
   xhr.send(data);
@@ -486,7 +486,7 @@ function cmtjs(id, cmt) {
     tokk = document.getElementById('cmtcsrf').value;
     data.append("csrf" , tokk);
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./tools/cmt.php");
+    xhr.open("POST", "../tools/cmt.php");
     let spc = document.createElement("span");
     xhr.onloadend = function () {
       if (xhr.responseText !== "") {
@@ -500,7 +500,7 @@ function cmtjs(id, cmt) {
     var d2 = new FormData();
     const xhr2 = new XMLHttpRequest();
     d2.append("cmt", cmtinput.value);
-    xhr2.open("POST", "./tools/autoinsertcmt.php");
+    xhr2.open("POST", "../tools/autoinsertcmt.php");
     let div = document.createElement("div");
     let sp = document.createElement("span");
     sp.className = "ucom";
@@ -530,13 +530,13 @@ function savedjs(id, i) {
   var data = new FormData();
   data.append("pid", document.getElementById(id).value);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "./tools/saved.php");
+  xhr.open("POST", "../tools/saved.php");
   xhr.onload = function () {
     const l = this.response;
     if (l === "saved") {
-      document.getElementById(i).src = "./img/saved.png";
+      document.getElementById(i).src = "../img/saved.png";
     } else if (l === "unsaved")
-      document.getElementById(i).src = "./img/unsaved.png";
+      document.getElementById(i).src = "../img/unsaved.png";
   };
   xhr.send(data);
   return false;

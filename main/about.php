@@ -6,12 +6,12 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>ABOUT"</title>
 </head>
 <body class='light' id="all">
-    <?php include_once("./main/header.php") ?>
+    <?php include_once("header.php") ?>
     <center>
        <h1>SPECIAL THANKS TO FLATICON.COM FOR ICONS I USED</h1>
        <a  href="https://www.flaticon.com/">
@@ -19,8 +19,8 @@ session_start();
     </a>
     <h1>Also background from : </h1><a style="color:black;font-size: 50px;text-decoration:none;" href="https://www.toptal.com/designers/subtlepatterns/skulls/" >SKULLS</a>
     </center>
-     <?php include_once("./main/footer.php") ?>
-    <script src="./style/style.js">
+     <?php include_once("footer.php") ?>
+    <script src="../style/style.js">
     </script>
 </body>
 </html>

@@ -30,12 +30,12 @@ if(!empty($_GET))
             if($check === $email)
             {
                
-                include('./new_pw.html');
+                include('../main/new_pw.html');
                 return;
             }
             else
             {
-                include("./tools/request_pw.html");
+                include("request_pw.html");
                 return;
             }
         }
@@ -46,6 +46,6 @@ if(!empty($_GET))
        
     }
 }
-include("./tools/request_pw.html");
-include("./tools/errors.php");
+include("request_pw.html");
+include("../errors.php");
 ?>

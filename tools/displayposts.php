@@ -32,7 +32,7 @@ try {
     $index = 0;
     $imgs = $stmt->fetchAll();
     if(!empty($imgs))
-        include("./tools/display5posts.php");
+        include("display5posts.php");
 } catch (PDOException $e) {
     echo "DB ERROR: " . $e->getMessage();
 }

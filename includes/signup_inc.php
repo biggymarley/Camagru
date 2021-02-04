@@ -26,10 +26,10 @@ try {
         emtySingupinput($login, $passwd, $email, $Rpasswd);
         if ($rows = checkmatch($db, $login, $email)) {
             if ($rows['uid'] === $login) {
-                header('location: ../signup.php?error=loginm');
+                header('location: ../main/signup.php?error=loginm');
                 exit();
             } elseif ($rows['uemail'] === $email) {
-                header('location: ../signup.php?error=emailm');
+                header('location: ../main/signup.php?error=emailm');
                 exit();
             }
         }
@@ -38,9 +38,9 @@ try {
         if(file_exists($path)) unlink($path);
         move_uploaded_file($img, $path);
         $baseimg = base64_encode(file_get_contents($path));
-        matchpass($passwd, $Rpasswd, "../signup.php");
+        matchpass($passwd, $Rpasswd, "../main/signup.php");
         checkemail($email);
-        hardpwd($passwd, "../signup.php");
+        hardpwd($passwd, "../main/signup.php");
         $activation = sha1(mt_rand(10000,99999).time().$email);
         if(isset($_POST['infoemail']))
             addtodb($db, $login, $email, $passwd, $baseimg, "1", $activation);
@@ -76,7 +76,7 @@ try {
                 Verify Your Account
            </span>
             </br></br></br></br>
-            <a class="buteditinfo" href="http://192.168.99.106/tools/activation.php?key='.$activation.'&email='.$email.'">Go To Web Site</a>
+            <a class="buteditinfo" href="http://192.168.99.104/tools/activation.php?key='.$activation.'&email='.$email.'">Go To Web Site</a>
             </br></br></br></br>
             </div>
             </center>
@@ -89,7 +89,7 @@ try {
                 'From' => 'Camagru@Support.com'
             );
             mail($email, $subject, $mess, $headers);
-            header('location: .././main/login.php?error=verify');
+            header('location: ../main/login.php?error=verify');
             //////////////////////////////////////
     } else
         header('location: ../index.php');
@@ -98,6 +98,6 @@ try {
 }
 } else
 {
-    header('location: ../signup.php');
+    header('location: ../main/signup.php');
     return;
 }

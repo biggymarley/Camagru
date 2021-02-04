@@ -39,6 +39,6 @@ $likeid = $_POST['pid'];
 }
 else
 {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }

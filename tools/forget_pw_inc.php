@@ -7,7 +7,7 @@ $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
 
 if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf'])) {
-    include_once("./includes/functions.php");
+    include_once("../includes/functions.php");
     try {
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -52,7 +52,7 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf'])) {
                CLICK TO CHANGE YOUR PASSWORD
            </span>
             </br></br></br></br>
-            <a class="buteditinfo" href="http://192.168.99.106/tools/forget_pw.php?key=' . $activation . '&email=' . $email . '">Go To Web Site</a>
+            <a class="buteditinfo" href="http://192.168.99.104/tools/forget_pw.php?key=' . $activation . '&email=' . $email . '">Go To Web Site</a>
             </br></br></br></br>
             </div>
             </center>

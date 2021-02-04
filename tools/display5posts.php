@@ -21,18 +21,18 @@ if(isset($imgs))
     $uimg = $fetch[0]['uimg'];
     echo "<div class='posts'>";
     echo "<div class='divpiclog'>";
-    echo "<a href='./main/profile.php?username=$username'>";
+    echo "<a href='../main/profile.php?username=$username'>";
     if (empty($uimg))
-        echo "<img class='postpimg' src='./img/user.png' />";
+        echo "<img class='postpimg' src='../img/user.png' />";
     else
         echo "<img class='postpimg' src='data:image/png;base64, $uimg' />";
     echo "</a>";
-    echo "<a class='piclog'  href='./main/profile.php?username=$username'>$username</a>";
+    echo "<a class='piclog'  href='../main/profile.php?username=$username'>$username</a>";
     echo "</div>";
     echo "<div   class='indisimg'>";
     echo "<div   class='imgndlike'>";
     echo "<img src='{$imgs[$index]['img']}' data-id='{$imgs[$index]['postusrid']}' data-likeid='$pid' class='imgsp' style='filter: {$style}'>";
-    echo "<img id='{$pid}'  src='./img/like.png' class='apprlike'>";
+    echo "<img id='{$pid}'  src='../img/like.png' class='apprlike'>";
     echo "</div>";
     $slikes = "SELECT count(*) FROM `like` WHERE `pid` = {$imgs[$index]['postusrid']}";
     $stl = $db->prepare($slikes);
@@ -46,14 +46,14 @@ if(isset($imgs))
     $stmt3 = $db->prepare($sql2);
     $stmt3->execute();
     if (!empty($stmt3->fetch())) {
-        echo "<input id='$i'  name='savebtn' type='image' alt='Submit' class='likebtn' src='./img/saved.png' value='{$imgs[$index]['postusrid']}'>";
+        echo "<input id='$i'  name='savebtn' type='image' alt='Submit' class='likebtn' src='../img/saved.png' value='{$imgs[$index]['postusrid']}'>";
     } else {
-        echo "<input id='$i'  name='savebtn' type='image' alt='Submit' class='likebtn' src='./img/unsaved.png' value='{$imgs[$index]['postusrid']}' >";
+        echo "<input id='$i'  name='savebtn' type='image' alt='Submit' class='likebtn' src='../img/unsaved.png' value='{$imgs[$index]['postusrid']}' >";
     }
     echo "</form>";
 }
     echo "</div>";
-    include "./tools/displaycmt.php";
+    include "displaycmt.php";
     echo "<div class='reactdiv'>";
     if (isset($_SESSION) && isset($_SESSION['usersid']) &&  isset($_SESSION['uid'])) {
     echo "<form class='likeform' method='POST' onsubmit='return likejs({$imgs[$index]['postusrid']}, $pid)'>";
@@ -61,9 +61,9 @@ if(isset($imgs))
     $stmt3 = $db->prepare($sql2);
     $stmt3->execute();
     if (!empty($stmt3->fetch())) {
-        echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/like.png' value='{$imgs[$index]['postusrid']}'>";
+        echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='../img/like.png' value='{$imgs[$index]['postusrid']}'>";
     } else {
-        echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='./img/unlike.png' value='{$imgs[$index]['postusrid']}' >";
+        echo "<input id='{$imgs[$index]['postusrid']}' type='image' alt='Submit' class='likebtn' src='../img/unlike.png' value='{$imgs[$index]['postusrid']}' >";
     }
     echo "</form>";
     
@@ -84,7 +84,7 @@ if(isset($imgs))
 }
 }else
 {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }
 

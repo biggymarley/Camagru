@@ -28,7 +28,7 @@ try {
         $splited = explode(".", $_FILES['img']['name']);
         $ext = end($splited);
         $newimgname = $login.".".$ext;
-        $path = "./tools/up/".$newimgname;
+        $path = "../tools/up/".$newimgname;
         if(file_exists($path)) unlink($path);
         move_uploaded_file($img, $path);
         $baseimg = base64_encode(file_get_contents($path));

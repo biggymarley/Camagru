@@ -2,16 +2,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Forget Password</title>
 </head>
 
 <body class='light' id="all">
-    <?php include_once("./main/header.php") ?>
+    <?php include_once("header.php") ?>
     <center>
         <div id="loginform">
-            <form action="./new_pw.php" method="post">
+            <form action="../main/new_pw.php" method="post">
                 <div id="inlab">
                 <input type="password" class="input" name="npw" required>
                 <span id="label">New Password :</span>
@@ -31,11 +31,11 @@
                 <input type="hidden" name='key' value="<?php echo $_GET['key'] ?>" />
                 <input id="button" type="submit" name="submit" value="SUBMIT" />
                 </from>
-                <?php include_once("./tools/errors.php") ?>
+                <?php include_once("../tools/errors.php") ?>
         </div>
     </center>
-    <?php include_once("./main/footer.php") ?>
-    <script src="./style/style.js">
+    <?php include_once("footer.php") ?>
+    <script src="../style/style.js">
     </script>
 </body>
 

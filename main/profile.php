@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION) || !isset($_SESSION['usersid']))
 {
-    header('location: ././main/login.php');
+    header('location: ../main/login.php');
     exit();
 }
 ?>
@@ -17,19 +17,19 @@ if (!isset($_SESSION) || !isset($_SESSION['usersid']))
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     <title>Camagru</title>
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body class="light" id="all">
     <?php
-    include_once("./main/header.php");
+    include_once("./header.php");
     ?>
     <center>
             <?php 
-            include_once("./tools/errors.php");
+            include_once("../tools/errors.php");
             include_once("profile-inc.php");?>
     </center>
-    <?php include_once("./main/footer.php") ?>
-    <script   src="./style/style.js">
+    <?php include_once("footer.php") ?>
+    <script   src="../style/style.js">
     </script>
 </body>
 

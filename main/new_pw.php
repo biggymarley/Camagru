@@ -6,7 +6,7 @@ $pw = "root";
 $dbname = "Camagru_users";
 $dsn = "mysql:host=" . $svname . ";dbname=" . $dbname;
 if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf'])) {
-    include_once("./includes/functions.php");
+    include_once("../includes/functions.php");
     try {
         $db = new PDO($dsn, $user, $pw);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -9,6 +9,6 @@ $headers = array(
 mail($email, $subject, $mess, $headers);
 }else
 {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }

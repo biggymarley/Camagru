@@ -6,7 +6,7 @@ if(!isset($_SESSION))
 }
 if(isset($_SESSION['uid']))
 {
-    header('location: ./index.php');
+    header('location: ../index.php');
     return;
 }
 if(empty($_SESSION['token']))
@@ -24,15 +24,15 @@ if(empty($_SESSION['token']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <title>Login</title>
 </head>
 <body class='light' id="all">
-    <?php include_once("./main/header.php") ?>
+    <?php include_once("header.php") ?>
     <center>
         <div id="loginform">
-        <form action="includes/login_inc.php" method="post">
+        <form action="../includes/login_inc.php" method="post">
             <div id="inlab">
                 <input type="text" class="input" name="username"  required>
                 <span id="label">Username / Email :</span>
@@ -47,15 +47,15 @@ if(empty($_SESSION['token']))
             </br></br>
             </br></br>
             <input type="hidden" name='csrf' value="<?php echo $_SESSION['token']?>" />
-            <a href="./tools/forget_pw.php" style="text-decoration: none;color:black">Forget your Password ?</a>
+            <a href="../tools/forget_pw.php" style="text-decoration: none;color:black">Forget your Password ?</a>
             </br></br>
             <input id="button" type="submit" name="submit" value="LOGIN" />
         </from>
-        <?php include_once("./tools/errors.php") ?>
+        <?php include_once("../tools/errors.php") ?>
         </div>
     </center>
-     <?php include_once("./main/footer.php") ?>
-    <script src="./style/style.js">
+     <?php include_once("footer.php") ?>
+    <script src="../style/style.js">
     </script>
 </body>
 </html>
