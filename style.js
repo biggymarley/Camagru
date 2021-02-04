@@ -1,4 +1,3 @@
-// var all = document.getElementById("dark").style;
 var cpos = document.getElementById("ball");
 if (cpos) var pos = cpos.style;
 var vid = document.getElementById("camstick");
@@ -194,7 +193,6 @@ var width = 640;
 var height = 320;
 if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    console.log('test')
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then(function (stream) {
@@ -264,22 +262,12 @@ function previewFile() {
 }
 
 function takepic() {
-  // const upimg = document.querySelector("#upimg");
-  // var vidimg = document.querySelector("#pipse");
+
   let canvas = document.querySelector("#canvas");
   var img = document.querySelector("#img");
   canvas.width = width;
   canvas.height = height;
   canvas.getContext("2d").drawImage(video, 0, 0, width, height);
-  // canvas
-  //   .getContext("2d")
-  //   .drawImage(
-  //     vidimg,
-  //     width / 3,
-  //     height / 3,
-  //     vidimg.offsetWidth,
-  //     vidimg.offsetHeight
-  //   );
   var data = canvas.toDataURL("image/png");
   img.setAttribute("value", data);
   fillcheck(data);
@@ -301,7 +289,6 @@ function slider() {
   if (imgdisplay.style.visibility === "hidden") {
     divediteur.style.width = "69%";
     imgdisplay.style.width = "30%";
-    // imgdisplay.style.setProperty("right", "0");
     imgdisplay.style.visibility = "visible";
     disbutn.setAttribute("value", "Hide imgs");
     imgdisplay.style.setProperty("opacity", "1");
@@ -309,7 +296,6 @@ function slider() {
   } else {
     divediteur.style.width = "100%";
     imgdisplay.style.width = "0%";
-    // imgdisplay.style.setProperty("right", "100");
     imgdisplay.style.pointerEvents = "none";
     imgdisplay.style.setProperty("opacity", "0");
     imgdisplay.style.visibility = "hidden";
@@ -492,7 +478,6 @@ function likejs(id, lid) {
 }
 
 function cmtjs(id, cmt) {
-  console.log('in');
   let cmtinput = document.getElementsByName(cmt)[0];
   if (cmtinput.value.trim()) {
     var data = new FormData();
