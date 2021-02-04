@@ -52,7 +52,7 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf'])) {
                CLICK TO CHANGE YOUR PASSWORD
            </span>
             </br></br></br></br>
-            <a class="buteditinfo" href="http://192.168.99.104/forget_pw.php?key=' . $activation . '&email=' . $email . '">Go To Web Site</a>
+            <a class="buteditinfo" href="http://192.168.99.106/forget_pw.php?key=' . $activation . '&email=' . $email . '">Go To Web Site</a>
             </br></br></br></br>
             </div>
             </center>

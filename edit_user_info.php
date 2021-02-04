@@ -103,7 +103,7 @@ Dear '.$_SESSION["uid"].'
 We are Happy to inform you That You changed your profile infos
 </span>
 </br></br></br></br>
-<a class="buteditinfo" href="http://192.168.99.104/">Go To Web Site</a>
+<a class="buteditinfo" href="http://192.168.99.106/">Go To Web Site</a>
 </br></br></br></br>
 </div>
 </center>

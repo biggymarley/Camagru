@@ -194,11 +194,14 @@ var width = 640;
 var height = 320;
 if (video) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    console.log('test')
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then(function (stream) {
         video.srcObject = stream;
         video.play();
+      }).catch( function () {
+        console.log('error');
       });
   } else if (navigator.getUserMedia) {
     // Standard
@@ -216,9 +219,10 @@ if (video) {
       { video: true }.then(function (stream) {
         video.src = window.webkitURL.createObjectURL(stream);
         video.play();
-      }),
-      errBack
-    );
+      }).catch( function () {
+        console.log('error');
+      })
+      );
   } else if (navigator.mozGetUserMedia) {
     // Mozilla-prefixed
     navigator.mozGetUserMedia(
@@ -226,8 +230,9 @@ if (video) {
       function (stream) {
         video.srcObject = stream;
         video.play();
-      },
-      errBack
+      }.catch( function () {
+        console.log('error');
+      })
     );
   }
 }

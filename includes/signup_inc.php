@@ -76,7 +76,7 @@ try {
                 Verify Your Account
            </span>
             </br></br></br></br>
-            <a class="buteditinfo" href="http://192.168.99.104/activation.php?key='.$activation.'&email='.$email.'">Go To Web Site</a>
+            <a class="buteditinfo" href="http://192.168.99.106/activation.php?key='.$activation.'&email='.$email.'">Go To Web Site</a>
             </br></br></br></br>
             </div>
             </center>

@@ -67,7 +67,7 @@ if (!empty($cmt)) {
     We are Happy to inform you That ** '.$_SESSION["uid"].' ** Comment on Your Picture
     </span>
     </br></br></br></br>
-    <a class="buteditinfo" href="http://192.168.99.104/">Go To Web Site</a>
+    <a class="buteditinfo" href="http://192.168.99.106/">Go To Web Site</a>
     </br></br></br></br>
     </div>
     </center>
