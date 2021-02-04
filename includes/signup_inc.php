@@ -34,7 +34,7 @@ try {
             }
         }
         $newimgname = $login.".".$ext;
-        $path = "../up/".$newimgname;
+        $path = "../tools/up/".$newimgname;
         if(file_exists($path)) unlink($path);
         move_uploaded_file($img, $path);
         $baseimg = base64_encode(file_get_contents($path));
@@ -76,7 +76,7 @@ try {
                 Verify Your Account
            </span>
             </br></br></br></br>
-            <a class="buteditinfo" href="http://192.168.99.106/activation.php?key='.$activation.'&email='.$email.'">Go To Web Site</a>
+            <a class="buteditinfo" href="http://192.168.99.106/tools/activation.php?key='.$activation.'&email='.$email.'">Go To Web Site</a>
             </br></br></br></br>
             </div>
             </center>
@@ -89,7 +89,7 @@ try {
                 'From' => 'Camagru@Support.com'
             );
             mail($email, $subject, $mess, $headers);
-            header('location: ../login.php?error=verify');
+            header('location: .././main/login.php?error=verify');
             //////////////////////////////////////
     } else
         header('location: ../index.php');

@@ -3,11 +3,11 @@
 function emtyinput($login, $passwd)
 {
     if (empty($login) && empty($passwd))
-        header('location: ../login.php?error=loginpwd');
+        header('location: .././main/login.php?error=loginpwd');
     elseif (empty($login))
-        header('location: ../login.php?error=login');
+        header('location: .././main/login.php?error=login');
     elseif (empty($passwd))
-        header('location: ../login.php?error=pwd');
+        header('location: .././main/login.php?error=pwd');
     else
         return;
     exit();
@@ -74,7 +74,7 @@ function addtodb($conn, $login, $email, $passwd, $uimg, $infoemail, $activation)
         // $id = $stmt->fetch()[0];
         // $sql = "INSERT INTO `mode` VALUES ($id, TRUE);";
         // $conn->exec($sql);
-        header('location: ../login.php');
+        header('location: .././main/login.php');
 }
 
 function checkemail($email)

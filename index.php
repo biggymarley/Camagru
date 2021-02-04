@@ -5,15 +5,15 @@ session_start();
 <html id="dark">
 <body class="light" id="all">
     <?php
-    include_once("header.php");
+    include_once("./main/header.php");
     ?>
     <center id='allposts'>
             <?php
-             include_once("displayposts.php");
+             include_once("tools/displaycmt.php");
             ?>
     </center>
-    <?php include_once("footer.php") ?>
-    <script defer async src="style.js">
+    <?php include_once("./main/footer.php") ?>
+    <script defer async src="./style/style.js">
     </script>
 </body>
 

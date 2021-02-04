@@ -21,7 +21,7 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
             emtyinput($login, $passwd);
             if ($row = checkmatch($db, $login, $login)) {
                 if (!password_verify($passwd, $row['upwd'])) {
-                    header('location: ../login.php?error=notexist');
+                    header('location: .././main/login.php?error=notexist');
                     exit();
                 } else {
                     if($row['accountstatus'] === '1')
@@ -36,20 +36,20 @@ if (!empty($_POST['csrf']) && hash_equals($_SESSION['token'], $_POST['csrf']))
                     }
                     else
                     {
-                        header('location: ../login.php?error=notveri');
+                        header('location: .././main/login.php?error=notveri');
                         return;
                     }
                 }
             } else {
-                header('location: ../login.php?error=notexist');
+                header('location: .././main/login.php?error=notexist');
                 exit();
             }
         } else
-        header('location: ../login.php');
+        header('location: .././main/login.php');
     } catch (PDOException $e) {
         echo "DB ERROR: " . $e->getMessage();
     }
 }else{
-    header('location: ../login.php');
+    header('location: .././main/login.php');
     return;
 }
