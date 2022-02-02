@@ -6,6 +6,6 @@ Using:
 SERVEUR SIDE : PHP ===> PDO , sql
 
 
-FRONTEND : html , Vanilla AND Js Css
+FRONTEND : html ,  Vanilla-Js Vanilla-Css
 
 check it out : https://madrasty-lhilwa.000webhostapp.com/ ;
